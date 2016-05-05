@@ -8,7 +8,7 @@
 
 var botgram = require("botgram");
 var utils = require("./lib/utils");
-var command = require("./lib/command");
+var Command = require("./lib/command").Command;
 
 var bot = botgram(process.argv[2]);
 var owner = parseInt(process.argv[3]);
@@ -16,10 +16,15 @@ var granted = [];
 var contexts = {};
 
 bot.all(function (msg, reply, next) {
-  if (!(msg.chat.id === owner || granted.indexOf(msg.chat.id) !== -1)) return;
+  var id = msg.chat.id;
+  if (!(id === owner || granted.indexOf(id) !== -1)) return;
 
   if (!contexts[id]) contexts[id] = {
+    shell: process.env.SHELL, //FIXME: add process.env.SHELL to list of shells, as first option, if it wasn't there already, otherwise move to first option
     env: utils.getSanitizedEnv(),
+    cwd: process.cwd(), //FIXME: try process.HOME first
+    size: {columns: 80, rows: 24},
+    silent: true,
   };
 
   msg.context = contexts[id];
@@ -45,7 +50,10 @@ bot.command("run", function (msg, reply, next) {
     return reply.reply(command.initialMessage.id || msg).text("A command is already running.");
   }
 
-  msg.context.command = new command.Command(reply, context, args[0]);
+  msg.context.command = new Command(reply, msg.context, args[0]);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
 });
 
 
