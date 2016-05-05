@@ -34,11 +34,8 @@ bot.all(function (msg, reply, next) {
 // Replies
 bot.message(function (msg, reply, next) {
   if (msg.reply === undefined) return next();
-  if (msg.context.command) {
-    var command = msg.context.command;
-    return reply.reply(command.initialMessage.id || msg).text("A command is already running.");
-  }
-
+  if (!msg.context.command)
+    return reply.reply("No command is running.");
   msg.context.command.handleReply(msg);
 });
 
