@@ -1,0 +1,25 @@
+{
+  "name": "botgram-shell",
+  "private": true,
+  "version": "0.0.1",
+  "keywords": [ "telegram", "bot", "shell" ],
+  "description": "Shellrunner Telegram bot",
+  "homepage": "https://github.com/mildsunrise/node-botgram",
+
+  "dependencies": {
+    "escape-html": "1",
+    "pty.js": "0.3",
+    "terminal.js": "1.0.7"
+  },
+
+  "bugs": {
+    "url": "https://github.com/mildsunrise/node-botgram/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mildsunrise/node-botgram"
+  },
+  "license": "MIT",
+
+  "author": "Alba Mendez <me@alba.sh> (https://alba.sh)"
+}
