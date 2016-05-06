@@ -20,6 +20,11 @@ var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
 
+bot.on("error", function (err) {
+  console.error("Unhandled error, failing.", err);
+  throw new Error("Unhandled error");
+});
+
 bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
@@ -130,6 +135,17 @@ bot.command("run", function (msg, reply, next) {
   msg.context.command.on("exit", function() {
     msg.context.command = null;
   });
+});
+
+// Keypad
+bot.command("keypad", function (msg, reply, next) {
+  if (!msg.context.command)
+    return reply.html("No command is running.");
+  try {
+    msg.context.command.toggleKeypad();
+  } catch (e) {
+    reply.html("Couldn't toggle keypad.");
+  }
 });
 
 // Settings: Info
@@ -318,7 +334,8 @@ bot.command("help", function (msg, reply, next) {
     "‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
     "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
     "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
-    "‣ For graphical applications, use /redraw to force a repaint of the screen, and /type to press keys.\n" + 
+    "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
+    "‣ Use /type to press keys, or /keypad to show a keyboard for special keys.\n" + 
     "\n" +
     "You can see the current status and settings for this chat with /settings. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
