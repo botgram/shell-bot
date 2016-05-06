@@ -1,6 +1,7 @@
 run - Execute command
 enter - Send input lines to command
 type - Type keys into command
+keypad - Show keypad for special keys
 end - Send EOF to command
 cancel - Interrupt command
 kill - Send signal to process
