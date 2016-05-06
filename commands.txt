@@ -1,0 +1,14 @@
+run - Execute command
+enter - Send input lines to command
+type - Type keys into command
+end - Send EOF to command
+cancel - Interrupt command
+kill - Send signal to process
+settings - View current settings
+cd - Change directory
+env - Manipulate the environment
+shell - Change shell used to run commands
+setsilent - Enable / disable silent output
+resize - Change the terminal size
+redraw - Force the command to repaint
+help - Get help

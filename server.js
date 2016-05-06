@@ -6,6 +6,8 @@
 //
 // Usage: ./server.js <auth token> <ID>
 
+var path = require("path");
+var fs = require("fs");
 var botgram = require("../..");
 var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
@@ -13,19 +15,52 @@ var Command = require("./lib/command").Command;
 
 var bot = botgram(process.argv[2]);
 var owner = parseInt(process.argv[3]);
+var tokens = {};
 var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
 
+bot.on("updateError", function (err) {
+  console.error("Error when updating:", err);
+});
+
 bot.all(function (msg, reply, next) {
   var id = msg.chat.id;
-  if (!(id === owner || granted[id])) return;
+  var allowed = id === owner || granted[id];
+
+  // If this message contains a token, check it
+  if (!allowed && msg.command === "start" && Object.hasOwnProperty.call(tokens, msg.args())) {
+    var token = tokens[msg.args()];
+    delete tokens[msg.args()];
+    granted[id] = true;
+    allowed = true;
+
+    // Notify owner
+    // FIXME: reply to token message
+    var contents = (msg.user ? "User" : "Chat") + " <em>" + escapeHtml(msg.chat.name) + "</em>";
+    if (msg.chat.username) contents += " (@" + escapeHtml(msg.chat.username) + ")";
+    contents += " can now use the bot. To revoke, use:";
+    reply.to(owner).html(contents).command("revoke", id);
+  }
+
+  // If chat is not allowed, but user is, use its context
+  if (!allowed && (msg.from.id === owner || granted[msg.from.id])) {
+    id = msg.from.id;
+    allowed = true;
+  }
+
+  // Check that the chat is allowed
+  if (!allowed) {
+    if (msg.command === "start") reply.html("Not authorized to use this bot.");
+    return;
+  }
 
   if (!contexts[id]) contexts[id] = {
-    shell: process.env.SHELL, //FIXME: add process.env.SHELL to list of shells, as first option, if it wasn't there already, otherwise move to first option
+    id: id,
+    shell: utils.shells[0],
     env: utils.getSanitizedEnv(),
     cwd: defaultCwd,
-    size: {columns: 80, rows: 24},
+    size: {columns: 40, rows: 20},
     silent: true,
   };
 
@@ -33,11 +68,12 @@ bot.all(function (msg, reply, next) {
   next();
 });
 
+
 // Replies
 bot.message(function (msg, reply, next) {
-  if (msg.reply === undefined) return next();
+  if (msg.reply === undefined || msg.reply.from.id !== this.get("id")) return next();
   if (!msg.context.command)
-    return reply.reply("No command is running.");
+    return reply.html("No command is running.");
   msg.context.command.handleReply(msg);
 });
 
@@ -45,31 +81,46 @@ bot.message(function (msg, reply, next) {
 bot.command("cancel", "kill", function (msg, reply, next) {
   var arg = msg.args(1)[0];
   if (!msg.context.command)
-    return reply.reply("No command is running.");
+    return reply.html("No command is running.");
 
   var group = msg.command === "cancel";
   var signal = group ? "SIGINT" : "SIGTERM";
   if (arg.trim().length) signal = arg.trim().toUpperCase();
   if (signal.substring(0,3) !== "SIG") signal = "SIG" + signal;
-  msg.context.command.sendSignal(signal, group);
+  try {
+    msg.context.command.sendSignal(signal, group);
+  } catch (err) {
+    reply.reply(msg).html("Couldn't send signal.");
+  }
 });
 
 // Input sending
-bot.command("send", function (msg, reply, next) {
+bot.command("enter", "type", function (msg, reply, next) {
   var args = msg.args(1);
   if (!msg.context.command)
-    return reply.reply("No command is running.");
-  msg.context.command.sendInput(args[0]);
+    return reply.html("No command is running.");
+  if (msg.command === "type" && !args[0]) args[0] = " ";
+  msg.context.command.sendInput(args[0], msg.command === "type");
 });
 bot.command("end", function (msg, reply, next) {
   if (!msg.context.command)
-    return reply.reply("No command is running.");
+    return reply.html("No command is running.");
   msg.context.command.sendEof();
+});
+
+// Redraw
+bot.command("redraw", function (msg, reply, next) {
+  if (!msg.context.command)
+    return reply.html("No command is running.");
+  msg.context.command.redraw();
 });
 
 // Command start
 bot.command("run", function (msg, reply, next) {
   var args = msg.args(1);
+  if (!args[0].trim().length)
+    return reply.html("Use /run &lt;command&gt; to execute something.");
+
   if (msg.context.command) {
     var command = msg.context.command;
     return reply.reply(command.initialMessage.id || msg).text("A command is already running.");
@@ -82,7 +133,7 @@ bot.command("run", function (msg, reply, next) {
 });
 
 // Settings: Info
-bot.command("info", function (msg, reply, next) {
+bot.command("settings", function (msg, reply, next) {
   var content = "", context = msg.context;
 
   // Running command
@@ -97,16 +148,15 @@ bot.command("info", function (msg, reply, next) {
   var uid = process.getuid(), gid = process.getgid();
   if (uid !== gid) uid = uid + "/" + gid;
   content += "UID/GID: " + uid + "\n";
-  //FIXME: possible feature: restrict chats to UIDs
 
-  // Granted chats
+  // Granted chats (msg.chat.id is intentional)
   if (msg.chat.id === owner) {
     var grantedIds = Object.keys(granted);
     if (grantedIds.length) {
       content += "\nGranted chats:\n";
       content += grantedIds.map(function (id) { return id.toString(); }).join("\n");
     } else {
-      content += "\nNo chats granted. Use /grant to allow another chat to use the bot.";
+      content += "\nNo chats granted. Use /grant or /token to allow another chat to use the bot.";
     }
   }
 
@@ -120,11 +170,15 @@ bot.command("shell", function (msg, reply, next) {
   if (arg.trim().length) {
     if (msg.context.command) {
       var command = msg.context.command;
-      return reply.reply(command.initialMessage.id || msg).text("Can't change the shell while a command is running running.");
+      return reply.reply(command.initialMessage.id || msg).html("Can't change the shell while a command is running.");
     }
-    //FIXME: resolve shell, validate if not found in list
-    msg.context.shell = arg;
-    reply.html("Shell changed.");
+    try {
+      var shell = utils.resolveShell(shell);
+      msg.context.shell = shell;
+      reply.html("Shell changed.");
+    } catch (err) {
+      reply.html("Couldn't change the shell.");
+    }
   } else {
     var shell = msg.context.shell;
     var otherShells = utils.shells.slice(0);
@@ -138,26 +192,95 @@ bot.command("shell", function (msg, reply, next) {
   }
 });
 
+// Settings: Working dir
+bot.command("cd", function (msg, reply, next) {
+  var arg = msg.args(1)[0];
+  if (arg.trim().length) {
+    if (msg.context.command) {
+      var command = msg.context.command;
+      return reply.reply(command.initialMessage.id || msg).html("Can't change directory while a command is running.");
+    }
+    var newdir = path.resolve(msg.context.cwd, arg);
+    try {
+      fs.readdirSync(newdir);
+      msg.context.cwd = newdir;
+    } catch (err) {
+      return reply.html(escapeHtml(err.toString()));
+    }
+  }
+  reply.html("Now at: " + escapeHtml(msg.context.cwd));
+});
+
 // Settings: Environment
 bot.command("env", function (msg, reply, next) {
-  //TODO
+  var env = msg.context.env, key = msg.args();
+  if (!key)
+    return reply.reply(msg).html("Use /env &lt;name&gt; to see the value of a variable, or /env &lt;name&gt;=&lt;value&gt; to change it.");
+
+  var idx = key.indexOf("=");
+  if (idx === -1) idx = key.indexOf(" ");
+
+  if (idx !== -1) {
+    if (msg.context.command) {
+      var command = msg.context.command;
+      return reply.reply(command.initialMessage.id || msg).html("Can't change the environment while a command is running.");
+    }
+
+    var value = key.substring(idx + 1);
+    key = key.substring(0, idx).trim().replace(/\s+/g, " ");
+    if (value.length) env[key] = value;
+    else delete env[key];
+  }
+
+  reply.reply(msg).text(printKey(key));
+
+  function printKey(k) {
+    if (Object.hasOwnProperty.call(env, k))
+      return k + "=" + JSON.stringify(env[k]);
+    return k + " unset";
+  }
 });
 
 // Settings: Size
 bot.command("resize", function (msg, reply, next) {
-  // TODO
+  var arg = msg.args(1)[0];
+  var match = /(\d+)\s*((\sby\s)|x|\s|,|;)\s*(\d+)/i.exec(arg.trim());
+  if (match) var columns = parseInt(match[1]), rows = parseInt(match[4]);
+  if (!columns || !rows)
+    return reply.text("Use /resize <columns> <rows> to resize the terminal.");
+
+  msg.context.size = { columns: columns, rows: rows };
+  if (msg.context.command) msg.context.command.resize(msg.context.size);
+  reply.reply(msg).html("Terminal resized.");
 });
 
 // Settings: Silent
 bot.command("setsilent", function (msg, reply, next) {
-  // TODO
+  var arg = msg.args(1)[0].trim().toLowerCase();
+  var values = {
+    "yes": true, "no": false,
+    "y": true, "n": false,
+    "on": true, "off": false,
+    "enable": true, "disable": false,
+    "enabled": true, "disabled": false,
+    "active": true, "inactive": false,
+    "true": true, "false": false,
+  };
+  if (!values.hasOwnProperty(arg))
+    return reply.html("Use /setsilent [yes|no] to control whether new output from the command will be sent silently.");
+
+  var silent = values[arg];
+  msg.context.silent = silent;
+  if (msg.context.command) msg.context.command.setSilent(silent);
+  reply.html("Output will " + (silent ? "" : "not ") + "be sent silently.");
 });
 
-// Settings: Grant
+// Settings: Other chat access
 bot.command("grant", "revoke", function (msg, reply, next) {
+  if (msg.context.id !== owner) return;
   var arg = msg.args(1)[0], id = parseInt(arg);
   if (arg.trim().length === 0 || id === NaN)
-    return reply.text("Use /grant <id> or /revoke <id> to control whether the chat with that ID can use this bot.");
+    return reply.html("Use /grant &lt;id&gt; or /revoke &lt;id&gt; to control whether the chat with that ID can use this bot.");
   reply.reply(msg);
   if (msg.command === "grant") {
     granted[id] = true;
@@ -170,23 +293,44 @@ bot.command("grant", "revoke", function (msg, reply, next) {
     reply.html("Chat " + id + " has been revoked successfully.");
   }
 });
+bot.command("token", function (msg, reply, next) {
+  if (msg.context.id !== owner) return;
+  var token = utils.generateToken();
+  tokens[token] = true;
+  reply.disablePreview().html("One-time access token generated. The following link can be used to get access to the bot:\n" + escapeHtml(bot.link(token)) + "\nOr by forwarding me this:");
+  reply.command(true, "start", token);
+});
 
-// Help
+// Welcome message, help
+bot.command("start", function (msg, reply, next) {
+  if (msg.args() && msg.context.id === owner && Object.hasOwnProperty.call(tokens, msg.args())) {
+    reply.html("You were already authenticated; the token has been revoked.");
+  } else {
+    reply.html("Welcome! Use /run to execute commands, and reply to my messages to send input. /help for more info.");
+  }
+});
+
 bot.command("help", function (msg, reply, next) {
   reply.html(
     "Use /run &lt;command&gt; and I'll execute it for you. While it's running, you can:\n" +
     "\n" +
-    " ‣ Reply to one of my messages to send input to the command, or use /send.\n" +
-    " ‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
-    " ‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
-    " ‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
+    "‣ Reply to one of my messages to send input to the command, or use /enter.\n" +
+    "‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
+    "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
+    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
+    "‣ For graphical applications, use /redraw to force a repaint of the screen, and /type to press keys.\n" + 
     "\n" +
-    "You can see the current status and settings for this chat with /info. Use /shell to see or " +
+    "You can see the current status and settings for this chat with /settings. Use /env to " +
+    "manipulate the environment, /cd to change the current directory, /shell to see or " +
     "change the shell used to run commands, /resize to change the size of the terminal, " +
-    "/env to manipulate the environment, and /setsilent to enable or disable notifications " +
-    "for messages from the command."
+    "and /setsilent to enable or disable notifications for messages from the command."
   );
 });
+
+// FIXME: implement custom keyboard for common keys
+// FIXME: could use inline keyboards for keys
+// FIXME: add inline bot capabilities!
+// FIXME: possible feature: restrict chats to UIDs
 
 
 bot.command(function (msg, reply, next) {
