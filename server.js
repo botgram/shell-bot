@@ -3,8 +3,6 @@
 // interprets commands and delegates the actual command
 // running to a Command instance. When started, an owner
 // ID should be given.
-//
-// Usage: ./server.js <auth token> <ID>
 
 var path = require("path");
 var fs = require("fs");
@@ -12,6 +10,11 @@ var botgram = require("../..");
 var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
+
+if (process.argv.length !== 4) {
+  console.error("Usage: " + process.argv.slice(0,2).join(" ") + " <auth token> <ID>");
+  process.exit(1);
+}
 
 var bot = botgram(process.argv[2]);
 var owner = parseInt(process.argv[3]);
@@ -29,7 +32,14 @@ bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
 
+bot.on("ready", function () {
+  bot.reply(owner).silent().text("Bot ready.");
+});
+
+
 bot.all(function (msg, reply, next) {
+  if (msg.queued) return;
+
   var id = msg.chat.id;
   var allowed = id === owner || granted[id];
 
