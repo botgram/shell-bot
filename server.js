@@ -67,6 +67,7 @@ bot.all(function (msg, reply, next) {
     cwd: defaultCwd,
     size: {columns: 40, rows: 20},
     silent: true,
+    linkPreviews: false,
   };
 
   msg.context = contexts[id];
@@ -148,7 +149,7 @@ bot.command("keypad", function (msg, reply, next) {
   }
 });
 
-// Settings: Info
+// Settings
 bot.command("settings", function (msg, reply, next) {
   var content = "", context = msg.context;
 
@@ -161,6 +162,7 @@ bot.command("settings", function (msg, reply, next) {
   content += "Size: " + context.size.columns + "x" + context.size.rows + "\n";
   content += "Directory: " + escapeHtml(context.cwd) + "\n";
   content += "Silent: " + (context.silent ? "yes" : "no") + "\n";
+  content += "Link previews: " + (context.linkPreviews ? "yes" : "no") + "\n";
   var uid = process.getuid(), gid = process.getgid();
   if (uid !== gid) uid = uid + "/" + gid;
   content += "UID/GID: " + uid + "\n";
@@ -291,6 +293,27 @@ bot.command("setsilent", function (msg, reply, next) {
   reply.html("Output will " + (silent ? "" : "not ") + "be sent silently.");
 });
 
+// Settings: Link previews
+bot.command("setlinkpreviews", function (msg, reply, next) {
+  var arg = msg.args(1)[0].trim().toLowerCase();
+  var values = {
+    "yes": true, "no": false,
+    "y": true, "n": false,
+    "on": true, "off": false,
+    "enable": true, "disable": false,
+    "enabled": true, "disabled": false,
+    "active": true, "inactive": false,
+    "true": true, "false": false,
+  };
+  if (!values.hasOwnProperty(arg))
+    return reply.html("Use /setlinkpreviews [yes|no] to control whether links in command output get expanded.");
+
+  var linkPreviews = values[arg];
+  msg.context.linkPreviews = linkPreviews;
+  if (msg.context.command) msg.context.command.setLinkPreviews(linkPreviews);
+  reply.html("Output links will " + (linkPreviews ? "" : "not ") + "be expanded.");
+});
+
 // Settings: Other chat access
 bot.command("grant", "revoke", function (msg, reply, next) {
   if (msg.context.id !== owner) return;
@@ -339,8 +362,11 @@ bot.command("help", function (msg, reply, next) {
     "\n" +
     "You can see the current status and settings for this chat with /settings. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
-    "change the shell used to run commands, /resize to change the size of the terminal, " +
-    "and /setsilent to enable or disable notifications for messages from the command."
+    "change the shell used to run commands and /resize to change the size of the terminal.\n" +
+    "\n" +
+    "By default, output messages are sent silently (without sound) and links are not expanded. " +
+    "This can be changed through /setsilent and /setlinkpreviews. Note: links are " +
+    "never expanded in status lines."
   );
 });
 
