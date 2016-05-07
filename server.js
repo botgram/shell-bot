@@ -274,44 +274,24 @@ bot.command("resize", function (msg, reply, next) {
 
 // Settings: Silent
 bot.command("setsilent", function (msg, reply, next) {
-  var arg = msg.args(1)[0].trim().toLowerCase();
-  var values = {
-    "yes": true, "no": false,
-    "y": true, "n": false,
-    "on": true, "off": false,
-    "enable": true, "disable": false,
-    "enabled": true, "disabled": false,
-    "active": true, "inactive": false,
-    "true": true, "false": false,
-  };
-  if (!values.hasOwnProperty(arg))
+  var arg = utils.resolveBoolean(msg.args());
+  if (arg === null)
     return reply.html("Use /setsilent [yes|no] to control whether new output from the command will be sent silently.");
 
-  var silent = values[arg];
-  msg.context.silent = silent;
-  if (msg.context.command) msg.context.command.setSilent(silent);
-  reply.html("Output will " + (silent ? "" : "not ") + "be sent silently.");
+  msg.context.silent = arg;
+  if (msg.context.command) msg.context.command.setSilent(arg);
+  reply.html("Output will " + (arg ? "" : "not ") + "be sent silently.");
 });
 
 // Settings: Link previews
 bot.command("setlinkpreviews", function (msg, reply, next) {
-  var arg = msg.args(1)[0].trim().toLowerCase();
-  var values = {
-    "yes": true, "no": false,
-    "y": true, "n": false,
-    "on": true, "off": false,
-    "enable": true, "disable": false,
-    "enabled": true, "disabled": false,
-    "active": true, "inactive": false,
-    "true": true, "false": false,
-  };
-  if (!values.hasOwnProperty(arg))
-    return reply.html("Use /setlinkpreviews [yes|no] to control whether links in command output get expanded.");
+  var arg = utils.resolveBoolean(msg.args());
+  if (arg === null)
+    return reply.html("Use /setlinkpreviews [yes|no] to control whether links in the output get expanded.");
 
-  var linkPreviews = values[arg];
-  msg.context.linkPreviews = linkPreviews;
-  if (msg.context.command) msg.context.command.setLinkPreviews(linkPreviews);
-  reply.html("Output links will " + (linkPreviews ? "" : "not ") + "be expanded.");
+  msg.context.linkPreviews = arg;
+  if (msg.context.command) msg.context.command.setLinkPreviews(arg);
+  reply.html("Links in the output will " + (arg ? "" : "not ") + "be expanded.");
 });
 
 // Settings: Other chat access
