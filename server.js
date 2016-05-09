@@ -364,6 +364,7 @@ bot.command("help", function (msg, reply, next) {
 // FIXME: could use inline keyboards for keys
 // FIXME: add inline bot capabilities!
 // FIXME: possible feature: restrict chats to UIDs
+// FIXME: persistence
 
 
 bot.command(function (msg, reply, next) {
