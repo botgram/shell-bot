@@ -23,11 +23,6 @@ var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
 
-bot.on("error", function (err) {
-  console.error("Unhandled error, failing.", err);
-  throw new Error("Unhandled error");
-});
-
 bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
