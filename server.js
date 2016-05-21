@@ -303,7 +303,7 @@ bot.command("setlinkpreviews", function (msg, reply, next) {
 bot.command("grant", "revoke", function (msg, reply, next) {
   if (msg.context.id !== owner) return;
   var arg = msg.args(1)[0], id = parseInt(arg);
-  if (arg.trim().length === 0 || id === NaN)
+  if (arg.trim().length === 0 || isNaN(id))
     return reply.html("Use /grant &lt;id&gt; or /revoke &lt;id&gt; to control whether the chat with that ID can use this bot.");
   reply.reply(msg);
   if (msg.command === "grant") {
