@@ -355,11 +355,10 @@ bot.command("help", function (msg, reply, next) {
   );
 });
 
-// FIXME: implement custom keyboard for common keys
-// FIXME: could use inline keyboards for keys
 // FIXME: add inline bot capabilities!
 // FIXME: possible feature: restrict chats to UIDs
 // FIXME: persistence
+// FIXME: shape messages so we don't hit limits, and react correctly when we do
 
 
 bot.command(function (msg, reply, next) {
