@@ -228,17 +228,17 @@ bot.command("cd", function (msg, reply, next) {
       fs.readdirSync(newdir);
       msg.context.cwd = newdir;
     } catch (err) {
-      return reply.html(escapeHtml(err.toString()));
+      return reply.html("%s", err);
     }
   }
-  reply.html("Now at: " + escapeHtml(msg.context.cwd));
+  reply.html("Now at: %s", msg.context.cwd);
 });
 
 // Settings: Environment
 bot.command("env", function (msg, reply, next) {
   var env = msg.context.env, key = msg.args();
   if (!key)
-    return reply.reply(msg).html("Use /env &lt;name&gt; to see the value of a variable, or /env &lt;name&gt;=&lt;value&gt; to change it.");
+    return reply.reply(msg).html("Use %s to see the value of a variable, or %s to change it.", "/env <name>", "/env <name>=<value>");
 
   var idx = key.indexOf("=");
   if (idx === -1) idx = key.indexOf(" ");
@@ -304,24 +304,24 @@ bot.command("grant", "revoke", function (msg, reply, next) {
   if (msg.context.id !== owner) return;
   var arg = msg.args(1)[0], id = parseInt(arg);
   if (arg.trim().length === 0 || isNaN(id))
-    return reply.html("Use /grant &lt;id&gt; or /revoke &lt;id&gt; to control whether the chat with that ID can use this bot.");
+    return reply.html("Use %s or %s to control whether the chat with that ID can use this bot.", "/grant <id>", "/revoke <id>");
   reply.reply(msg);
   if (msg.command === "grant") {
     granted[id] = true;
-    reply.html("Chat " + id + " can now use this bot. Use /revoke to undo.");
+    reply.html("Chat %s can now use this bot. Use /revoke to undo.", id);
   } else {
     if (contexts[id] && contexts[id].command)
       return reply.html("Couldn't revoke specified chat because a command is running.");
     delete granted[id];
     delete contexts[id];
-    reply.html("Chat " + id + " has been revoked successfully.");
+    reply.html("Chat %s has been revoked successfully.", id);
   }
 });
 bot.command("token", function (msg, reply, next) {
   if (msg.context.id !== owner) return;
   var token = utils.generateToken();
   tokens[token] = true;
-  reply.disablePreview().html("One-time access token generated. The following link can be used to get access to the bot:\n" + escapeHtml(bot.link(token)) + "\nOr by forwarding me this:");
+  reply.disablePreview().html("One-time access token generated. The following link can be used to get access to the bot:\n%s\nOr by forwarding me this:", bot.link(token));
   reply.command(true, "start", token);
 });
 
