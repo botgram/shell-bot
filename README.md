@@ -31,7 +31,7 @@ npm install
 To start the bot:
 
 ~~~
-npm start <auth token> <your ID>
+node server <auth token> <your ID>
 ~~~
 
 If you receive a `Bot ready.` message, it's up and running.
