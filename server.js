@@ -96,7 +96,7 @@ bot.command("cancel", "kill", function (msg, reply, next) {
 
   var group = msg.command === "cancel";
   var signal = group ? "SIGINT" : "SIGTERM";
-  if (arg.trim().length) signal = arg.trim().toUpperCase();
+  if (arg) signal = arg.trim().toUpperCase();
   if (signal.substring(0,3) !== "SIG") signal = "SIG" + signal;
   try {
     msg.context.command.sendSignal(signal, group);
@@ -129,7 +129,7 @@ bot.command("redraw", function (msg, reply, next) {
 // Command start
 bot.command("run", function (msg, reply, next) {
   var args = msg.args(1);
-  if (!args[0].trim().length)
+  if (!args)
     return reply.html("Use /run &lt;command&gt; to execute something.");
 
   if (msg.context.command) {
@@ -190,7 +190,7 @@ bot.command("settings", function (msg, reply, next) {
 // Settings: Shell
 bot.command("shell", function (msg, reply, next) {
   var arg = msg.args(1)[0];
-  if (arg.trim().length) {
+  if (arg) {
     if (msg.context.command) {
       var command = msg.context.command;
       return reply.reply(command.initialMessage.id || msg).html("Can't change the shell while a command is running.");
@@ -218,7 +218,7 @@ bot.command("shell", function (msg, reply, next) {
 // Settings: Working dir
 bot.command("cd", function (msg, reply, next) {
   var arg = msg.args(1)[0];
-  if (arg.trim().length) {
+  if (arg) {
     if (msg.context.command) {
       var command = msg.context.command;
       return reply.reply(command.initialMessage.id || msg).html("Can't change directory while a command is running.");
@@ -303,7 +303,7 @@ bot.command("setlinkpreviews", function (msg, reply, next) {
 bot.command("grant", "revoke", function (msg, reply, next) {
   if (msg.context.id !== owner) return;
   var arg = msg.args(1)[0], id = parseInt(arg);
-  if (arg.trim().length === 0 || isNaN(id))
+  if (!arg || isNaN(id))
     return reply.html("Use %s or %s to control whether the chat with that ID can use this bot.", "/grant <id>", "/revoke <id>");
   reply.reply(msg);
   if (msg.command === "grant") {
