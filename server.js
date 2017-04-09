@@ -24,6 +24,8 @@ var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
 
+var fileUploads = {};
+
 bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
@@ -86,6 +88,8 @@ bot.edited.all(rootHook);
 // Replies
 bot.message(function (msg, reply, next) {
   if (msg.reply === undefined || msg.reply.from.id !== this.get("id")) return next();
+  if (msg.file)
+    return handleDownload(msg, reply);
   if (msg.context.editor)
     return msg.context.editor.handleReply(msg);
   if (!msg.context.command)
@@ -191,6 +195,47 @@ bot.command("keypad", function (msg, reply, next) {
   }
 });
 
+// File upload / download
+bot.command("upload", function (msg, reply, next) {
+  var args = msg.args(1);
+  if (!args)
+    return reply.html("Use /upload &lt;file&gt; and I'll upload it as a document");
+
+  var file = path.join(msg.context.cwd, args[0]);
+  try {
+    var stream = fs.createReadStream(file);
+  } catch (e) {
+    return reply.html("Couldn't open file: %s", e.message);
+  }
+  reply.action("upload_document").document(stream).then(function (err, msg) {
+    if (err)
+      reply.html("Couldn't upload file: %s", e.message);
+    fileUploads[msg.id] = file;
+  });
+});
+function handleDownload(msg, reply) {
+  if (Object.hasOwnProperty.call(fileUploads, msg.reply.id))
+    var file = fileUploads[msg.reply.id];
+  else if (msg.context.lastDirMessageId == msg.reply.id)
+    var file = path.join(msg.context.cwd, msg.filename || utils.constructFilename(msg));
+  else
+    return;
+
+  try {
+    var stream = fs.createWriteStream(file);
+  } catch (e) {
+    return reply.html("Couldn't write file: %s", e.message);
+  }
+  bot.fileStream(msg.file, function (err, ostream) {
+    if (err) throw err;
+    reply.action("typing");
+    ostream.pipe(stream);
+    ostream.on("end", function () {
+      reply.html("File written: %s", file);
+    });
+  });
+}
+
 // Status
 bot.command("status", function (msg, reply, next) {
   var content = "", context = msg.context;
@@ -269,7 +314,10 @@ bot.command("cd", function (msg, reply, next) {
       return reply.html("%s", err);
     }
   }
-  reply.html("Now at: %s", msg.context.cwd);
+
+  reply.html("Now at: %s", msg.context.cwd).then().then(function (m) {
+    msg.context.lastDirMessageId = m.id;
+  });
 });
 
 // Settings: Environment
@@ -383,13 +431,16 @@ bot.command("help", function (msg, reply, next) {
     "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
     "‣ Use /type to press keys, or /keypad to show a keyboard for special keys.\n" + 
     "\n" +
-    "You can see the current status and settings for this chat with /settings. Use /env to " +
+    "You can see the current status and settings for this chat with /status. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
     "change the shell used to run commands and /resize to change the size of the terminal.\n" +
     "\n" +
     "By default, output messages are sent silently (without sound) and links are not expanded. " +
     "This can be changed through /setsilent and /setlinkpreviews. Note: links are " +
-    "never expanded in status lines."
+    "never expanded in status lines.\n" +
+    "\n" +
+    "<em>Additional features</em>\n" +
+    ""
   );
 });
 
