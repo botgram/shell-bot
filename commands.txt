@@ -6,7 +6,7 @@ redraw - Force the command to repaint
 end - Send EOF to command
 cancel - Interrupt command
 kill - Send signal to process
-settings - View current settings
+status - View status and current settings
 cd - Change directory
 env - Manipulate the environment
 shell - Change shell used to run commands
@@ -14,3 +14,4 @@ resize - Change the terminal size
 setsilent - Enable / disable silent output
 setlinkpreviews - Enable / disable link expansion
 help - Get help
+file - View and edit small text files
