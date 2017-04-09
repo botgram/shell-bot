@@ -10,6 +10,7 @@ var botgram = require("../..");
 var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
+var Editor = require("./lib/editor").Editor;
 
 if (process.argv.length !== 4) {
   console.error("Usage: " + process.argv.slice(0,2).join(" ") + " <auth token> <ID>");
@@ -32,7 +33,7 @@ bot.on("ready", function () {
 });
 
 
-bot.all(function (msg, reply, next) {
+function rootHook(msg, reply, next) {
   if (msg.queued) return;
 
   var id = msg.chat.id;
@@ -77,15 +78,26 @@ bot.all(function (msg, reply, next) {
 
   msg.context = contexts[id];
   next();
-});
+}
+bot.all(rootHook);
+bot.edited.all(rootHook);
 
 
 // Replies
 bot.message(function (msg, reply, next) {
   if (msg.reply === undefined || msg.reply.from.id !== this.get("id")) return next();
+  if (msg.context.editor)
+    return msg.context.editor.handleReply(msg);
   if (!msg.context.command)
     return reply.html("No command is running.");
   msg.context.command.handleReply(msg);
+});
+
+// Edits
+bot.edited.message(function (msg, reply, next) {
+  if (msg.context.editor)
+    return msg.context.editor.handleEdit(msg);
+  next();
 });
 
 // Signal sending
@@ -137,10 +149,35 @@ bot.command("run", function (msg, reply, next) {
     return reply.reply(command.initialMessage.id || msg).text("A command is already running.");
   }
 
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
   msg.context.command = new Command(reply, msg.context, args[0]);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
   });
+});
+
+// Editor start
+bot.command("file", function (msg, reply, next) {
+  var args = msg.args(1);
+  if (!args)
+    return reply.html("Use /file &lt;file&gt; to view or edit a text file.");
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.reply(command.initialMessage.id || msg).text("A command is running.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+  try {
+    var file = path.join(msg.context.cwd, args[0]);
+    msg.context.editor = new Editor(reply, file);
+  } catch (e) {
+    reply.html("Couldn't open file: %s", e.message);
+  }
 });
 
 // Keypad
@@ -154,12 +191,13 @@ bot.command("keypad", function (msg, reply, next) {
   }
 });
 
-// Settings
-bot.command("settings", function (msg, reply, next) {
+// Status
+bot.command("status", function (msg, reply, next) {
   var content = "", context = msg.context;
 
   // Running command
-  if (!context.command) content += "No command running.\n\n";
+  if (context.editor) content += "Editing file: " + escapeHtml(context.editor.file) + "\n\n";
+  else if (!context.command) content += "No command running.\n\n";
   else content += "Command running, PID "+context.command.pty.pid+".\n\n";
 
   // Chat settings
