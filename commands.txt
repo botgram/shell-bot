@@ -1,6 +1,8 @@
 run - Execute command
 enter - Send input lines to command
 type - Type keys into command
+control - Type Control+Letter
+meta - Send the next typed key with Alt
 keypad - Toggle keypad for special keys
 redraw - Force the command to repaint
 end - Send EOF to command
