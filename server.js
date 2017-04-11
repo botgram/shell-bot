@@ -132,11 +132,11 @@ bot.command("cancel", "kill", function (msg, reply, next) {
 
 // Input sending
 bot.command("enter", "type", function (msg, reply, next) {
-  var args = msg.args(1);
+  var args = msg.args();
   if (!msg.context.command)
     return reply.html("No command is running.");
-  if (msg.command === "type" && !args[0]) args[0] = " ";
-  msg.context.command.sendInput(args[0], msg.command === "type");
+  if (msg.command === "type" && !args) args = " ";
+  msg.context.command.sendInput(args, msg.command === "type");
 });
 bot.command("control", function (msg, reply, next) {
   var arg = msg.args(1)[0];
@@ -171,19 +171,19 @@ bot.command("redraw", function (msg, reply, next) {
 
 // Command start
 bot.command("run", function (msg, reply, next) {
-  var args = msg.args(1);
+  var args = msg.args();
   if (!args)
     return reply.html("Use /run &lt;command&gt; to execute something.");
 
   if (msg.context.command) {
     var command = msg.context.command;
-    return reply.reply(command.initialMessage.id || msg).text("A command is already running.");
+    return reply.text("A command is already running.");
   }
 
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-  msg.context.command = new Command(reply, msg.context, args[0]);
+  msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
   });
