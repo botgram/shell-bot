@@ -104,6 +104,15 @@ bot.edited.message(function (msg, reply, next) {
   next();
 });
 
+// Convenience command -- behaves as /run or /enter
+// depending on whether a command is already running
+bot.command("r", function (msg, reply, next) {
+  // A little hackish, but it does show the power of
+  // Botgram's fallthrough system!
+  msg.command = msg.context.command ? "enter" : "run";
+  next();
+});
+
 // Signal sending
 bot.command("cancel", "kill", function (msg, reply, next) {
   var arg = msg.args(1)[0];

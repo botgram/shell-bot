@@ -18,3 +18,4 @@ setlinkpreviews - Enable / disable link expansion
 help - Get help
 file - View and edit small text files
 upload - Upload and overwrite raw files
+r - Alias for /run or /enter
