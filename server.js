@@ -129,6 +129,24 @@ bot.command("enter", "type", function (msg, reply, next) {
   if (msg.command === "type" && !args[0]) args[0] = " ";
   msg.context.command.sendInput(args[0], msg.command === "type");
 });
+bot.command("control", function (msg, reply, next) {
+  var arg = msg.args(1)[0];
+  if (!msg.context.command)
+    return reply.html("No command is running.");
+  if (!arg || !/^[a-zA-Z]$/i.test(arg))
+    return reply.html("Use /control &lt;letter&gt; to send Control+letter to the process.");
+  var code = arg.toUpperCase().charCodeAt(0) - 0x40;
+  msg.context.command.sendInput(String.fromCharCode(code), true);
+});
+bot.command("meta", function (msg, reply, next) {
+  var arg = msg.args(1)[0];
+  if (!msg.context.command)
+    return reply.html("No command is running.");
+  if (!arg)
+    return msg.context.command.toggleMeta();
+  msg.context.command.toggleMeta(true);
+  msg.context.command.sendInput(arg, true);
+});
 bot.command("end", function (msg, reply, next) {
   if (!msg.context.command)
     return reply.html("No command is running.");
@@ -429,7 +447,7 @@ bot.command("help", function (msg, reply, next) {
     "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
     "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
     "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
-    "‣ Use /type to press keys, or /keypad to show a keyboard for special keys.\n" + 
+    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" + 
     "\n" +
     "You can see the current status and settings for this chat with /status. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
