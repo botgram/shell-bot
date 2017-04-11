@@ -177,7 +177,7 @@ bot.command("file", function (msg, reply, next) {
   msg.editor = null;
 
   try {
-    var file = path.join(msg.context.cwd, args[0]);
+    var file = path.resolve(msg.context.cwd, args[0]);
     msg.context.editor = new Editor(reply, file);
   } catch (e) {
     reply.html("Couldn't open file: %s", e.message);
@@ -201,7 +201,7 @@ bot.command("upload", function (msg, reply, next) {
   if (!args)
     return reply.html("Use /upload &lt;file&gt; and I'll upload it as a document");
 
-  var file = path.join(msg.context.cwd, args[0]);
+  var file = path.resolve(msg.context.cwd, args[0]);
   try {
     var stream = fs.createReadStream(file);
   } catch (e) {
