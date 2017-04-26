@@ -9,7 +9,7 @@
   "dependencies": {
     "escape-html": "1",
     "pty.js": "0.3",
-    "terminal.js": "1.0.7",
+    "terminal.js": "1.0.9",
     "node-uuid": "1",
     "mime": "1"
   },
