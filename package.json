@@ -1,12 +1,13 @@
 {
-  "name": "botgram-shell",
+  "name": "shell-bot",
   "private": true,
   "version": "0.0.1",
-  "keywords": [ "telegram", "bot", "shell" ],
+  "keywords": [ "telegram", "bot", "shell", "terminal", "botgram" ],
   "description": "Shellrunner Telegram bot",
-  "homepage": "https://github.com/mildsunrise/node-botgram",
+  "homepage": "https://github.com/botgram/shell-bot",
 
   "dependencies": {
+    "botgram": "2",
     "escape-html": "1",
     "pty.js": "0.3",
     "terminal.js": "1.0.9",
@@ -15,11 +16,11 @@
   },
 
   "bugs": {
-    "url": "https://github.com/mildsunrise/node-botgram/issues"
+    "url": "https://github.com/botgram/shell-bot/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mildsunrise/node-botgram"
+    "url": "https://github.com/botgram/shell-bot.git"
   },
   "license": "MIT",
 

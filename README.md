@@ -1,7 +1,7 @@
-# shell
+# shell-bot
 
-This is a fully functional shellrunner bot. You tell it a command,
-it executes it and posts the live output. You can send input to the
+This is a fully functional shellrunner [Telegram bot][]. You tell it a
+command, it executes it and posts the live output. You can send input to the
 command by replying to the output messages.
 
 It's a fairly complex example, because it actually appears to the
@@ -17,24 +17,26 @@ Here's an example of the bot running alsamixer:
 
 ![Alsamixer with keypad](http://i.imgur.com/j8aXFLd.png)
 
-This example demonstrates a great part of botgram's API.
+This bot demonstrates a great part of [Botgram][]'s API.
+
+**Note:** Due to the tight integration, running this bot on Windows is
+currently *not* supported.
 
 ## Install
 
 Before using this, you should have obtained an auth token for your bot,
-and know your personal user's numeric ID.
+and know your personal user's numeric ID. If you don't know what this
+means, check out the [blog post][] for a full step-by-step guide.
 
 ~~~
-git clone https://github.com/mildsunrise/node-botgram.git && cd node-botgram
-npm install
-cd examples/shell
+git clone https://github.com/botgram/shell-bot.git && cd shell-bot
 npm install
 ~~~
 
 To start the bot:
 
 ~~~
-node server <auth token> <your ID>
+node server
 ~~~
 
 If you receive a `Bot ready.` message, it's up and running.
@@ -50,3 +52,9 @@ commands to your computer!
 If you want to allow another user to use the bot, use `/token` and give
 that user the resulting link. If you want to use this bot on a group,
 `/token` will give you a message to forward into the group.
+
+
+
+[Telegram bot]: https://core.telegram.org/bots
+[Botgram]: http://botgram.js.org
+[blog post]: https://alba.sh/blog/telegram-shell-bot/
