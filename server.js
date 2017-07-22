@@ -6,7 +6,7 @@
 
 var path = require("path");
 var fs = require("fs");
-var botgram = require("../..");
+var botgram = require("botgram");
 var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
