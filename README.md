@@ -56,5 +56,5 @@ that user the resulting link. If you want to use this bot on a group,
 
 
 [Telegram bot]: https://core.telegram.org/bots
-[Botgram]: http://botgram.js.org
+[Botgram]: https://botgram.js.org
 [blog post]: https://alba.sh/blog/telegram-shell-bot/
