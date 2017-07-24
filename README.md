@@ -39,7 +39,11 @@ To start the bot:
 node server
 ~~~
 
-If you receive a `Bot ready.` message, it's up and running.
+The first time you run it, it will ask you some questions and create
+the configuration file automatically: `config.json`. You can also
+write it manually, see `config.example.json`.
+
+When started it will print a `Bot ready.` message when it's up and running.
 For convenience, you might want to talk to the BotFather and set the
 command list to the contents of `commands.txt`.
 
