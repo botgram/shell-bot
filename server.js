@@ -12,13 +12,17 @@ var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
 
-if (process.argv.length !== 4) {
-  console.error("Usage: " + process.argv.slice(0,2).join(" ") + " <auth token> <ID>");
-  process.exit(1);
+var CONFIG_FILE = path.join(__dirname, "config.json");
+try {
+    var config = require(CONFIG_FILE);
+} catch (e) {
+    console.error("Couldn't load the configuration file, starting the wizard.\n");
+    require("./lib/wizard").configWizard({ configFile: CONFIG_FILE });
+    return;
 }
 
-var bot = botgram(process.argv[2]);
-var owner = parseInt(process.argv[3]);
+var bot = botgram(config.authToken);
+var owner = config.owner;
 var tokens = {};
 var granted = {};
 var contexts = {};
@@ -30,8 +34,8 @@ bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
 
-bot.on("ready", function () {
-  bot.reply(owner).silent().text("Bot ready.");
+bot.on("synced", function () {
+  console.log("Bot ready.");
 });
 
 
