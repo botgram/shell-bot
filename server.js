@@ -476,7 +476,12 @@ bot.command("help", function (msg, reply, next) {
     "never expanded in status lines.\n" +
     "\n" +
     "<em>Additional features</em>\n" +
-    ""
+    "\n" +
+    "Use /upload &lt;file&gt; and I'll send that file to you. If you reply to that " +
+    "message by uploading me a file, I'll overwrite it with yours.\n" +
+    "\n" +
+    "You can also use /file &lt;file&gt; to display the contents of file as a text " +
+    "message. This also allows you to edit the file, but you have to know how..."
   );
 });
 
