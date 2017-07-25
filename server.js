@@ -196,7 +196,7 @@ bot.command("run", function (msg, reply, next) {
 
 // Editor start
 bot.command("file", function (msg, reply, next) {
-  var args = msg.args(1);
+  var args = msg.args();
   if (!args)
     return reply.html("Use /file &lt;file&gt; to view or edit a text file.");
 
@@ -209,7 +209,7 @@ bot.command("file", function (msg, reply, next) {
   msg.editor = null;
 
   try {
-    var file = path.resolve(msg.context.cwd, args[0]);
+    var file = path.resolve(msg.context.cwd, args);
     msg.context.editor = new Editor(reply, file);
   } catch (e) {
     reply.html("Couldn't open file: %s", e.message);
@@ -229,19 +229,23 @@ bot.command("keypad", function (msg, reply, next) {
 
 // File upload / download
 bot.command("upload", function (msg, reply, next) {
-  var args = msg.args(1);
+  var args = msg.args();
   if (!args)
-    return reply.html("Use /upload &lt;file&gt; and I'll upload it as a document");
+    return reply.html("Use /upload &lt;file&gt; and I'll send it to you");
 
-  var file = path.resolve(msg.context.cwd, args[0]);
+  var file = path.resolve(msg.context.cwd, args);
   try {
     var stream = fs.createReadStream(file);
   } catch (e) {
     return reply.html("Couldn't open file: %s", e.message);
   }
-  reply.action("upload_document").document(stream).then(function (err, msg) {
-    if (err)
-      reply.html("Couldn't upload file: %s", e.message);
+
+  // Catch errors but do nothing, they'll be propagated to the handler below
+  stream.on("error", function (e) {});
+
+  reply.action("upload_document").document(stream).then(function (e, msg) {
+    if (e)
+      return reply.html("Couldn't send file: %s", e.message);
     fileUploads[msg.id] = file;
   });
 });
