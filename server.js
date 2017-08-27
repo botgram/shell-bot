@@ -315,7 +315,7 @@ bot.command("shell", function (msg, reply, next) {
       return reply.reply(command.initialMessage.id || msg).html("Can't change the shell while a command is running.");
     }
     try {
-      var shell = utils.resolveShell(shell);
+      var shell = utils.resolveShell(arg);
       msg.context.shell = shell;
       reply.html("Shell changed.");
     } catch (err) {
