@@ -13,6 +13,10 @@ status bar update.
 The bot also allows files to be uploaded or downloaded, and also
 has a simple text editor available for convenience.
 
+Here's an example of the bot running `git` to clone a repository:
+
+![Basic tasks](http://i.imgur.com/Xxtoe4G.png)
+
 Here's an example of the bot running alsamixer:
 
 ![Alsamixer with keypad](http://i.imgur.com/j8aXFLd.png)
