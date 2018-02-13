@@ -35,6 +35,7 @@ bot.on("updateError", function (err) {
 });
 
 bot.on("synced", function () {
+  bot.reply(owner).silent().text("Bot ready.");
   console.log("Bot ready.");
 });
 
