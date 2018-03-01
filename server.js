@@ -124,6 +124,12 @@ bot.command("r", function (msg, reply, next) {
   next();
 });
 
+// Convenience command -- /type
+bot.command("t", function (msg, reply, next) {
+  msg.command = "type";
+  next();
+});
+
 // Signal sending
 bot.command("cancel", "kill", function (msg, reply, next) {
   var arg = msg.args(1)[0];
