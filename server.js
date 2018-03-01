@@ -11,6 +11,7 @@ var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
+var externalip = require("externalip");
 
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
@@ -35,7 +36,12 @@ bot.on("updateError", function (err) {
 });
 
 bot.on("synced", function () {
-  bot.reply(owner).silent().text("Bot ready.");
+  externalip(function (err, ip) {
+    if (err)
+      bot.reply(owner).silent().text("Bot ready.");
+    else
+      bot.reply(owner).silent().text("Bot ready. IP: " + ip);
+  });
   console.log("Bot ready.");
 });
 
@@ -464,9 +470,9 @@ bot.command("help", function (msg, reply, next) {
     "‣ Reply to one of my messages to send input to the command, or use /enter.\n" +
     "‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
     "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
-    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
+    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" +
     "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
-    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" + 
+    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" +
     "\n" +
     "You can see the current status and settings for this chat with /status. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
