@@ -21,8 +21,7 @@ try {
     require("./lib/wizard").configWizard({ configFile: CONFIG_FILE });
     return;
 }
-
-var bot = botgram(config.authToken);
+var bot = botgram(config.authToken, config.socks5?{agent: new (require('socks5-https-client/lib/Agent'))(config.socks5)}:{});
 var owner = config.owner;
 var tokens = {};
 var granted = {};
