@@ -5,16 +5,16 @@
   "keywords": [ "telegram", "bot", "shell", "terminal", "botgram" ],
   "description": "Shellrunner Telegram bot",
   "homepage": "https://github.com/botgram/shell-bot",
-
   "dependencies": {
     "botgram": "2",
     "escape-html": "1",
     "pty.js": "0.3",
     "terminal.js": "1.0.9",
     "node-uuid": "1",
-    "mime": "1"
+    "mime": "1",
+    "externalip": "1.0.2",
+    "socks5-https-client": "^1.2.1"
   },
-
   "bugs": {
     "url": "https://github.com/botgram/shell-bot/issues"
   },
@@ -23,6 +23,5 @@
     "url": "https://github.com/botgram/shell-bot.git"
   },
   "license": "MIT",
-
   "author": "Xavier Mendez <me@jmendeth.com> (https://jmendeth.com)"
 }
