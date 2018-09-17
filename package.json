@@ -12,7 +12,9 @@
     "pty.js": "0.3",
     "terminal.js": "1.0.9",
     "node-uuid": "1",
-    "mime": "1"
+    "mime": "1",
+    "https-proxy-agent": "^2.2.1",
+    "socks5-https-client": "^1.2.1"
   },
 
   "bugs": {

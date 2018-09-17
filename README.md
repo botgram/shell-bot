@@ -62,6 +62,17 @@ that user the resulting link. If you want to use this bot on a group,
 `/token` will give you a message to forward into the group.
 
 
+## Proxy
+
+You can set proxy with environment variable https_proxy.
+
+Example:
+
+~~~
+export https_proxy=socks5://user:password@proxy_server:port && node server.js
+export https_proxy=https://proxy_server && node server.js
+~~~
+
 
 [Telegram bot]: https://core.telegram.org/bots
 [Botgram]: https://botgram.js.org

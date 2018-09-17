@@ -21,7 +21,28 @@ try {
     return;
 }
 
-var bot = botgram(config.authToken);
+var bot;
+
+if (process.env.https_proxy) {
+  if (process.env.https_proxy.startsWith("socks5://")) {
+    // socks5 proxy
+
+    var proxy = utils.parseSocksUrl(process.env.https_proxy);
+
+    bot = botgram(config.authToken, {
+        agent: new(require("socks5-https-client/lib/Agent"))(proxy)
+      });
+  } else {
+    // http proxy
+    bot = botgram(config.authToken, {
+        agent: new(require("https-proxy-agent"))(process.env.https_proxy)
+      });
+  }
+} else {
+  // no proxy
+  bot = botgram(config.authToken);
+}
+
 var owner = config.owner;
 var tokens = {};
 var granted = {};
@@ -463,9 +484,9 @@ bot.command("help", function (msg, reply, next) {
     "‣ Reply to one of my messages to send input to the command, or use /enter.\n" +
     "‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
     "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
-    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
+    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" +
     "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
-    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" + 
+    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" +
     "\n" +
     "You can see the current status and settings for this chat with /status. Use /env to " +
     "manipulate the environment, /cd to change the current directory, /shell to see or " +
