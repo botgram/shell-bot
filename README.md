@@ -69,8 +69,8 @@ You can set proxy with environment variable https_proxy.
 Example:
 
 ~~~
-export https_proxy=socks5://user:password@proxy_server:port && node server.js
-export https_proxy=https://proxy_server && node server.js
+export https_proxy=socks5://user:password@proxy_server:port && node server
+export https_proxy=https://proxy_server && node server
 ~~~
 
 
