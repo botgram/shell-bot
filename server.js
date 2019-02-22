@@ -388,7 +388,7 @@ bot.command("env", function (msg, reply, next) {
 
 // Settings: Size
 bot.command("resize", function (msg, reply, next) {
-  var arg = msg.args(1)[0];
+  var arg = msg.args(1)[0] || "";
   var match = /(\d+)\s*((\sby\s)|x|\s|,|;)\s*(\d+)/i.exec(arg.trim());
   if (match) var columns = parseInt(match[1]), rows = parseInt(match[4]);
   if (!columns || !rows)
