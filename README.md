@@ -28,6 +28,10 @@ currently *not* supported.
 
 ## Install
 
+You can install the bot with classical method or docker.
+
+### Classical
+
 First install dependencies. If you're in Ubuntu/Debian:
 
 ~~~
@@ -56,6 +60,19 @@ write it manually, see `config.example.json`.
 When started it will print a `Bot ready.` message when it's up and running.
 For convenience, you might want to talk to the BotFather and set the
 command list to the contents of `commands.txt`.
+
+### Docker
+
+First build docker image
+~~~
+docker build . -t shell-bot
+~~~
+
+To start the bot:
+
+~~~
+docker run -e AUTH_TOKEN=123456:XXX-YYYY-ZZZZZZZZZZ -e OWNER=123456 shell-bot
+~~~
 
 ## Authorization
 
