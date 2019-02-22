@@ -16,7 +16,6 @@
     "escape-html": "1",
     "mime": "1",
     "node-pty": "^0.8.1",
-    "node-uuid": "1",
     "terminal.js": "1.0.9"
   },
   "bugs": {
