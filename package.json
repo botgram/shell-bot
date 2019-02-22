@@ -2,19 +2,23 @@
   "name": "shell-bot",
   "private": true,
   "version": "0.0.1",
-  "keywords": [ "telegram", "bot", "shell", "terminal", "botgram" ],
+  "keywords": [
+    "telegram",
+    "bot",
+    "shell",
+    "terminal",
+    "botgram"
+  ],
   "description": "Shellrunner Telegram bot",
   "homepage": "https://github.com/botgram/shell-bot",
-
   "dependencies": {
-    "botgram": "2",
+    "botgram": "^2.2",
     "escape-html": "1",
-    "pty.js": "0.3",
-    "terminal.js": "1.0.9",
+    "mime": "1",
+    "node-pty": "^0.8.1",
     "node-uuid": "1",
-    "mime": "1"
+    "terminal.js": "1.0.9"
   },
-
   "bugs": {
     "url": "https://github.com/botgram/shell-bot/issues"
   },
@@ -23,6 +27,5 @@
     "url": "https://github.com/botgram/shell-bot.git"
   },
   "license": "MIT",
-
   "author": "Alba Mendez <me@alba.sh> (https://alba.sh)"
 }
