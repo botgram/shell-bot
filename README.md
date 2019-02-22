@@ -61,6 +61,20 @@ If you want to allow another user to use the bot, use `/token` and give
 that user the resulting link. If you want to use this bot on a group,
 `/token` will give you a message to forward into the group.
 
+## Proxy server
+
+shell-bot obeys the `https_proxy` or `all_proxy` environment variable
+to use a proxy, and supports HTTP/HTTPS/SOCKS4/SOCKS4A/SOCKS5 proxies.
+Examples:
+
+~~~ bash
+export https_proxy="http://168.63.76.32:3128"
+node server
+
+export https_proxy="socks://127.0.0.1:9050"
+node server
+~~~
+
 
 
 [Telegram bot]: https://core.telegram.org/bots

@@ -18,6 +18,10 @@
     "node-pty": "^0.8.1",
     "terminal.js": "1.0.9"
   },
+  "optionalDependencies": {
+    "https-proxy-agent": "^2.2.1",
+    "socks-proxy-agent": "^4.0.1",
+  },
   "bugs": {
     "url": "https://github.com/botgram/shell-bot/issues"
   },
