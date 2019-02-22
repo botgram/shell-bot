@@ -28,6 +28,12 @@ currently *not* supported.
 
 ## Install
 
+First install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). For example, if you're in Ubuntu/Debian:
+
+~~~
+sudo apt install -y make python build-essential
+~~~
+
 Before using this, you should have obtained an auth token for your bot,
 and know your personal user's numeric ID. If you don't know what this
 means, check out the [blog post][] for a full step-by-step guide.
