@@ -79,6 +79,7 @@ function rootHook(msg, reply, next) {
     cwd: defaultCwd,
     size: {columns: 40, rows: 20},
     silent: true,
+    interactive: false,
     linkPreviews: false,
   };
 
@@ -286,6 +287,7 @@ bot.command("status", function (msg, reply, next) {
   content += "Size: " + context.size.columns + "x" + context.size.rows + "\n";
   content += "Directory: " + escapeHtml(context.cwd) + "\n";
   content += "Silent: " + (context.silent ? "yes" : "no") + "\n";
+  content += "Shell interactive: " + (context.interactive ? "yes" : "no") + "\n";
   content += "Link previews: " + (context.linkPreviews ? "yes" : "no") + "\n";
   var uid = process.getuid(), gid = process.getgid();
   if (uid !== gid) uid = uid + "/" + gid;
@@ -408,6 +410,20 @@ bot.command("setsilent", function (msg, reply, next) {
   msg.context.silent = arg;
   if (msg.context.command) msg.context.command.setSilent(arg);
   reply.html("Output will " + (arg ? "" : "not ") + "be sent silently.");
+});
+
+// Settings: Interactive
+bot.command("setinteractive", function (msg, reply, next) {
+  var arg = utils.resolveBoolean(msg.args());
+  if (arg === null)
+    return reply.html("Use /setinteractive [yes|no] to control whether shell is interactive. Enabling it will cause your aliases in i.e. .bashrc to be honored, but can cause bugs in some shells such as fish.");
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.reply(command.initialMessage.id || msg).html("Can't change the interactive flag while a command is running.");
+  }
+  msg.context.interactive = arg;
+  reply.html("Commands will " + (arg ? "" : "not ") + "be started with interactive shells.");
 });
 
 // Settings: Link previews
