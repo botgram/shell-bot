@@ -16,6 +16,7 @@
     "escape-html": "1",
     "mime": "1",
     "node-pty": "^0.8.1",
+    "node-termios": "0.0.12",
     "terminal.js": "1.0.9"
   },
   "optionalDependencies": {
