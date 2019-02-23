@@ -81,6 +81,8 @@ export https_proxy="socks://127.0.0.1:9050"
 node server
 ~~~
 
+**Warning:** For SOCKS proxies, you need to use an IP address (not a DNS hostname).
+
 
 
 [Telegram bot]: https://core.telegram.org/bots
