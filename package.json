@@ -16,7 +16,7 @@
     "escape-html": "1",
     "mime": "1",
     "node-pty": "^0.9.0",
-    "node-termios": "botgram/node-termios#nan-maintenance",
+    "node-termios": "botgram/node-termios#working",
     "terminal.js": "1.0.9"
   },
   "optionalDependencies": {
