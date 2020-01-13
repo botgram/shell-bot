@@ -68,7 +68,7 @@ function rootHook(msg, reply, next) {
 
   // Check that the chat is allowed
   if (!allowed) {
-    if (msg.command === "start") reply.html("Not authorized to use this bot.");
+    if (msg.command === "start") reply.html("You are not authorized to use this bot🚫");
     return;
   }
 
