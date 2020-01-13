@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>terminal.js tests</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="../node_modules/mocha/mocha.css" media="all">
+
+		<script src="../dist/terminal.dbg.js"></script>
+
+		<script src="../node_modules/mocha/mocha.js"></script>
+		<script src="../node_modules/expect.js/index.js"></script>
+		<script>
+mocha.setup('bdd');
+		</script>
+
+		<!-- tests -->
+		<script src="handler_sgi.js"></script>
+		<script src="term_state.js"></script>
+		<script src="term_diff.js"></script>
+		<script src="ansi_output.js"></script>
+		<script src="plain_output.js"></script>
+		<script src="html_output.js"></script>
+		<script src="terminal.js"></script>
+		<script src="dom_output.js"></script>
+
+
+	</head>
+	<body>
+		<div id="mocha"></div>
+		<script>
+mocha.run();
+		</script>
+	</body>
+</html>
