@@ -18,7 +18,6 @@
     "node-pty": "^0.9.0",
     "node-termios": "botgram/node-termios#working",
     "terminal.js": "1.0.9"
-    "node": "12.13.0"
   },
   "optionalDependencies": {
     "https-proxy-agent": "^2.2.1",
