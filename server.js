@@ -12,8 +12,9 @@ var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
 const PORT = process.env.PORT || 3000;
-bot.listen(PORT, () => {
-    console.log(`Our app is running on port ${ PORT }`);
+bot.listen(3000, function () {
+  console.log('bot listening on port 3000!');
+});
 });
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
