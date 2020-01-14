@@ -1,4 +1,5 @@
 # shell-bot
+First go down to see how to deploy to heroku.
 
 This is a fully functional shellrunner [Telegram bot][]. You tell it a
 command, it executes it and posts the live output. You can send input to the
@@ -98,5 +99,6 @@ node server
 ```
 Deploy to heroku[WIP]
 ```
-
+Make sure you edited **config.json** with your bot token and id && Just
+**Click this button to deploy to heroku**
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
