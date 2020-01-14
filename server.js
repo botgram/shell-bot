@@ -11,6 +11,7 @@ var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
+.listen(process.env.PORT, '0.0.0.0')
 
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
