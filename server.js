@@ -11,6 +11,10 @@ var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
     var config = require(CONFIG_FILE);
