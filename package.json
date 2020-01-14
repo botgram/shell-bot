@@ -10,13 +10,13 @@
     "botgram"
   ],
   "description": "Shellrunner Telegram bot",
-  "homepage": "https://github.com/botgram/shell-bot",
+  "homepage": "https://github.com/denomparkour/shell-bot",
   "dependencies": {
     "botgram": "^2.2",
     "escape-html": "1",
     "mime": "1",
     "node-pty": "^0.9.0",
-    "node-termios": "botgram/node-termios#working",
+    "node-termios": "0.0.13",
     "terminal.js": "1.0.9",
     "node": "12.13.0"
   },
