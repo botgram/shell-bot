@@ -1,4 +1,5 @@
+#Add your bot token from bot father in authtoken with in quotes and paste your owner id in owner no quotes needed only one member can use this bot
 {
-    "authToken": "",#Add your bot token from bot father
-    "owner": "paste your id here(numbers only)
+    "authToken": "",
+    "owner": 
 }
