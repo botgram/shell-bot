@@ -11,8 +11,8 @@ var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
-const host = '0.0.0.0';
-const port = process.env.PORT || 3000;
+var host = '0.0.0.0';
+var port = process.env.PORT || 3000;
 
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
@@ -29,10 +29,6 @@ var tokens = {};
 var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
-var port = process.env.PORT || 3000;
-bot.listen(port, "0.0.0.0", function() {
-console.log("Listening on Port 3000");
-});
 var fileUploads = {};
 
 
