@@ -29,7 +29,10 @@ var tokens = {};
 var granted = {};
 var contexts = {};
 var defaultCwd = process.env.HOME || process.cwd();
-
+var port = process.env.PORT || 3000;
+bot.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
+});
 var fileUploads = {};
 
 
