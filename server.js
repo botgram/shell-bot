@@ -32,6 +32,10 @@ var defaultCwd = process.env.HOME || process.cwd();
 
 var fileUploads = {};
 
+bot.listen(port, host, function() {
+  console.log("Server started.......");
+});
+
 bot.on("updateError", function (err) {
   console.error("Error when updating:", err);
 });
