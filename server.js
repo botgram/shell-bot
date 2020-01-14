@@ -11,11 +11,9 @@ var escapeHtml = require("escape-html");
 var utils = require("./lib/utils");
 var Command = require("./lib/command").Command;
 var Editor = require("./lib/editor").Editor;
-const PORT = process.env.PORT || 3000;
-bot.listen(3000, function () {
-  console.log('bot listening on port 3000!');
-});
-});
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
+
 var CONFIG_FILE = path.join(__dirname, "config.json");
 try {
     var config = require(CONFIG_FILE);
