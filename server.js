@@ -32,7 +32,7 @@ var defaultCwd = process.env.HOME || process.cwd();
 
 var fileUploads = {};
 
-bot.listen(port, host, function() {
+bot.on(port, host, function() {
   console.log("Server started.......");
 });
 
