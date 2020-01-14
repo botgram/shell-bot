@@ -1,4 +1,7 @@
 {
   "name": "parkour-shell",
   "repository": "https://github.com/denomparkour/shell-bot"
+  "engines": {
+    "node": "12.13.0"
+  }
 }
