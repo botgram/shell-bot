@@ -501,11 +501,29 @@ bot.command("help", function (msg, reply, next) {
   );
 });
 
+// bot command = "/gd"
+bot.command("gd", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("A command is already running.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// command that that should be used
+  var args = "./root/gd.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
 // FIXME: add inline bot capabilities!
 // FIXME: possible feature: restrict chats to UIDs
 // FIXME: persistence
 // FIXME: shape messages so we don't hit limits, and react correctly when we do
-
 
 bot.command(function (msg, reply, next) {
   reply.reply(msg).text("Invalid command.");
