@@ -11,73 +11,44 @@
 
 ![Basic tasks](http://i.imgur.com/Xxtoe4G.png)
 
-Here's an example of the bot running alsamixer:
-
 **注意:** 暂时不支持windows.
 
 ## 安装步骤：
 
-步骤一： install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). 
+步骤一：获取Telegram bot的token和用户id 
+1.使用Telegram的botfather建立一个属于你的bot，获取bot token
+2.使用用户id获取bot，获取你自己的用户ID
+复制以上信息备用
+
+步骤二：运行环境
+
+install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). 
 For example, if you're in Ubuntu/Debian:
 ~~~
 sudo apt install -y make python build-essential
 ~~~
 
-If you're using fedora instead:
-```
-sudo dnf install -y python
-sudo dnf group install -y "C Development Tools and Libraries" 
-```
-
-Before using this, you should have obtained an auth token for your bot,
-and know your personal user's numeric ID. If you don't know what this
-means, check out the [blog post][] for a full step-by-step guide.
+步骤三：克隆库
 
 ~~~
 git clone https://github.com/botgram/shell-bot.git && cd shell-bot
 npm install
 ~~~
-
-To start the bot:
+步骤四：启动bot
 
 ~~~
 node server
 ~~~
 
-The first time you run it, it will ask you some questions and create
-the configuration file automatically: `config.json`. You can also
-write it manually, see `config.example.json`.
+第一次运行它时，它将询问您一些问题并自动创建配置文件：config.json。您也可以手动编写，请参见config.example.json。
 
-When started it will print a `Bot ready.` message when it's up and running.
-For convenience, you might want to talk to the BotFather and set the
-command list to the contents of `commands.txt`.
+启动后，它将在启动Bot ready.并运行时显示一条消息。为了方便起见，您可能需要与BotFather交谈并将命令列表设置为的内容commands.txt。
 
-## Authorization
+## 授权书
 
-When first started, the bot will just accept messages coming from your user.
-This is for security reasons: you don't want arbitrary people to issue
-commands to your computer!
+首次启动时，该漫游器将仅接受来自您的用户的消息。出于安全原因：您不希望任何人向您的计算机发出命令！
 
-If you want to allow another user to use the bot, use `/token` and give
-that user the resulting link. If you want to use this bot on a group,
-`/token` will give you a message to forward into the group.
-
-## Proxy server
-
-shell-bot obeys the `https_proxy` or `all_proxy` environment variable
-to use a proxy, and supports HTTP/HTTPS/SOCKS4/SOCKS4A/SOCKS5 proxies.
-Examples:
-
-~~~ bash
-export https_proxy="http://168.63.76.32:3128"
-node server
-
-export https_proxy="socks://127.0.0.1:9050"
-node server
-~~~
-
-**Warning:** For SOCKS proxies, you need to use an IP address (not a DNS hostname).
-
+如果要允许其他用户使用该漫游器，请使用/token并为其提供结果链接。如果您想在网上论坛上使用此漫游器，/token则会向您发送一条消息，转发到网上论坛 
 
 
 [Telegram bot]: https://core.telegram.org/bots
