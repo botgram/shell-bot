@@ -1,35 +1,24 @@
 # shell-bot
 
-This is a fully functional shellrunner [Telegram bot][]. You tell it a
-command, it executes it and posts the live output. You can send input to the
-command by replying to the output messages.
+壳机器人
+这是一个功能齐全的shellrunner Telegram机器人。您告诉它一个命令，它执行它并发布实时输出。您可以通过回复输出消息来将输入发送到命令。
 
-It's a fairly complex example, because it actually appears to the
-command as a terminal, interprets escape sequences and **it will
-update messages if their lines get touched**. This means interactive
-programs such as wget should work naturally, you should see the
-status bar update.
+这是一个相当复杂的示例，因为它实际上在命令中显示为终端，解释转义序列，并且如果触摸它们的行，它将更新消息。这意味着诸如wget之类的交互式程序应该自然运行，您应该看到状态栏更新。
 
-The bot also allows files to be uploaded or downloaded, and also
-has a simple text editor available for convenience.
+该机器人还允许上传或下载文件，并且还具有一个简单的文本编辑器，以方便使用。
 
-Here's an example of the bot running `git` to clone a repository:
+这是运行机器人git以克隆存储库的示例：
 
 ![Basic tasks](http://i.imgur.com/Xxtoe4G.png)
 
 Here's an example of the bot running alsamixer:
 
-![Alsamixer with keypad](http://i.imgur.com/j8aXFLd.png)
+**注意:** 暂时不支持windows.
 
-This bot demonstrates a great part of [Botgram][]'s API.
+## 安装步骤：
 
-**Note:** Due to the tight integration, running this bot on Windows is
-currently *not* supported.
-
-## Install
-
-First install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). For example, if you're in Ubuntu/Debian:
-
+步骤一： install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). 
+For example, if you're in Ubuntu/Debian:
 ~~~
 sudo apt install -y make python build-essential
 ~~~
