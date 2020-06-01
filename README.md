@@ -21,9 +21,8 @@
 复制以上信息备用
 
 步骤二：运行环境
-
-install [node-pty dependencies](https://github.com/Microsoft/node-pty#dependencies). 
-For example, if you're in Ubuntu/Debian:
+安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).。
+例如，如果您使用的是Ubuntu / Debian：
 ~~~
 sudo apt install -y make python build-essential
 ~~~
