@@ -93,7 +93,7 @@ while True:
 	if title is None:
 		exit
 	else:
-		size_info=os.popen("/home/software/gclone size gc:{"+shareid+"}")
+		size_info=os.popen("gclone size frreq46:{"+shareid+"}")
 		size_read=size_info.read()
 		size_arr=(size_read.split("\n"))
 		objects=((size_arr[0]).split(":"))[1].strip()
