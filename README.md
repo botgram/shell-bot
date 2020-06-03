@@ -1,9 +1,9 @@
 # gclone-shell-bot
-<img src="http://github.com/cgkings/gclone_shell_bot/raw/master/images/图标.png" height="250px" width="250px">
+<img src="https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/images/logo.png" height="455px" width="718px">
 这是一个功能齐全的shellrunner Telegram机器人。您告诉它一个命令，它执行它并发布实时输出。您可以通过回复输出消息来将输入发送到命令。<br>
 这是运行机器人git以克隆存储库的示例：<br>
 
-![image](http://github.com/cgkings/gclone_shell_bot/raw/master/images/示例1.jpg)<br>
+![image](https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/images/chat.jpg)<br>
 **注意:** 暂时不支持windows.
 <hr />
 ## 安装步骤：<hr />
