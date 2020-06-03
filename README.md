@@ -1,6 +1,6 @@
 # gclone-shell-bot
 
-<img src="https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/images/chat.jpg" height="500px" width="300px">
+<img src="https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/images/chat.jpg" height="680px" width="520px">
 
 **注意:** 暂时不支持windows.
 
