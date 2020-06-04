@@ -21,7 +21,7 @@ j=$(gclone lsd goog:{$id} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) roo
           "file root name："$rootName""
     fi          
 fi
-echo "==<<极速转存即将开始，可ctrl+c中途中断>>=="
+echo ==<<极速转存即将开始，可ctrl+c中途中断>>==
 echo 【开始拷贝】......
 p1=`gclone copy goog:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -P -q`
 echo $p1
