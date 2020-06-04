@@ -32,7 +32,6 @@ copycommend() {
     gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q
     echo "|>>>>>>>>>>>>>>>|100%  查重完毕"
 }
-dedupecommend
 checkcommend() {
     echo 【比对检查】......
     c1=`gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M -q`
