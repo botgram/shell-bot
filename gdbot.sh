@@ -10,6 +10,8 @@ link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
 s1=`gclone size cgkings:{"$link"} --min-size 10M 2>&1` 
+id=$link
+    j=$(gclone lsd goog:{$id} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
     if [[ $s1 =~ "Error 404" ]]
     then
     echo "链接无效，检查是否有权限" && exit
@@ -19,8 +21,6 @@ s1=`gclone size cgkings:{"$link"} --min-size 10M 2>&1`
           "file root name："$rootName""
     fi          
 fi
-id=$link
-    j=$(gclone lsd goog:{$id} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
 echo ==<<极速转存即将开始，可ctrl+c中途中断>>==
 echo 【开始拷贝】......
 p1=`gclone copy goog:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -P -q`
