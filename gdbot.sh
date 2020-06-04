@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p """请输入分享链接==》""" link
+read -p "请输入分享链接==》" link
 # 检查接受到的分享链接规范性，并转化出分享文件ID
 if [ -z "$link" ] ;then
     echo "不允许输入为空"
