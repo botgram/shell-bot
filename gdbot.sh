@@ -8,7 +8,7 @@ link=${link#*id=};
 link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
-check_results=`gclone size cgkings:{"$link"} 2>&1`
+check_results=`gclone size goog:{"$link"} 2>&1`
 id=$link
     j=$(gclone lsd goog:{$id} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
     if [[ $check_results =~ "Error 404" ]] ; then
