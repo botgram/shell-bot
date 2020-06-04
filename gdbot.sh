@@ -8,7 +8,7 @@ link=${link#*id=};
 link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
-check_results=`gclone size goog:{"$link"} --min-size 10M -q 2>&1`
+check_results=`gclone size cgkings:{"$link"} 2>&1`
 id=$link
     j=$(gclone lsd goog:{$id} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
     if [[ $check_results =~ "Error 404" ]] ; then
@@ -19,22 +19,13 @@ id=$link
     echo "file name："$rootName""
     fi
 fi
-echo "==<<极速转存即将开始，可ctrl+c中途中断>>=="
+    echo "==<<极速转存即将开始，可ctrl+c中途中断>>=="
     echo 【开始拷贝】......
     gclone copy goog:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q -P
-    echo "|>>>>>>>>>>>>>>>|100%拷贝完毕"
     echo 【查缺补漏】......
     gclone copy goog:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q -P
-    echo "|>>>>>>>>>>>>>>>|100%补漏完毕"
     echo 【去重检查】......
-    gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q
-    echo "|>>>>>>>>>>>>>>>|100%查重完毕"
+    gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q -P
     echo 【比对检查】......
-    c1=`gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M -q`
-    if [[ $c1 = "" ]]
-    then
-    echo "本次转存已完成"
+    gclone check goog:{$link} "goog:{myid}/$rootName" --size-only --one-way --no-traverse --min-size 10M --stats-log-level NOTICE
     ./gdbot.sh
-    else
-    echo "存在漏转存现象，即将开始查缺补漏"
-    fi
