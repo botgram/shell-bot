@@ -27,10 +27,10 @@ echo "==<<极速转存即将开始，可ctrl+c中途中断>>=="
 copycommend() {
     echo 【开始拷贝】......
     gclone copy oneking:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q -P
-    echo "|>>>>>>>>>>>>>>>|100%  拷贝完毕"
+    echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
     echo 【去重检查】......
     gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q
-    echo "|>>>>>>>>>>>>>>>|100%  查重完毕"
+    echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
 }
 copycommend
 checkcommend() {
@@ -38,7 +38,7 @@ checkcommend() {
     c1=`gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M -q`
     if [[ "$c1"!="" ]] 
     then 
-    echo "|>>>>>>>>>>>>>>>|100%  检查OK，转存已完成"
+    echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  检查OK，转存已完成"
     ./gdbot.sh
     break
     else
