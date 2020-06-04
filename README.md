@@ -23,6 +23,7 @@ pip3 install pysocks
 2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).
 
 ```
+sudo apt install nodejs
 sudo apt install -y make python build-essential
 ```
 
