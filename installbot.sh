@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -rf gdbot.sh
-wget https://raw.githubusercontent.com/cgkings/gclone-assistant/master/gdbot.sh
+wget https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/gdbot.sh
 echo "【gclone懒人一键转存脚本】系统配置"
 echo "输入配置gclone的名称"
 read -p "gclone config Name:" gclone
