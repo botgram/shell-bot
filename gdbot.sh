@@ -32,6 +32,7 @@ copycommend() {
     gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q
     echo "|>>>>>>>>>>>>>>>|100%  查重完毕"
 }
+copycommend
 checkcommend() {
     echo 【比对检查】......
     c1=`gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M -q`
@@ -40,8 +41,9 @@ checkcommend() {
     echo "|>>>>>>>>>>>>>>>|100%  检查OK，转存已完成"
     ./gdbot.sh
     break
-    fi
     else
     copycommend
     checkcommend
+    fi
 }
+checkcommend
