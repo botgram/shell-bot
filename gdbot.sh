@@ -28,4 +28,5 @@ echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
 echo 【比对检查】......
 gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M --log-file=/root/AutoRclone/LOG/"$rootName"'_check.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  检查完毕"
+echo "日志文件存储为/root/AutoRclone/LOG/"$rootName"_(copy1/copy2/dedupe/check).txt"
 ./gdbot.sh
