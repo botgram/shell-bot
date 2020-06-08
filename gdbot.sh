@@ -17,15 +17,15 @@ j=$(gclone ls goog:{$link} --dump bodies -vv 2>&1 | grep '^{"id"') rootName=$(ec
 fi
 echo "==<<极速转存即将开始，可ctrl+c中途中断>>=="
 echo 【开始拷贝】......
-gclone copy oneking:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q
+gclone copy oneking:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q --log-file=/root/AutoRclone/LOG/"$rootName"'_copy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo 【查缺补漏】......
-gclone copy oneking:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q
+gclone copy oneking:{$link} "goog:{myid}/$rootName" --drive-server-side-across-configs --transfers=20 --min-size 10M -q --log-file=/root/AutoRclone/LOG/"$rootName"'_copy2.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo 【去重检查】......
-gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q
+gclone dedupe newest "goog:{myid}/$rootName" --drive-server-side-across-configs -q --log-file=/root/AutoRclone/LOG/"$rootName"'_dedupe.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
 echo 【比对检查】......
-gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M
+gclone check goog:{$link} goog:{myid}/"$rootName" --size-only --one-way --no-traverse --min-size 10M --log-file=/root/AutoRclone/LOG/"$rootName"'_check.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  检查完毕"
 ./gdbot.sh
