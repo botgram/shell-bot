@@ -8,7 +8,12 @@ read -p "请输入分享链接==>" link
 if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit
 else
-j=$(gclone ls goog:{$link} --dump bodies -vv 2>&1 | grep '^{"id"') rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
+link=${link#*id=};
+link=${link#*folders/};
+link=${link#*d/};
+link=${link%?usp*}
+id=$link
+j=$(gclone ls goog:{$link} --dump bodies -vv 2>&1 | grep '^{"id"' | grep $id) rootName=$(echo $j | grep -Po '(?<="name":")[^"]*')
     if [[ "$j" =~ "Error 404" ]] ; then
     echo "链接无效，检查是否有权限" && exit
     else
