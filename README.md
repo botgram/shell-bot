@@ -75,6 +75,8 @@ node server
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/installbot.sh)"
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fmod/fmodinstall.sh)
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 
