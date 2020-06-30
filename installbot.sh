@@ -8,5 +8,6 @@ sed -i "s/goog/$gclone/g" gdbot.sh
 echo "请输入需要转存到的固定地址"
 read -p "固定地址ID:" mid
 sed -i "s/myid/$mid/g" gdbot.sh
+mkdir -p ~/gclone_log/
 chmod +x gdbot.sh
 echo "请输入 ./gdbot.sh 使用脚本"
