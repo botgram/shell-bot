@@ -32,7 +32,7 @@ sudo apt install -y make python build-essential
 <summary>步骤二：克隆库</summary>
 
 ```
-git clone https://github.com/botgram/shell-bot.git && cd shell-bot
+git clone https://github.com/cgkings/gclone_shell_bot.git && cd /root/gclone_shell_bot
 npm install
 ```
 
