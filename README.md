@@ -1,4 +1,4 @@
-# gclone-shell-bot
+# rclone-shell-bot
 
 <img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/chat1.jpg" height="470px" width="457px">
 
@@ -61,9 +61,15 @@ node server
 
 </details>
 <details>
-<summary>步骤五：安装魔改版gclone</summary>
+<summary>步骤五：安装fclone</summary>
 
-[魔改版gclone](https://github.com/mawaya/rclone) 
+[fclone](https://github.com/mawaya/rclone) 
+
+一键安装命令：
+
+```
+
+```
 
 这位大佬，是个有技术的懒人，小白的福音啊，用他的gclone可以简化sa切换日志内容，其他还有很多功能，自己去瞻仰下吧
 
@@ -71,12 +77,12 @@ node server
 
 </details>
 <details>
-<summary>步骤六：安装gclone懒人一键转存脚本</summary>
+<summary>步骤六：安装fclone一键转存脚本</summary>
 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/installbot.sh)"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fclone/fcloneinstall.sh)"
+
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 
