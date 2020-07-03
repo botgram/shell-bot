@@ -13,14 +13,14 @@ link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
 id=$link
-rootName=$(fclone lsf goog:{$link} --dump bodies -vv 2>&1 | grep '$link,"name"' | cut -d '"' -f 8)
+rootName=$(fclone lsf goog:{$id} --dump bodies -vv 2>&1 | grep ""$id","name"" | cut -d '"' -f 8)
 echo -e " fclone自用版 [ v1.0 by \e[1;34m cgkings \e[0m ]
 [0]. 中转盘ID转存
 [1]. ADV盘ID转存
 [2]. MDV盘ID转存
 [3]. BOOK盘ID转存
 [4]. 自定义ID转存"
-read -t 10 -n1 -p -S "请输入数字 [0-4]: (10s默认选0)" num
+read -t 10 -n1 -p "请输入数字 [0-4]: (10s默认选0)" num
 num=${num:-0}
 case "$num" in
 0)
@@ -85,7 +85,7 @@ echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
 echo
 echo -e "请注意清空回收站，群组账号必须对团队盘有管理员权限,10s不选默认N\n"
 echo -e "⭕⭕是否要清空回收站 [Y/N]? ⭕⭕\n"
-read -t 10 -n1 -p -S answer
+read -t 10 -n1 -p answer
 answer=${answer:-N}
 case "$answer" in
 Y | y)
