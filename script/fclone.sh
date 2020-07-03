@@ -13,7 +13,7 @@ link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
 id=$link
-rootName=$(fclone lsf goog:{$id} --dump bodies -vv 2>&1 | grep ""$id","name"" | cut -d '"' -f 8)
+rootName=$(fclone lsf goog:{$id} --dump bodies -vv 2>&1 | grep ''$id',"name"' | cut -d '"' -f 8)
 echo -e " fclone自用版 [ v1.0 by \e[1;34m cgkings \e[0m ]
 [0]. 中转盘ID转存
 [1]. ADV盘ID转存
@@ -25,6 +25,7 @@ num=${num:-0}
 case "$num" in
 0)
     myid=myid0
+    echo -e "\n"
     echo -e "▣▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣▣\n" 
     echo -e "┋资源名称┋:$rootName \n"
     echo -e "┋资源地址┋:$link \n"
@@ -33,6 +34,7 @@ case "$num" in
     ;;
 1)
     myid=myid1
+    echo -e "\n"
     echo -e "▣▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣▣\n" 
     echo -e "┋资源名称┋:$rootName \n"
     echo -e "┋资源地址┋:$link \n"
@@ -41,6 +43,7 @@ case "$num" in
     ;;
 2)
     myid=myid2
+    echo -e "\n"
     echo -e "▣▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣▣\n" 
     echo -e "┋资源名称┋:$rootName \n"
     echo -e "┋资源地址┋:$link \n"
@@ -49,6 +52,7 @@ case "$num" in
     ;;
 3)
     myid=myid3
+    echo -e "\n"
     echo -e "▣▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣▣\n" 
     echo -e "┋资源名称┋:$rootName \n"
     echo -e "┋资源地址┋:$link \n"
@@ -56,6 +60,7 @@ case "$num" in
     echo -e "┋转入地址┋:$myid \n"
     ;;
 4)
+    echo -e "\n"
     read -p "请输入自定义转存ID:" myid5
     myid=$myid5
     echo -e "▣▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣▣\n" 
