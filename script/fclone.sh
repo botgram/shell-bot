@@ -13,7 +13,7 @@ link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
 id=$link
-rootName=$(fclone lsf goog:{$id} --dump bodies -vv 2>&1 | grep ''$id',"name"' | cut -d '"' -f 8)
+rootName=$(fclone lsf goog:{$id} --dump bodies -vv 2>&1 | grep '"'$id'","name"' | cut -d '"' -f 8)
 echo -e " fclone自用版 [ v1.0 by \e[1;34m cgkings \e[0m ]
 [0]. 中转盘ID转存
 [1]. ADV盘ID转存
