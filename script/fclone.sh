@@ -13,15 +13,14 @@ link=${link#*folders/};
 link=${link#*d/};
 link=${link%?usp*}
 id=$link
-rootName=$(fclone lsf goog:{$link} --dump bodies -vv 2>&1 | grep '"$link","name"' | cut -d '"' -f 8)
+rootName=$(fclone lsf goog:{$link} --dump bodies -vv 2>&1 | grep '$link,"name"' | cut -d '"' -f 8)
 echo -e " fclone自用版 [ v1.0 by \e[1;34m cgkings \e[0m ]
-请输入数字 [0-4]: (10s默认选0)
 [0]. 中转盘ID转存
 [1]. ADV盘ID转存
 [2]. MDV盘ID转存
 [3]. BOOK盘ID转存
 [4]. 自定义ID转存"
-read -t 10 -n1 -p -s num
+read -t 10 -n1 -p -S "请输入数字 [0-4]: (10s默认选0)" num
 num=${num:-0}
 case "$num" in
 0)
@@ -72,21 +71,21 @@ case "$num" in
     esac
 fi
 echo -e "▣▣▣▣▣▣▣正在执行转存▣▣▣▣▣▣▣\n"
-fclone copy goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
+fclone copy goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=200 --transfers=256 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo -e "▣▣▣▣▣▣▣正在执行同步▣▣▣▣▣▣▣\n"
-fclone sync goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --drive-use-trash=false --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
+fclone sync goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=200 --transfers=256 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --drive-use-trash=false --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  同步完毕"
 echo -e "▣▣▣▣▣▣▣正在执行查重▣▣▣▣▣▣▣\n"
 fclone dedupe newest goog:{$myid}/"$rootName" --fast-list --drive-use-trash=false --no-traverse --size-only -v --log-file=/root/gclone_log/"$rootName"'_dedupe.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
 echo -e "▣▣▣▣▣▣▣正在执行比对▣▣▣▣▣▣▣\n"
-fclone check goog:{$link} goog:{$myid}/"$rootName" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=320 --drive-pacer-min-sleep=1ms
+fclone check goog:{$link} goog:{$myid}/"$rootName" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=256 --drive-pacer-min-sleep=1ms
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
 echo
 echo -e "请注意清空回收站，群组账号必须对团队盘有管理员权限,10s不选默认N\n"
 echo -e "⭕⭕是否要清空回收站 [Y/N]? ⭕⭕\n"
-read -t 10 -n1 -p -s answer
+read -t 10 -n1 -p -S answer
 answer=${answer:-N}
 case "$answer" in
 Y | y)
