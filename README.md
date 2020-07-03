@@ -97,7 +97,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 
 </details>
 <details>
-<summary>步骤七：配置bot</summary>
+<summary>步骤七：使用转存bot</summary>
 
 1、向bot输入/gd
   
