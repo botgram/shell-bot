@@ -99,10 +99,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 <details>
 <summary>步骤七：配置bot</summary>
 
-其实如果你能忍受，每次向bot输入/gd的话，这步可以省略<br>
-如果你跟我一样懒，请往下看<br>
-如果你比我还懒，别看教程了，打开代码，试着修改一下，你能实现更多你自己想要的功能，这里给大家介绍一位不愿透漏姓名的大神fxxkrlab的 [转存bot教材](https://github.com/fxxkrlab/iCopy) ，你研究透了，就该我膜拜你了 <br>
- ok,说了这么多，其实是因为这一步很短，google或者百度bot自定义命令或者自定义命令按钮，你就可以实现在bot上点"/"弹出/gd,点它启动一键转存脚本，或者是点一下bot按钮就启动，说的不具体是因为我也不太懂，非常期待你的bot按钮拉取消息
+1、向bot输入/gd
+  
+  注：你也可以在TG找@BotFather，输入/setcommands，定义命令列表，这样你就可以在转存bot上点击“/”，选择“/gd”
+
+2、在bot弹出信息“请输入你的分享链接”回复你要转存的分享链接
+
+剩下的按图示操作就行，注意，所以需要输入的内容，必须在带“🔸”符号原信息回复方有效
 
 </details>
 
