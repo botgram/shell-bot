@@ -68,12 +68,15 @@ node server
 一键安装命令：
 
 ```
+wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
 
 ```
+作者是TG上的@fxxkrlab（F佬）和@Ip2N5M（K佬），都是很热心的人，小白的福音，欢迎大家去TG上骚扰他们，他们非常渴望你们的小白问题！
 
-这位大佬，是个有技术的懒人，小白的福音啊，用他的gclone可以简化sa切换日志内容，其他还有很多功能，自己去瞻仰下吧
+fclone的优势？其实没啥优势，就是比现存所有转存工具快个几十倍吧，速度见下图：
+<img src="https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/images/spead.png">
 
-当然如果你能忍受纷繁而无意义的sa切换日志，此步骤可以省略，如果过几天我对应性修改了懒人一键脚本的ID提取，那么这步就不能省略
+这张图是盗的TG上@asuka8，内测群里有名的快枪手！关于fclone,有啥问题除了问F佬和K佬，也可以加@asuka8和@waihoe89，他们都非常热心！
 
 </details>
 <details>
@@ -81,13 +84,14 @@ node server
 
 ```
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fclone/fcloneinstall.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
 
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 
 
-当你熟悉以后应该可以根据自己的需要修改脚本了，有问题TG找 onekingen，他在这个脚本的自定义道路上已经越走越（歪）远了，冉冉升起的小白大神
+当你熟悉以后应该可以根据自己的需要修改脚本了，有问题TG找 @onekings，他在这个脚本的自定义道路上已经越走越（歪）远了，冉冉升起的小白大神
+你要是不在TG上找他问几个小白问题，就是不尊重他！
 
 </details>
 <details>

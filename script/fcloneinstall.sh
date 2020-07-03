@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -rf fclone.sh
-wget https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fclone/fclone.sh
+wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fclone.sh
 echo "【fclone一键转存脚本自用】脚本配置"
 read -p "输入配置fclone的名称:" fcloneid
 sed -i "s/goog/$fcloneid/g" fclone.sh
