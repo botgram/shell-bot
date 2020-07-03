@@ -1,4 +1,4 @@
-# rclone-shell-bot
+# fclone-shell-bot
 
 <img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/chat1.jpg" height="470px" width="457px">
 
@@ -69,23 +69,23 @@ node server
 
 ```
 wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
-
 ```
 作者是TG上的@fxxkrlab（F佬）和@Ip2N5M（K佬），都是很热心的人，小白的福音，欢迎大家去TG上骚扰他们，他们非常渴望你们的小白问题！
 
 fclone的优势？其实没啥优势，就是比现存所有转存工具快个几十倍吧，速度见下图：
+
 <img src="https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/images/spead.png">
 
-这张图是盗的TG上@asuka8，内测群里有名的快枪手！关于fclone,有啥问题除了问F佬和K佬，也可以加@asuka8和@waihoe89，他们都非常热心！
+这张图是盗的TG上@asuka8，内测群里有名的快枪手！
+
+关于fclone,有啥问题除了问F佬和K佬，也可以加@asuka8和@waihoe89，他们都非常热心！
 
 </details>
 <details>
 <summary>步骤六：安装fclone一键转存脚本</summary>
 
 ```
-
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
-
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 
