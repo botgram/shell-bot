@@ -1,6 +1,6 @@
 # gclone-shell-bot
 
-<img src="https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/images/chat.jpg" height="680px" width="520px">
+<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/chat1.jpg" height="470px" width="457px">
 
 **注意:** 暂时不支持windows.
 
@@ -23,6 +23,7 @@ pip3 install pysocks
 2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).
 
 ```
+sudo apt install nodejs
 sudo apt install -y make python build-essential
 ```
 
@@ -31,7 +32,7 @@ sudo apt install -y make python build-essential
 <summary>步骤二：克隆库</summary>
 
 ```
-git clone https://github.com/botgram/shell-bot.git && cd shell-bot
+git clone https://github.com/cgkings/gclone_shell_bot.git && cd /root/gclone_shell_bot
 npm install
 ```
 
@@ -74,6 +75,8 @@ node server
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/installbot.sh)"
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fclone/fcloneinstall.sh)"
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 

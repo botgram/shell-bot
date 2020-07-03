@@ -513,7 +513,7 @@ bot.command("gd", function (msg, reply, next) {
   msg.editor = null;
 
 // command that that should be used
-  var args = "./root/gdbot.sh";
+  var args = "./gdbot.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
