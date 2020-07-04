@@ -89,7 +89,14 @@ fclone的优势？其实没啥优势，就是比现存所有转存工具快个�
 <summary>步骤六：安装fclone一键转存脚本</summary>
 
 ```
+低配（128 256 5000）
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
+
+高配（256 400 10000）
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
+
 ```
 
 [脚本配置教程](https://github.com/cgkings/gclone-assistant) 
