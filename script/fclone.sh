@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: cgking
-# Created Time : 2020.7.1
+# Created Time : 2020.7.4
 # File Name: fclone.sh
 # Description:
 read -p "请输入分享链接==>" link
@@ -61,16 +61,16 @@ case "$num" in
 esac
 echo -e " \n "
 echo -e "▣▣▣▣▣▣正在执行转存▣▣▣▣▣▣"
-fclone copy goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=180 --transfers=256 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
+fclone copy goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs -vP --checkers=128 --transfers=256 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --stats-one-line --stats=1s --min-size 10M --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo -e "▣▣▣▣▣▣正在执行同步▣▣▣▣▣▣"
-fclone sync goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=180 --transfers=256 --drive-pacer-min-sleep=1ms --check-first --min-size 10M --drive-use-trash=false --log-file=/root/gclone_log/"$rootName"'_copy1.txt'
+fclone sync goog:{$link} goog:{$myid}/"$rootName" --drive-server-side-across-configs -vP --checkers=128 --transfers=256 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-use-trash=false --stats-one-line --stats=1s --min-size 10M --log-file=/root/gclone_log/"$rootName"'_copy2.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  同步完毕"
 echo -e "▣▣▣▣▣▣正在执行查重▣▣▣▣▣▣"
 fclone dedupe newest goog:{$myid}/"$rootName" --fast-list --drive-use-trash=false --no-traverse --size-only -v --log-file=/root/gclone_log/"$rootName"'_dedupe.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
 echo -e "▣▣▣▣▣▣正在执行比对▣▣▣▣▣▣"
-fclone check goog:{$link} goog:{$myid}/"$rootName" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=256 --drive-pacer-min-sleep=1ms
+fclone check goog:{$link} goog:{$myid}/"$rootName" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=64 --drive-pacer-min-sleep=1ms
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
 echo
 echo -e "请注意清空回收站，群组账号必须对团队盘有管理员权限,10s不选默认N"
