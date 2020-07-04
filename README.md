@@ -66,7 +66,7 @@ node server
 [fclone发布地址页](https://github.com/mawaya/rclone) <br>
 一键安装命令：<br>
 ```
-wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
+wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone && fclone version
 ```
 
 作者是TG上的@fxxkrlab（F佬）和@Ip2N5M（K佬），都是很热心的人，小白的福音，欢迎大家去TG上骚扰他们，他们非常渴望你们的小白问题！
