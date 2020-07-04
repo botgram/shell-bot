@@ -75,8 +75,9 @@ wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fc
 fclone的优势？其实没啥优势，就是比现存所有转存工具快个几十倍吧，速度见下图：
 
 <img src="https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/images/spead.png">
-
 这张图是盗的TG上@asuka8，内测群里有名的快枪手！
+![image](https://github.com/cgkings/fclone_shell_bot/raw/master/images/speader.gif)   
+这是我自己的速度图，512M VPS性能不给力
 
 关于fclone,有啥问题除了问F佬和K佬，也可以加@asuka8和@waihoe89，他们都非常热心！
 
