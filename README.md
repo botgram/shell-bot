@@ -1,6 +1,6 @@
 # fclone-shell-bot
 
-<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" >
+<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">
 
 **注意:** 暂时不支持windows.
 
