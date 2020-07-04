@@ -95,7 +95,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 
 高配（256 400 10000）
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fclone_high/fcloneinstall.sh)"
 
 ```
 
