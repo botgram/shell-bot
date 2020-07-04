@@ -68,12 +68,19 @@ node server
 ```
 wget https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
 ```
-<br>作者是TG上的@fxxkrlab（F佬）和@Ip2N5M（K佬），都是很热心的人，小白的福音，欢迎大家去TG上骚扰他们，他们非常渴望你们的小白问题！<br>
-fclone的优势？其实没啥优势，就是比现存所有转存工具快个几十倍吧，速度见下图：<br>
+
+作者是TG上的@fxxkrlab（F佬）和@Ip2N5M（K佬），都是很热心的人，小白的福音，欢迎大家去TG上骚扰他们，他们非常渴望你们的小白问题！
+
+fclone的优势？其实没啥优势，就是比现存所有转存工具快个几十倍吧，速度见下图：
+
 <img src="https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/images/spead.png"><br>
-这张图是盗的TG上@asuka8，内测群里有名的快枪手！<br>
+
+这张图是盗的TG上@asuka8，内测群里有名的快枪手！
+
 <img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/speader.gif" width="800px" alt="速度图" ><br/>
-这是我自己的速度图，512M VPS性能不给力<br>
+
+这是我自己的速度图，512M VPS性能不给力
+
 关于fclone,有啥问题除了问F佬和K佬，也可以加@asuka8和@waihoe89，他们都非常热心！<br>
 另外，隆重介绍一下TG上的@Komeanx（Jason Wu），头像经常换，名字还没换过，TG中文圈有名的小白奸商，自从热心的帮我搭建完gclone，就开始付费搭建等等一系列小白奸商行径，大概是帮完我才发现有这么好的耐心，为啥不能用耐心换钱呢，一下想开了，哈哈，开玩笑的，有事可以私聊他，他找你要钱，就把他拉黑。。。<br>
 </details>
