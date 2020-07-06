@@ -8,7 +8,7 @@ shellbot可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种go
 
 # 安装步骤：<hr />
 <details>
-<summary> ## 步骤一：运行环境(Ubuntu/Debian) </summary>
+<summary>**"步骤一：运行环境(Ubuntu/Debian)"**</summary>
   
 1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示： 
 
