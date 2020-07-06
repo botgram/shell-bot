@@ -1,9 +1,10 @@
+# gclone shell bot
+
 `shellbot`可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用，当然转存工具很重要，`fclone`,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
 
 <img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">
 
 **注意:** 暂时不支持windows.
-
 ## 安装步骤：<hr />
 
 <details>
@@ -136,12 +137,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 剩下的按图示操作就行，注意，所以需要输入的内容，**必须在带“🔸”符号原信息回复方有效**
 
 </details>
-
 ## 授权书<hr />
 
 首次启动时，该漫游器将仅接受来自您的用户的消息。出于安全原因：您不希望任何人向您的计算机发出命令！<br>
 如果要允许其他用户使用该漫游器，请使用/token并为其提供结果链接。如果您想在网上论坛上使用此漫游器，/token则会向您发送一条消息，转发到网上论坛<br> 
-
 ## 最后的话<hr />
 
 送君千语，终有一别，作为一个小白，能堂而皇之的在github上恬不知耻的发布，是因为github开放的开发氛围，更是因为TG上面各位开放而热心的中国技术大佬的无私帮助，在此感谢各位TG大神，排名不分先后：<br>
