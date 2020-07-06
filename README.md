@@ -7,26 +7,18 @@
 ## 安装步骤：<hr />
 <details>
 <summary>步骤一：运行环境(Ubuntu/Debian)</summary>
-1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示：<br>
-
+1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示：  
 ```
-pip3 install pipenv
-
-pip3 install delegator.py
-
-pip3 install python-telegram-bot
-
-pip3 install pysocks
-
-```
-
-2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).
-
-```
-sudo apt install nodejs
-sudo apt install -y make python build-essential
-```
-
+pip3 install pipenv  
+pip3 install delegator.py  
+pip3 install python-telegram-bot  
+pip3 install pysocks  
+```  
+2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).  
+```  
+sudo apt install nodejs  
+sudo apt install -y make python build-essential  
+```  
 </details>
 <details>
 <summary>步骤二：克隆库</summary>
@@ -112,9 +104,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
   
   注：你也可以在TG找@BotFather，输入/setcommands，定义命令列表，这样你就可以在转存bot上点击“/”，选择“/fc”
 
-2、bot弹出信息“请输入你的分享链接”,在这条信息 #回复 你要转存的分享链接
+2、bot弹出信息“请输入你的分享链接”,在这条信息**回复** 你要转存的分享链接
 
-剩下的按图示操作就行，注意，所以需要输入的内容，必须在带“🔸”符号原信息回复方有效
+剩下的按图示操作就行，注意，所以需要输入的内容，**必须在带“🔸”符号原信息回复方有效**
 
 </details>
 
