@@ -8,7 +8,7 @@ shellbot可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种go
 
 # 安装步骤：<hr />
 <details>
-<summary>**"步骤一：运行环境(Ubuntu/Debian)"**</summary>
+<summary>步骤一：运行环境(Ubuntu/Debian)</summary>
   
 1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示： 
 
@@ -36,7 +36,9 @@ npm install
 
 </details>
 <details>
+  
 <summary>步骤三：启动bot</summary>
+
 
 **启动bot**
 
@@ -45,19 +47,24 @@ node server
 ```
 
 **自动启动**  
-启动之后，您可能希望bot在系统启动时自动启动，并在崩溃时重新生成。为此，可以运行一下：
+
+1、启动之后，您可能希望bot在系统启动时自动启动，并在崩溃时重新生成。为此，可以运行一下：
+
 ```nodejs
 sudo npm install -g forever
 ```
 
-然后，从您/etc/rc.local的脚本或初始化脚本中，调用：
+2、然后，从您/etc/rc.local的脚本或初始化脚本中，调用：
+
 ```linux
 forever start /path/to/shell-bot/server.js
 ```
 
 </details>
 <details>
+  
 <summary>步骤四：配置bot</summary>
+
 
 1.获取Telegram bot的token和用户id
 
@@ -71,6 +78,7 @@ forever start /path/to/shell-bot/server.js
 启动后，它将在启动Bot ready.并运行时显示一条消息。为了方便起见，您可能需要与BotFather交谈并将命令列表设置为的内容commands.txt。
 
 </details>
+
 <details>
 <summary>步骤五：安装fclone</summary>
 
@@ -96,6 +104,7 @@ fclone的优势？其实没啥优势，就是比现存所有转存工具快个�
 
 另外，隆重介绍一下TG上的@Komeanx（Jason Wu），头像经常换，名字还没换过，TG中文圈有名的小白奸商（现在已经不干了），热心的免费帮我搭建gclone，从此进入转存脚本的不归路（不准确，其实是从黄屁股卖给我野鸡大学教育子号开始的，其实根本不用买，美国社区大学能免费申请的一大堆）。。。<br>
 </details>
+
 <details>
 <summary>步骤六：安装fclone一键转存脚本</summary>
 
