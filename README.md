@@ -8,7 +8,7 @@ fclone-shell-bot
 **注意:** 暂时不支持windows.
 
 ## 安装步骤：<hr />
----
+-
 
 <details>
 <summary>步骤一：运行环境(Ubuntu/Debian)</summary>
