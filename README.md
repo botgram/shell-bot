@@ -6,7 +6,7 @@ fclone-shell-bot
 
 **注意:** 暂时不支持windows.
 
-# 安装步骤：<hr />
+## 安装步骤：<hr />
 ------
 
 <details>
