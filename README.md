@@ -7,9 +7,10 @@ shellbot可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种go
 **注意:** 暂时不支持windows.
 
 # 安装步骤：<hr />
+-----------
 <details>
 <summary>步骤一：运行环境(Ubuntu/Debian)</summary>
-  
+------  
 1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示： 
 
 ```shell
@@ -28,7 +29,7 @@ sudo apt install -y make python build-essential
 </details>
 <details>
 <summary>步骤二：克隆库</summary>
-
+------
 ```git
 git clone https://github.com/cgkings/gclone_shell_bot.git && cd /root/gclone_shell_bot
 npm install
@@ -38,8 +39,7 @@ npm install
 <details>
   
 <summary>步骤三：启动bot</summary>
-
-
+------
 **启动bot**
 
 ```nodejs
@@ -64,8 +64,7 @@ forever start /path/to/shell-bot/server.js
 <details>
   
 <summary>步骤四：配置bot</summary>
-
-
+------
 1.获取Telegram bot的token和用户id
 
 * 使用Telegram的botfather建立一个属于你的bot，获取bot token
@@ -81,7 +80,7 @@ forever start /path/to/shell-bot/server.js
 
 <details>
 <summary>步骤五：安装fclone</summary>
-
+------
 [fclone发布地址页](https://github.com/mawaya/rclone) <br>
 一键安装命令：<br>
 ```
@@ -107,8 +106,10 @@ fclone的优势？其实没啥优势，就是比现存所有转存工具快个�
 
 <details>
 <summary>步骤六：安装fclone一键转存脚本</summary>
-
+------
+  
 ```
+
 低配（128 256 5000）
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/script/fcloneinstall.sh)"
@@ -139,10 +140,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 </details>
 
 ## 授权书<hr />
+-----------
 首次启动时，该漫游器将仅接受来自您的用户的消息。出于安全原因：您不希望任何人向您的计算机发出命令！<br>
 如果要允许其他用户使用该漫游器，请使用/token并为其提供结果链接。如果您想在网上论坛上使用此漫游器，/token则会向您发送一条消息，转发到网上论坛<br> 
 
 ## 最后的话<hr />
+-----------
 送君千语，终有一别，作为一个小白，能堂而皇之的在github上恬不知耻的发布，是因为github开放的开发氛围，更是因为TG上面各位开放而热心的中国技术大佬的无私帮助，在此感谢各位TG大神，排名不分先后：<br>
 * fxxkrlab （专业冒险者） 不厌其烦的希望我们能多学点语言，还根据我们的需要编写了 [转存bot教材](https://github.com/fxxkrlab/iCopy),可惜，暂时没研究出来<br>
 * aevlp （steve x） 转存脚本的鼻祖，无私的提供了使用mysql实现转存任务序列的转存bot，可惜,暂时没研究出来<br>
