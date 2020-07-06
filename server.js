@@ -501,7 +501,7 @@ bot.command("help", function (msg, reply, next) {
   );
 });
 
-// bot command = "/gd"
+// bot command = "/fc"
 bot.command("gd", function (msg, reply, next) {
 
   if (msg.context.command) {
