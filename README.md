@@ -108,11 +108,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/m
 <details>
 <summary>步骤七：使用转存bot</summary>
 
-1、向bot输入/gd
+1、向bot输入/fc
   
-  注：你也可以在TG找@BotFather，输入/setcommands，定义命令列表，这样你就可以在转存bot上点击“/”，选择“/gd”
+  注：你也可以在TG找@BotFather，输入/setcommands，定义命令列表，这样你就可以在转存bot上点击“/”，选择“/fc”
 
-2、在bot弹出信息“请输入你的分享链接”回复你要转存的分享链接
+2、bot弹出信息“请输入你的分享链接”,在这条信息 #回复 你要转存的分享链接
 
 剩下的按图示操作就行，注意，所以需要输入的内容，必须在带“🔸”符号原信息回复方有效
 
