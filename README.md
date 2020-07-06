@@ -7,23 +7,27 @@
 ## 安装步骤：<hr />
 <details>
 <summary>步骤一：运行环境(Ubuntu/Debian)</summary>
-1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示：  
-```
+  
+1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示： 
+
+```shell
 pip3 install pipenv  
 pip3 install delegator.py  
 pip3 install python-telegram-bot  
 pip3 install pysocks  
 ```  
 2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).  
-```  
+
+```linux  
 sudo apt install nodejs  
 sudo apt install -y make python build-essential  
-```  
+```
+
 </details>
 <details>
 <summary>步骤二：克隆库</summary>
 
-```
+```git
 git clone https://github.com/cgkings/gclone_shell_bot.git && cd /root/gclone_shell_bot
 npm install
 ```
@@ -31,9 +35,21 @@ npm install
 </details>
 <details>
 <summary>步骤三：启动bot</summary>
+**启动bot**
 
-```
+```nodejs
 node server
+```
+
+**自动启动**  
+启动之后，您可能希望bot在系统启动时自动启动，并在崩溃时重新生成。为此，可以运行一下：
+```nodejs
+sudo npm install -g forever
+```
+
+然后，从您/etc/rc.local的脚本或初始化脚本中，调用：
+```linux
+forever start /path/to/shell-bot/server.js
 ```
 
 </details>
