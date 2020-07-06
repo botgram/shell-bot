@@ -1,12 +1,14 @@
-# fclone-shell-bot
+fclone-shell-bot
+===========================
+shellbot可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用，当然转存工具很重要，fclone,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
 
 <img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">
 
 **注意:** 暂时不支持windows.
 
-## 安装步骤：<hr />
+# 安装步骤：<hr />
 <details>
-<summary>步骤一：运行环境(Ubuntu/Debian)</summary>
+<summary> ## 步骤一：运行环境(Ubuntu/Debian) </summary>
   
 1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示： 
 
@@ -35,6 +37,7 @@ npm install
 </details>
 <details>
 <summary>步骤三：启动bot</summary>
+
 **启动bot**
 
 ```nodejs
