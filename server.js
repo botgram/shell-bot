@@ -501,7 +501,45 @@ bot.command("help", function (msg, reply, next) {
   );
 });
 
-// bot command = "/fc"
+// 一键快速转存bot command = "/quick"
+bot.command("quick", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("A command is already running.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 一键快速转存"/quick" command that should be used
+  var args = "./quick.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 团队盘备份bot command = "/tdbak"
+bot.command("tdbak", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("A command is already running.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 团队盘备份"/tdbak" command that should be used
+  var args = "./tdbak.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 点对点转存bot command = "/p2p"
 bot.command("fc", function (msg, reply, next) {
 
   if (msg.context.command) {
@@ -512,8 +550,8 @@ bot.command("fc", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// command that that should be used
-  var args = "./fclone.sh";
+// 点对点转存"/p2p" command that should be used
+  var args = "./p2p.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
