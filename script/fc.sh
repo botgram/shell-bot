@@ -17,7 +17,9 @@ link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 fi
 echo -e "$link\n" >> ~//gclone_shell_bot/任务队列.txt
 read -t 10 -n1 -p "是否继续添加队列任务:[Y/N](默认N)" task_stats
-while [$task_stats=Y | y]; do
+task_stats=${task_stats:-N}
+shopt -s nocasematch
+while [$task_stats = y ]; do
     read -p "请输入分享链接==>" link
     if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit ; else
@@ -49,4 +51,5 @@ do
     echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
     clear
 done
+: > ~/gclone_shell_bot/任务队列.txt
 ./fc.sh
