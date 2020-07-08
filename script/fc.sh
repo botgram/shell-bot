@@ -15,7 +15,7 @@ if [ -z "$link" ] ; then
 echo "不允许输入为空" && exit ; else
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 ls_info=`rclone lsd goog:{$link} --dump bodies -vv 2>&1`
-size_info=`fclone size goog:{$link} --checkers=256`
+size_info=`fclone size goog:{$link} --checkers=320`
 rootname=$(echo "$ls_info" | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 idname=$(echo "$ls_info" | awk 'BEGIN{FS="\""}/^{"id/{print $4}')
 file_num=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total objects/{print $3}')
@@ -28,10 +28,10 @@ echo -e "┋转存地址┋:中转盘/未整理/"$rootname"\n"
 echo -e "┋资源数量┋:"$file_num"\n"
 echo -e "┋资源大小┋:"$file_size"\n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy goog:{$link} goog:{myid}/"$rootname" --drive-server-side-across-configs -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --stats-one-line --stats=1s --min-size 10M
+fclone copy goog:{$link} goog:{myid}/"$rootname" --drive-server-side-across-configs -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --check-first --stats-one-line --stats=1s --min-size 10M
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo -e "▣▣▣▣▣▣执行比对▣▣▣▣▣▣"
-fclone check goog:{$link} goog:{myid}/"$rootname" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=64 --drive-pacer-min-sleep=1ms
+fclone check goog:{$link} goog:{myid}/"$rootname" --size-only --min-size 10M --checkers=320 --drive-pacer-min-sleep=1ms
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
 clear
 ./fc.sh
