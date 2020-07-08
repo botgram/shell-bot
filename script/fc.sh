@@ -19,19 +19,19 @@ size_info=`fclone size goog:{$link} --checkers=256`
 rootname=$(echo "$ls_info" | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 idname=$(echo "$ls_info" | awk 'BEGIN{FS="\""}/^{"id/{print $4}')
 file_num=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total objects/{print $3}')
-file_size=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total size/{print $3}')
+file_size=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total size/{print $3,$4}')
 [ -z "$rootname" ] && echo "无效链接" && exit || [ $link != $idname ] && echo "链接无效，检查是否有权限" && exit
 fi
 echo -e "▣▣▣▣▣▣任务信息▣▣▣▣▣▣\n"
-echo -e "┋资源名称┋:"$rootName"\n"
+echo -e "┋资源名称┋:"$rootname"\n"
 echo -e "┋资源地址┋:"$link"\n"
 echo -e "┋资源数量┋:"$file_num"\n"
-echo -e "┋资源大小┋:"$file_size GB"\n"
+echo -e "┋资源大小┋:"$file_size"\n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy goog:{$link} goog:{myid}/"$rootName" --drive-server-side-across-configs -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --stats-one-line --stats=1s --min-size 10M
+fclone copy goog:{$link} goog:{myid}/"$rootname" --drive-server-side-across-configs -vP --checkers=256 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --stats-one-line --stats=1s --min-size 10M
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo -e "▣▣▣▣▣▣执行比对▣▣▣▣▣▣"
-fclone check goog:{$link} goog:{myid}/"$rootName" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=64 --drive-pacer-min-sleep=1ms
+fclone check goog:{$link} goog:{myid}/"$rootname" --fast-list --size-only --one-way --no-traverse --min-size 10M --checkers=64 --drive-pacer-min-sleep=1ms
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
 clear
 ./fc.sh
