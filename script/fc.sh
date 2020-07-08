@@ -24,7 +24,7 @@ file_size=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total size/{print $3,$4}')
 fi
 echo -e "▣▣▣▣▣▣任务信息▣▣▣▣▣▣\n"
 echo -e "┋资源名称┋:"$rootname"\n"
-echo -e "┋资源地址┋:"$link"\n"
+echo -e "┋转存地址┋:中转盘/未整理/"$rootname"\n"
 echo -e "┋资源数量┋:"$file_num"\n"
 echo -e "┋资源大小┋:"$file_size"\n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
