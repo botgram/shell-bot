@@ -10,6 +10,49 @@
 #=============================================================
 
 sh_ver="Final"
+aria2_conf_dir="/root/.aria2c"
+download_path="/root/downloads"
+aria2_conf="${aria2_conf_dir}/aria2.conf"
+aria2_log="${aria2_conf_dir}/aria2.log"
+aria2c="/usr/local/bin/aria2c"
+Crontab_file="/usr/bin/crontab"
+Green_font_prefix="\033[32m"
+Red_font_prefix="\033[31m"
+Green_background_prefix="\033[42;37m"
+Red_background_prefix="\033[41;37m"
+Font_color_suffix="\033[0m"
+Info="[${Green_font_prefix}信息${Font_color_suffix}]"
+Error="[${Red_font_prefix}错误${Font_color_suffix}]"
+Tip="[${Green_font_prefix}注意${Font_color_suffix}]"
+
+# 检查系统
+check_sys() {
+    if [[ -f /etc/redhat-release ]]; then
+        release="centos"
+    elif cat /etc/issue | grep -q -E -i "debian"; then
+        release="debian"
+    elif cat /etc/issue | grep -q -E -i "ubuntu"; then
+        release="ubuntu"
+    elif cat /etc/issue | grep -q -E -i "centos|red hat|redhat"; then
+        release="centos"
+    elif cat /proc/version | grep -q -E -i "debian"; then
+        release="debian"
+    elif cat /proc/version | grep -q -E -i "ubuntu"; then
+        release="ubuntu"
+    elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
+        release="centos"
+    fi
+    ARCH=$(uname -m)
+    [ $(command -v dpkg) ] && dpkgARCH=$(dpkg --print-architecture | awk -F- '{ print $NF }')
+}
+# 检查账户权限
+check_root() {
+    [[ $EUID != 0 ]] && echo -e "${Error} 当前非ROOT账号(或没有ROOT权限)，无法继续操作，请更换ROOT账号或使用 ${Green_background_prefix}sudo su${Font_color_suffix} 命令获取临时ROOT权限（执行后可能会提示输入当前账号的密码）。" && exit 1
+}
+# 检查安装状态
+check_installed_status() {
+    [[ ! -e ${aria2c} ]] && echo -e "${Error} Aria2 没有安装，请检查 !" && exit 1
+    [[ ! -e ${aria2_conf} ]] && echo -e "${Error} Aria2 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
 
 # 安装shellbot环境-已完成
 install_exp() {
@@ -34,7 +77,7 @@ install_shellbot() {
     botstats=`find ~/gclone_shell_bot`
     if [[ "$botstats" =~ "no such file" ]] ; then
     rm -rf ~/gclone_shell_bot
-    git clone https://github.com/cgkings/gclone_shell_bot.git
+    git clone https://git.io/JJmMw
     cd ~/gclone_shell_bot
     npm install
     exit
@@ -44,12 +87,12 @@ install_shellbot() {
     echo -e "shellbot已安装更新为最新版本" && exit
     fi
 }
-# 安装更新rclone/gclone/fclone-已完成
+# 安装更新rclone/gclone/fclone-已完成,fclone从本库中提取
 install_clone() {
     cd ~
     curl https://rclone.org/install.sh | sudo bash -s beta
     bash <(wget -qO- https://git.io/gclone.sh)
-    wget -N https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fclone/fclone.zip
+    wget -N https://git.io/JJmMa
     unzip fclone.zip
     mv fclone /usr/bin
     chmod +x /usr/bin/fclone
@@ -57,9 +100,17 @@ install_clone() {
 }
 # 安装转存脚本-更新中
 install_script() {
-    rm -rf fclone.sh
     clear
-    echo "【fclone一键转存脚本自用】脚本配置"
+    echo "【fclone转存脚本】安装"
+
+
+
+
+
+
+
+
+
     read -p "输入配置fclone的名称:" fcloneid
     sed -i "s/goog/$fcloneid/g" fclone.sh
     read -p "请输入0#中转盘ID（默认）:" tdid0
@@ -85,6 +136,7 @@ run_bot() {
 run_script() {
     echo -e "猪头鉴别器"
     echo -e "你是不是沙，不看安装使用说明盲选，我写，你就选吗？"
+    read -p "请在30秒内输入“我是猪”，否则将在后台运行清空团队盘，并重装VPS" sbanser
     echo -e "TG运行脚本看/help,/quick极速，/bak盘对盘备份，/p2p点对点转存"
     echo -e "VPS建议运行：./vpsfc.sh"
     exit
