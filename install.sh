@@ -49,9 +49,9 @@ check_root() {
 }
 # 检查安装状态
 check_installed_status() {
-    [[ ! -e ${fclone_shell_bot} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit 1
+    [[ ! -e ${shellbot_conf} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit 1
     [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
-     
+
 # 安装shellbot环境-已完成
 install_exp() {
     cd ~
@@ -99,9 +99,9 @@ install_clone() {
 # 安装转存脚本-更新中
 install_script() {
     clear
+    check_installed_status
     echo "【fclone转存脚本】安装"
-
-
+    
 
 
 
@@ -157,13 +157,31 @@ set_bot() {
 view_conf() {
 }
 # 编辑配置rclone.conf-更新中
-set_conf() {   
+set_conf() {
 }
 # 查看转存参数-更新中
 view_clone() {
 }
 # 编辑转存参数-更新中
-set_clone() {   
+set_clone() {
+    echo -e "
+ ${Green_font_prefix}1.${Font_color_suffix} 修改 fqcopy 极速模式 配置
+ ${Green_font_prefix}2.${Font_color_suffix} 修改 fbcopy 备份模式
+ ${Green_font_prefix}3.${Font_color_suffix} 修改 Aria2 下载目录
+ ${Green_font_prefix}4.${Font_color_suffix} 修改 Aria2 密钥 + 端口 + 下载目录
+ ${Green_font_prefix}5.${Font_color_suffix} 手动 打开配置文件修改
+ ————————————" && echo
+    read -e -p " 请输入数字 [1-3]:" clone_config
+    case "$clone_config" in
+1)
+    set_clone_fqcopy
+    ;;
+2)
+    install_exp
+    ;;
+3)
+    install_shellbot
+    ;;
 }
 
 echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix} by \033[1;35mcgkings\033[0m
