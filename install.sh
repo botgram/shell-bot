@@ -10,12 +10,10 @@
 #=============================================================
 
 sh_ver="Final"
-aria2_conf_dir="/root/.aria2c"
-download_path="/root/downloads"
-aria2_conf="${aria2_conf_dir}/aria2.conf"
-aria2_log="${aria2_conf_dir}/aria2.log"
-aria2c="/usr/local/bin/aria2c"
-Crontab_file="/usr/bin/crontab"
+shellbot_dir="/root/gclone_shell_bot"
+shellbot_conf="${fclone_shell_bot}/server.js"
+fclone_conf="/root/.config/rclone/rclone.conf"
+fclone_log="${fclone_shell_bot}/log"
 Green_font_prefix="\033[32m"
 Red_font_prefix="\033[31m"
 Green_background_prefix="\033[42;37m"
@@ -51,9 +49,9 @@ check_root() {
 }
 # 检查安装状态
 check_installed_status() {
-    [[ ! -e ${aria2c} ]] && echo -e "${Error} Aria2 没有安装，请检查 !" && exit 1
-    [[ ! -e ${aria2_conf} ]] && echo -e "${Error} Aria2 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
-
+    [[ ! -e ${fclone_shell_bot} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit 1
+    [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
+     
 # 安装shellbot环境-已完成
 install_exp() {
     cd ~
