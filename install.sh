@@ -116,12 +116,15 @@ install_script() {
     chmod +x ~/fclone_shell_bot/script/fpcopy.sh
     chmod +x ~/fclone_shell_bot/script/fbtask.sh
     chmod +x ~/fclone_shell_bot/script/fbcopy.sh
-
-
-
-
-    chmod +x ~/fclone_shell_bot/script/
-    echo "请输入 ./fclone.sh 使用脚本"
+    echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh"/n"  >> /root/.bashrc
+    echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh"/n"  >> /root/.bashrc
+    echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh"/n"  >> /root/.bashrc
+    source /root/.bashrc
+    echo -e "已完成安装，并设置系统级脚本别名"
+    echo -e "输入fq启动极速转存"
+    echo -e "输入fp启动p2p转存"
+    echo -e "输入fb启动盘备份转存"
+    exit
 }
 # ★★★运行bot-已完成★★★
 run_bot() {
