@@ -474,30 +474,28 @@ bot.command("start", function (msg, reply, next) {
 
 bot.command("help", function (msg, reply, next) {
   reply.html(
-    "‣ /run &lt;linux命令&gt; 运行VPS的linux命令；\n" +
+    "<em>fclone转存常用命令</em>\n" +
     "\n" +
-    "‣ 注：命令交互输入，如回复Y选择进一步操作，需要在TG以回复信息方式进行，或者/enter &lt;交互内容&gt; \n" +
-    "‣ /end 相当于VPS的Linux的(Ctrl+D).\n" +
-    "‣ /cancel 相当于VPS的Linux的(Ctrl+C) 终止进程,当然你也可以指定(Ctrl+C).\n" +
-    "‣ /kill 发送程序结束SIGTERM信号，当然也可以指定程序结束.\n" + 
-    "‣ /redraw 针对图形应用程序，强制重新绘制屏幕.\n" +
-    "‣ 特殊按键：/type或/control配合按键, /meta配合ALT+按键, /keypad显示特殊键的键盘.\n" + 
+    "‣ /quick 急速转存模式\n" +
+    "‣ /p2p   点对点转存模式\n" +
+    "‣ /pbak  全盘备份转存模式\n" +
+    "‣ /size  读取gd分享链接的文件数量&文件大小.\n" +
+    "‣ /clean 清空gd回收站.\n" +
+    "‣ /dedup 定向查重.\n" +
+    "‣ /check 点对点定向比对.\n" +
+    "‣ /cancel相当于VPS的Linux的(Ctrl+C) 终止当前进程；\n" + 
     "\n" +
-    " /status 查看此聊天的当前状态和设置." +
-    "Use /env to manipulate the environment, /cd to change the current directory, /shell to see or " +
-    "change the shell used to run commands and /resize to change the size of the terminal.\n" +
+    "<em>shellbot通用命令</em>\n" +
     "\n" +
-    "By default, output messages are sent silently (without sound) and links are not expanded. " +
-    "This can be changed through /setsilent and /setlinkpreviews. Note: links are " +
-    "never expanded in status lines.\n" +
+    "‣ /status 查看此聊天的当前状态和设置;\n" + 
+    "‣ /cd     改变当前目录;\n" +
+    "‣ /run &lt;linux命令&gt; 运行VPS的linux命令;\n" + 
+    "‣ /kill   发送程序结束SIGTERM信号，当然也可以指定程序结束.; \n" +
+    "‣ /end    相当于VPS的Linux的(Ctrl+D).\n" +
     "\n" +
-    "<em>Additional features</em>\n" +
-    "\n" +
-    "Use /upload &lt;file&gt; and I'll send that file to you. If you reply to that " +
-    "message by uploading me a file, I'll overwrite it with yours.\n" +
-    "\n" +
-    "You can also use /file &lt;file&gt; to display the contents of file as a text " +
-    "message. This also allows you to edit the file, but you have to know how..."
+    "<em>注意事项</em>\n" +
+    "‣注：命令交互输入，如回复Y选择进一步操作，需要在TG以回复信息方式进行;\n" +
+    "     或者/enter &lt;交互内容&gt"
   );
 });
 
@@ -513,15 +511,15 @@ bot.command("quick", function (msg, reply, next) {
   msg.editor = null;
 
 // 一键快速转存"/quick" command that should be used
-  var args = "./quick.sh";
+  var args = "/root/fclone_shell_bot/script/fqtask.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
   });
 });
 
-// 团队盘备份bot command = "/tdbak"
-bot.command("tdbak", function (msg, reply, next) {
+// 团队盘备份bot command = "/pbak"
+bot.command("pbak", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -531,8 +529,8 @@ bot.command("tdbak", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 团队盘备份"/tdbak" command that should be used
-  var args = "./tdbak.sh";
+// 团队盘备份"/pbak" command that should be used
+  var args = "/root/fclone_shell_bot/script/fbtask.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
@@ -540,7 +538,7 @@ bot.command("tdbak", function (msg, reply, next) {
 });
 
 // 点对点转存bot command = "/p2p"
-bot.command("fc", function (msg, reply, next) {
+bot.command("p2p", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -551,7 +549,25 @@ bot.command("fc", function (msg, reply, next) {
   msg.editor = null;
 
 // 点对点转存"/p2p" command that should be used
-  var args = "./p2p.sh";
+  var args = "/root/fclone_shell_bot/script/fptask.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+// 尺寸查询bot command = "/psize"
+bot.command("psize", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 尺寸查询"/psize" command that should be used
+  var args = "/root/fclone_shell_bot/script/psize.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;

@@ -9,8 +9,9 @@
 # Version: final
 #=============================================================
 
+source ~/fclone_shell_bot/myfc_config.ini
 sh_ver="Final"
-shellbot_dir="/root/gclone_shell_bot"
+shellbot_dir="/root/fclone_shell_bot"
 shellbot_conf="${fclone_shell_bot}/server.js"
 fclone_conf="/root/.config/rclone/rclone.conf"
 fclone_log="${fclone_shell_bot}/log"
@@ -23,7 +24,7 @@ Info="[${Green_font_prefix}信息${Font_color_suffix}]"
 Error="[${Red_font_prefix}错误${Font_color_suffix}]"
 Tip="[${Green_font_prefix}注意${Font_color_suffix}]"
 
-# 检查系统-已完成★★★
+# ★★★检查系统-已完成★★★
 check_sys() {
     if [[ -f /etc/redhat-release ]]; then
         release="centos"
@@ -43,16 +44,16 @@ check_sys() {
     ARCH=$(uname -m)
     [ $(command -v dpkg) ] && dpkgARCH=$(dpkg --print-architecture | awk -F- '{ print $NF }')
 }
-# 检查账户权限-已完成★★★
+# ★★★检查账户权限-已完成★★★
 check_root() {
     [[ $EUID != 0 ]] && echo -e "${Error} 当前非ROOT账号(或没有ROOT权限)，无法继续操作，请更换ROOT账号或使用 ${Green_background_prefix}sudo su${Font_color_suffix} 命令获取临时ROOT权限（执行后可能会提示输入当前账号的密码）。" && exit 1
 }
-# 检查安装状态-已完成★★★
+# ★★★检查安装状态-已完成★★★
 check_installed_status() {
     [[ ! -e ${shellbot_conf} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit 1
     [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
 
-# 安装shellbot环境-已完成★★★
+# ★★★安装shellbot环境-已完成★★★
 install_exp() {
     check_sys
     check_root
@@ -71,25 +72,25 @@ install_exp() {
     sudo apt install -y make python build-essential
     echo -e "shellbot环境已安装完毕" && exit
 }
-# 安装更新shellbot-已完成★★★
+# ★★★安装更新shellbot-已完成★★★
 install_shellbot() {
     check_sys
     check_root
     cd ~
-    botstats=`find ~/gclone_shell_bot`
+    botstats=`find ~/fclone_shell_bot`
     if [[ "$botstats" =~ "no such file" ]] ; then
-    rm -rf ~/gclone_shell_bot
+    rm -rf ~/fclone_shell_bot
     git clone https://git.io/JJmMw
-    cd ~/gclone_shell_bot
+    cd ~/fclone_shell_bot
     npm install
     echo -e "shellbot已安装更新为最新版本" && exit
     else
-    cd ~/gclone_shell_bot
+    cd ~/fclone_shell_bot
     git pull
     echo -e "shellbot已安装更新为最新版本" && exit
     fi
 }
-# 安装更新rclone/gclone/fclone,fclone从本库中提取-已完成★★★
+# ★★★安装更新rclone/gclone/fclone,fclone从本库中提取-已完成★★★
 install_clone() {
     check_sys
     check_root
@@ -109,38 +110,29 @@ install_script() {
     check_root
     check_installed_status
     echo "【fclone转存脚本】安装"
-    
+    chmod +x ~/fclone_shell_bot/script/fqtask.sh
+    chmod +x ~/fclone_shell_bot/script/fqcopy.sh
+    chmod +x ~/fclone_shell_bot/script/fptask.sh
+    chmod +x ~/fclone_shell_bot/script/fpcopy.sh
+    chmod +x ~/fclone_shell_bot/script/fbtask.sh
+    chmod +x ~/fclone_shell_bot/script/fbcopy.sh
 
 
 
 
-
-
-
-    read -p "输入配置fclone的名称:" fcloneid
-    sed -i "s/goog/$fcloneid/g" fclone.sh
-    read -p "请输入0#中转盘ID（默认）:" tdid0
-    sed -i "s/myid0/$tdid0/g" fclone.sh
-    read -p "请输入1#ADV盘ID:" tdid1
-    sed -i "s/myid1/$tdid1/g" fclone.sh
-    read -p "请输入2#MDV盘ID:" tdid2
-    sed -i "s/myid2/$tdid2/g" fclone.sh
-    read -p "请输入3#BOOK盘ID:" tdid3
-    sed -i "s/myid3/$tdid3/g" fclone.sh
-    echo "如需增减目标地址，可自行修改fcloneinstall.sh和fclone.sh"
-    chmod +x fclone.sh
+    chmod +x ~/fclone_shell_bot/script/
     echo "请输入 ./fclone.sh 使用脚本"
 }
-# 运行bot-已完成★★★
+# ★★★运行bot-已完成★★★
 run_bot() {
     clear
     check_installed_status
     tmux new -s shellbot -d
-    tmux send -t "shellbot" 'cd ~/gclone_shell_bot && node server' Enter
+    tmux send -t "shellbot" 'cd ~/fclone_shell_bot && node server' Enter
     echo -e "bot服务已在tmux后台窗口shellbot内启动，可直接在TG上使用，也可VPS使用“ tmux a -t shellbot”查看启动状况"
     exit
 }
-# 运行脚本-已完成★★★
+# ★★★运行脚本-已完成★★★
 run_script() {
     clear
     check_installed_status
@@ -153,7 +145,7 @@ run_script() {
     echo -e "哎，我还是善良的，去看看使用说明吧，乖，别再选了"
     exit
 }
-# 停止bot-已完成★★★
+# ★★★停止bot-已完成★★★
 stop_bot() {
     clear
     check_installed_status
@@ -161,64 +153,74 @@ stop_bot() {
     echo -e "bot服务已停止"
     exit
 }
-# 重启bot-已完成★★★
+# ★★★重启bot-已完成★★★
 restart_bot() {
     clear
     check_installed_status
     tmux kill-session -t shellbot
     tmux new -s shellbot -d
-    tmux send -t "shellbot" 'cd ~/gclone_shell_bot && node server' Enter
+    tmux send -t "shellbot" 'cd ~/fclone_shell_bot && node server' Enter
     echo -e "bot服务已在tmux后台窗口shellbot内启动，可直接在TG上使用，也可VPS使用
             “ tmux a -t shellbot”查看启动状况"
     exit
 }
-# 查看bot配置-已完成★★★
+# ★★★查看bot配置-已完成★★★
 view_bot() {
     clear
     check_installed_status
-    cat /root/gclone_shell_bot/config.example.json
+    cat /root/fclone_shell_bot/config.example.json
 }
-# 编辑配置bot-已完成★★★
+# ★★★编辑配置bot-已完成★★★
 set_bot() {
     clear
     check_installed_status
-    nano /root/gclone_shell_bot/config.example.json
+    nano /root/fclone_shell_bot/config.example.json
 }
-# 查看rclone配置-已完成★★★
+# ★★★查看rclone配置-已完成★★★
 view_conf() {
     clear
     check_installed_status
     fclone config show
 }
-# 编辑配置rclone.conf-已完成★★★
+# ★★★编辑配置rclone.conf-已完成★★★
 set_conf() {
     clear
     check_installed_status
     nano /root/.config/rclone/rclone.conf
 }
-# 查看转存参数-更新中
+# ★★★查看转存参数-已完成★★★
 view_clone() {
     echo -e "
  ${Green_font_prefix}1.${Font_color_suffix} 查看 fqcopy 极速模式 转存参数
- ${Green_font_prefix}2.${Font_color_suffix} 查看 fbcopy 备份模式 转存参数
- ${Green_font_prefix}3.${Font_color_suffix} 查看 fpcopy 点点模式 转存参数
+ ${Green_font_prefix}2.${Font_color_suffix} 查看 fpcopy 点点模式 转存参数
+ ${Green_font_prefix}3.${Font_color_suffix} 查看 fbcopy 备份模式 转存参数
  ${Green_font_prefix}4.${Font_color_suffix} 退出
  ————————————" && echo 
     read -e -p " 请输入数字 [1-3]:" view_clone_config
     case "$clone_config" in
 1)
     echo -e "\nfqcopy 急速模式 转存参数：\n
- checker 检查线程 : ${Green_font_prefix}${}${Font_color_suffix}
- transfer传输线程 : ${Green_font_prefix}${}${Font_color_suffix}
- size    尺寸过滤 : ${Green_font_prefix}${}${Font_color_suffix}
- RPC 密钥 : ${Green_font_prefix}${}${Font_color_suffix}
- 下载目录 : ${Green_font_prefix}${}${Font_color_suffix}\n"
+ checker  检查线程 : ${Green_font_prefix}${fq_chercker}${Font_color_suffix}
+ transfer 传输线程 : ${Green_font_prefix}${fq_transfer}${Font_color_suffix}
+ min size 尺寸过滤 : ${Green_font_prefix}${fq_min_size}${Font_color_suffix}
+ min-sleep休眠时间 : ${Green_font_prefix}${fq_min_sleep}${Font_color_suffix}
+ BURST不休眠调用数 : ${Green_font_prefix}${fq_BURST}${Font_color_suffix}\n"
     ;;
 2)
-    set_clone_fbcopy
+    echo -e "\nfpcopy 点点模式 转存参数：\n
+ checker  检查线程 : ${Green_font_prefix}${fp_chercker}${Font_color_suffix}
+ transfer 传输线程 : ${Green_font_prefix}${fp_transfer}${Font_color_suffix}
+ min size 尺寸过滤 : ${Green_font_prefix}${fp_min_size}${Font_color_suffix}
+ min-sleep休眠时间 : ${Green_font_prefix}${fp_min_sleep}${Font_color_suffix}
+ BURST不休眠调用数 : ${Green_font_prefix}${fp_BURST}${Font_color_suffix}\n"
     ;;
 3)
-    set_clone_fpcopy
+    echo -e "\nfpcopy 盘备份模式 转存参数：\n
+ checker  检查线程 : ${Green_font_prefix}${fb_chercker}${Font_color_suffix}
+ transfer 传输线程 : ${Green_font_prefix}${fb_transfer}${Font_color_suffix}
+ min size 尺寸过滤 : ${Green_font_prefix}${fb_min_size}${Font_color_suffix}
+ min-sleep休眠时间 : ${Green_font_prefix}${fb_min_sleep}${Font_color_suffix}
+ BURST不休眠调用数 : ${Green_font_prefix}${fb_BURST}${Font_color_suffix}\n"
     ;;
 4)
     exit
@@ -229,43 +231,21 @@ view_clone() {
     ;;
 esac
 }
-# 编辑转存参数-更新中
+# ★★★编辑转存参数-已完成★★★
 set_clone() {
-    echo -e "
- ${Green_font_prefix}1.${Font_color_suffix} 修改 fqcopy 极速模式 转存参数
- ${Green_font_prefix}2.${Font_color_suffix} 修改 fbcopy 备份模式 转存参数
- ${Green_font_prefix}3.${Font_color_suffix} 修改 fpcopy 点点模式 转存参数
- ${Green_font_prefix}4.${Font_color_suffix} 退出
-  ————————————" && echo 
-    read -e -p " 请输入数字 [1-3]:" clone_config
-    case "$clone_config" in
-1)
-    set_clone_fqcopy
-    ;;
-2)
-    set_clone_fbcopy
-    ;;
-3)
-    set_clone_fpcopy
-    ;;
-4)
-    exit
-    ;;
-*)
-    echo
-    echo -e " ${Error} 请输入正确的数字"
-    ;;
-    esac
+    clear
+    check_installed_status
+    nano /root/fclone_shell_bot/myfc_config.ini
 }
 
-# 主目录-已完成★★★
+# ★★★主目录-已完成★★★
 echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix} by \033[1;35mcgkings\033[0m
  
  ${Green_font_prefix} 0.${Font_color_suffix} 完全安装
  ———————————————————————
  ${Green_font_prefix} 1.${Font_color_suffix} 安装更新 bot环境
  ${Green_font_prefix} 2.${Font_color_suffix} 安装更新 shellbot
- ${Green_font_prefix} 3.${Font_color_suffix} 安装更新 rclone/gclone/fclone
+ ${Green_font_prefix} 3.${Font_color_suffix} 安装更新 rclone/fclone/fclone
  ${Green_font_prefix} 4.${Font_color_suffix} 安装更新 转存脚本
  ———————————————————————
  ${Green_font_prefix} 5.${Font_color_suffix} 启动 bot
