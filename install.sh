@@ -46,12 +46,12 @@ check_sys() {
 }
 # ★★★检查账户权限-已完成★★★
 check_root() {
-    [[ $EUID != 0 ]] && echo -e "${Error} 当前非ROOT账号(或没有ROOT权限)，无法继续操作，请更换ROOT账号或使用 ${Green_background_prefix}sudo su${Font_color_suffix} 命令获取临时ROOT权限（执行后可能会提示输入当前账号的密码）。" && exit 1
+    [[ $EUID != 0 ]] && echo -e "${Error} 当前非ROOT账号(或没有ROOT权限)，无法继续操作，请更换ROOT账号或使用 ${Green_background_prefix}sudo su${Font_color_suffix} 命令获取临时ROOT权限（执行后可能会提示输入当前账号的密码）。" && exit
 }
 # ★★★检查安装状态-已完成★★★
 check_installed_status() {
-    [[ ! -e ${shellbot_conf} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit 1
-    [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit 1
+    [[ ! -e ${shellbot_conf} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit
+    [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit
 
 # ★★★安装shellbot环境-已完成★★★
 install_exp() {
@@ -96,7 +96,7 @@ install_clone() {
     check_root
     cd ~
     curl https://rclone.org/install.sh | sudo bash -s beta
-    bash <(wget -qO- https://git.io/gclone.sh)
+    wget -qO- https://git.io/gclone.sh
     wget -N https://git.io/JJmMa
     unzip fclone.zip
     mv fclone /usr/bin
@@ -163,8 +163,7 @@ restart_bot() {
     tmux kill-session -t shellbot
     tmux new -s shellbot -d
     tmux send -t "shellbot" 'cd ~/fclone_shell_bot && node server' Enter
-    echo -e "bot服务已在tmux后台窗口shellbot内启动，可直接在TG上使用，也可VPS使用
-            “ tmux a -t shellbot”查看启动状况"
+    echo -e "bot服务已在tmux后台窗口shellbot内启动，可直接在TG上使用，也可VPS使用"tmux a -t shellbot"查看启动状况"
     exit
 }
 # ★★★查看bot配置-已完成★★★
@@ -232,7 +231,7 @@ view_clone() {
     echo
     echo -e " ${Error} 请输入正确的数字"
     ;;
-esac
+    esac
 }
 # ★★★编辑转存参数-已完成★★★
 set_clone() {
@@ -265,6 +264,7 @@ echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Fon
  ${Green_font_prefix} 14.${Font_color_suffix} 修改 转存参数配置
  ———————————————————————" && echo 
 read -e -p " 请输入数字 [0-14]:" num
+
 case "$num" in
 0)
     install_exp
