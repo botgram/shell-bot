@@ -11,17 +11,17 @@
 
 clear
 IFS=$'\n' 
-for input_id in $(cat ~/gclone_shell_bot/任务队列.txt)
+for input_id in $(cat ~/fclone_shell_bot/log/fqtask.log)
 do
-    rootname=$(fclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
+    rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
     echo -e "┋资源名称┋:"$rootname"\n"
     echo -e "┋资源地址┋:"$input_id"\n"
     echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-    fclone copy goog:{$input_id} goog:{myid}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=128 --transfers=256 --drive-pacer-min-sleep=1ms --min-size 10M --check-first
+    fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
     echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
     echo -e "▣▣▣▣▣▣查漏补缺▣▣▣▣▣▣"
-    fclone copy goog:{$input_id} goog:{myid}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers=128 --transfers=256 --drive-pacer-min-sleep=1ms --min-size 10M --check-first
+    fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
     echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
     clear
 done
-: > ~/gclone_shell_bot/任务队列.txt
+: > ~/fclone_shell_bot/log/fqtask.log

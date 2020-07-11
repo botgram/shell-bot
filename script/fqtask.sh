@@ -13,7 +13,7 @@ source ~/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入分享链接==>" link
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
-rootname=$(fclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
+rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 if [ -z "$link" ] ; then
 echo "不允许输入为空" && exit ; 
 elif [ -z "$rootname" ] ; then
@@ -26,7 +26,7 @@ while [[ $task_stats -eq 0 ]];do
     echo -e "/n继续添加队列任务"
     read -p "请输入分享链接==>" link
     link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
-    rootname=$(fclone lsd goog:{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
+    rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
     if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit ; 
     elif [ -z "$rootname" ] ; then
