@@ -98,7 +98,7 @@ bot.message(function (msg, reply, next) {
   if (msg.context.editor)
     return msg.context.editor.handleReply(msg);
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   msg.context.command.handleReply(msg);
 });
 
@@ -122,7 +122,7 @@ bot.command("r", function (msg, reply, next) {
 bot.command("cancel", "kill", function (msg, reply, next) {
   var arg = msg.args(1)[0];
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
 
   var group = msg.command === "cancel";
   var signal = group ? "SIGINT" : "SIGTERM";
@@ -139,14 +139,14 @@ bot.command("cancel", "kill", function (msg, reply, next) {
 bot.command("enter", "type", function (msg, reply, next) {
   var args = msg.args();
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   if (msg.command === "type" && !args) args = " ";
   msg.context.command.sendInput(args, msg.command === "type");
 });
 bot.command("control", function (msg, reply, next) {
   var arg = msg.args(1)[0];
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   if (!arg || !/^[a-zA-Z]$/i.test(arg))
     return reply.html("Use /control &lt;letter&gt; to send Control+letter to the process.");
   var code = arg.toUpperCase().charCodeAt(0) - 0x40;
@@ -155,7 +155,7 @@ bot.command("control", function (msg, reply, next) {
 bot.command("meta", function (msg, reply, next) {
   var arg = msg.args(1)[0];
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   if (!arg)
     return msg.context.command.toggleMeta();
   msg.context.command.toggleMeta(true);
@@ -163,14 +163,14 @@ bot.command("meta", function (msg, reply, next) {
 });
 bot.command("end", function (msg, reply, next) {
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   msg.context.command.sendEof();
 });
 
 // Redraw
 bot.command("redraw", function (msg, reply, next) {
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   msg.context.command.redraw();
 });
 
@@ -178,11 +178,11 @@ bot.command("redraw", function (msg, reply, next) {
 bot.command("run", function (msg, reply, next) {
   var args = msg.args();
   if (!args)
-    return reply.html("Use /run &lt;command&gt; to execute something.");
+    return reply.html("使用 /run &lt;linux命令&gt; 运行VPS的linux命令.");
 
   if (msg.context.command) {
     var command = msg.context.command;
-    return reply.text("A command is already running.");
+    return reply.text("一条命令正在运行中.");
   }
 
   if (msg.editor) msg.editor.detach();
@@ -220,7 +220,7 @@ bot.command("file", function (msg, reply, next) {
 // Keypad
 bot.command("keypad", function (msg, reply, next) {
   if (!msg.context.command)
-    return reply.html("No command is running.");
+    return reply.html("没有命令在运行.");
   try {
     msg.context.command.toggleKeypad();
   } catch (e) {
@@ -300,7 +300,7 @@ bot.command("status", function (msg, reply, next) {
       content += "\nGranted chats:\n";
       content += grantedIds.map(function (id) { return id.toString(); }).join("\n");
     } else {
-      content += "\nNo chats granted. Use /grant or /token to allow another chat to use the bot.";
+      content += "\n没有其他聊天被授权，使用/ grant或/ token允许其他聊天使用该bot.";
     }
   }
 
@@ -466,25 +466,25 @@ bot.command("token", function (msg, reply, next) {
 // Welcome message, help
 bot.command("start", function (msg, reply, next) {
   if (msg.args() && msg.context.id === owner && Object.hasOwnProperty.call(tokens, msg.args())) {
-    reply.html("You were already authenticated; the token has been revoked.");
+    reply.html("你已经认证过了; 此token已被吊销.");
   } else {
-    reply.html("Welcome! Use /run to execute commands, and reply to my messages to send input. /help for more info.");
+    reply.html("欢迎使用fclone shell bot! Use /run to execute commands, and reply to my messages to send input. /help for more info.");
   }
 });
 
 bot.command("help", function (msg, reply, next) {
   reply.html(
-    "Use /run &lt;command&gt; and I'll execute it for you. While it's running, you can:\n" +
+    "‣ /run &lt;linux命令&gt; 运行VPS的linux命令；\n" +
     "\n" +
-    "‣ Reply to one of my messages to send input to the command, or use /enter.\n" +
-    "‣ Use /end to send an EOF (Ctrl+D) to the command.\n" +
-    "‣ Use /cancel to send SIGINT (Ctrl+C) to the process group, or the signal you choose.\n" +
-    "‣ Use /kill to send SIGTERM to the root process, or the signal you choose.\n" + 
-    "‣ For graphical applications, use /redraw to force a repaint of the screen.\n" +
-    "‣ Use /type or /control to press keys, /meta to send the next key with Alt, or /keypad to show a keyboard for special keys.\n" + 
+    "‣ 注：命令交互输入，如回复Y选择进一步操作，需要在TG以回复信息方式进行，或者/enter &lt;交互内容&gt; \n" +
+    "‣ /end 相当于VPS的Linux的(Ctrl+D).\n" +
+    "‣ /cancel 相当于VPS的Linux的(Ctrl+C) 终止进程,当然你也可以指定(Ctrl+C).\n" +
+    "‣ /kill 发送程序结束SIGTERM信号，当然也可以指定程序结束.\n" + 
+    "‣ /redraw 针对图形应用程序，强制重新绘制屏幕.\n" +
+    "‣ 特殊按键：/type或/control配合按键, /meta配合ALT+按键, /keypad显示特殊键的键盘.\n" + 
     "\n" +
-    "You can see the current status and settings for this chat with /status. Use /env to " +
-    "manipulate the environment, /cd to change the current directory, /shell to see or " +
+    " /status 查看此聊天的当前状态和设置." +
+    "Use /env to manipulate the environment, /cd to change the current directory, /shell to see or " +
     "change the shell used to run commands and /resize to change the size of the terminal.\n" +
     "\n" +
     "By default, output messages are sent silently (without sound) and links are not expanded. " +
@@ -506,7 +506,7 @@ bot.command("quick", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
-    return reply.text("A command is already running.");
+    return reply.text("一条命令正在运行中.");
   }
 
   if (msg.editor) msg.editor.detach();
@@ -525,7 +525,7 @@ bot.command("tdbak", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
-    return reply.text("A command is already running.");
+    return reply.text("一条命令正在运行中.");
   }
 
   if (msg.editor) msg.editor.detach();
@@ -544,7 +544,7 @@ bot.command("fc", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
-    return reply.text("A command is already running.");
+    return reply.text("一条命令正在运行中.");
   }
 
   if (msg.editor) msg.editor.detach();
