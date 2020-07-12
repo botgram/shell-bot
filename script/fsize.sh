@@ -12,7 +12,11 @@
 source ~/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入分享链接==>" link
+if [ -z "$link" ] ; then
+    echo "不允许输入为空" && exit
+else
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
+fi
 rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 size_info=`fclone size "$fclone_name":{$link} --checkers=200`
 file_num=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total objects/{print $3}')
