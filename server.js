@@ -476,14 +476,14 @@ bot.command("help", function (msg, reply, next) {
   reply.html(
     "<em>fclone转存常用命令</em>\n" +
     "\n" +
-    "‣ /quick 急速转存模式\n" +
-    "‣ /p2p   点对点转存模式\n" +
-    "‣ /pbak  全盘备份转存模式\n" +
-    "‣ /size  读取gd分享链接的文件数量&文件大小.\n" +
-    "‣ /clean 清空gd回收站.\n" +
-    "‣ /dedup 定向查重.\n" +
-    "‣ /check 点对点定向比对.\n" +
-    "‣ /cancel相当于VPS的Linux的(Ctrl+C) 终止当前进程；\n" + 
+    "‣ /fq    极速转存模式.\n" +
+    "‣ /fp    点点转存模式.\n" +
+    "‣ /fb    全盘备份模式.\n" +
+    "‣ /fs    定向size查询.\n" +
+    "‣ /fd    定向查重功能.\n" +
+    "‣ /fc    定向比对功能.\n" +
+    "‣ /fcl   清空回收站.\n" +
+    "‣ /cancel终止当前进程(Ctrl+C)；\n" + 
     "\n" +
     "<em>shellbot通用命令</em>\n" +
     "\n" +
@@ -499,8 +499,8 @@ bot.command("help", function (msg, reply, next) {
   );
 });
 
-// 一键快速转存bot command = "/quick"
-bot.command("quick", function (msg, reply, next) {
+// 一键快速转存bot command = "/fq"
+bot.command("fq", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -510,7 +510,7 @@ bot.command("quick", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 一键快速转存"/quick" command that should be used
+// 一键快速转存"/fq" command that should be used
   var args = "/root/fclone_shell_bot/script/fqtask.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
@@ -518,8 +518,8 @@ bot.command("quick", function (msg, reply, next) {
   });
 });
 
-// 团队盘备份bot command = "/pbak"
-bot.command("pbak", function (msg, reply, next) {
+// 点对点转存bot command = "fp"
+bot.command("fp", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -529,7 +529,26 @@ bot.command("pbak", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 团队盘备份"/pbak" command that should be used
+// 点对点转存"/fp" command that should be used
+  var args = "/root/fclone_shell_bot/script/fptask.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 全盘备份bot command = "/fb"
+bot.command("fb", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 全盘备份"/fb" command that should be used
   var args = "/root/fclone_shell_bot/script/fbtask.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
@@ -537,8 +556,8 @@ bot.command("pbak", function (msg, reply, next) {
   });
 });
 
-// 点对点转存bot command = "/p2p"
-bot.command("p2p", function (msg, reply, next) {
+// 定向size查询bot command = "/fs"
+bot.command("fs", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -548,15 +567,16 @@ bot.command("p2p", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 点对点转存"/p2p" command that should be used
-  var args = "/root/fclone_shell_bot/script/fptask.sh";
+// 定向size查询"/fs" command that should be used
+  var args = "/root/fclone_shell_bot/script/fsize.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
   });
 });
-// 尺寸查询bot command = "/psize"
-bot.command("psize", function (msg, reply, next) {
+
+// 定向查重bot command = "/fd"
+bot.command("fd", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -566,8 +586,46 @@ bot.command("psize", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 尺寸查询"/psize" command that should be used
-  var args = "/root/fclone_shell_bot/script/psize.sh";
+// 定向查重"/fd" command that should be used
+  var args = "/root/fclone_shell_bot/script/fdedup.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 定向比对bot command = "/fc"
+bot.command("fc", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 定向比对"/fc" command that should be used
+  var args = "/root/fclone_shell_bot/script/fcheck.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 清空回收站bot command = "/fcl"
+bot.command("fcl", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 清空回收站"/fcl" command that should be used
+  var args = "/root/fclone_shell_bot/script/fcleanup.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;

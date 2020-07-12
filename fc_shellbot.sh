@@ -74,14 +74,26 @@ install_script() {
     chmod +x ~/fclone_shell_bot/script/fpcopy.sh
     chmod +x ~/fclone_shell_bot/script/fbtask.sh
     chmod +x ~/fclone_shell_bot/script/fbcopy.sh
+    chmod +x ~/fclone_shell_bot/script/fsize.sh
+    chmod +x ~/fclone_shell_bot/script/fdedup.sh
+    chmod +x ~/fclone_shell_bot/script/fcheck.sh
+    chmod +x ~/fclone_shell_bot/script/fcleanup.sh
     echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh"/n"  >> /root/.bashrc
     echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh"/n"  >> /root/.bashrc
     echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh"/n"  >> /root/.bashrc
+    echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh"/n"  >> /root/.bashrc
+    echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh"/n"  >> /root/.bashrc
+    echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh"/n"  >> /root/.bashrc
+    echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup"/n"  >> /root/.bashrc
     source /root/.bashrc
     echo -e "已完成安装，并设置系统级脚本别名"
-    echo -e "输入fq启动极速转存"
-    echo -e "输入fp启动p2p转存"
-    echo -e "输入fb启动盘备份转存"
+    echo -e "输入fq 启动  极速转存"
+    echo -e "输入fp 启动  p2p转存"
+    echo -e "输入fb 启动  盘备份转存"
+    echo -e "输入fs 启动  定向size查询"
+    echo -e "输入fd 启动  定向查重"
+    echo -e "输入fc 启动  定向比对"
+    echo -e "输入fcl 启动 定向清空回收站"
     exit
 }
 # ★★★运行bot-已完成★★★
@@ -208,12 +220,13 @@ echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Fon
  ${Green_font_prefix} 10.${Font_color_suffix} 修改 bot配置
  ${Green_font_prefix} 11.${Font_color_suffix} 查看 rclone配置
  ${Green_font_prefix} 12.${Font_color_suffix} 修改 rclone配置
+ ${Green_font_prefix} 13.${Font_color_suffix} 查看 脚本快捷命令
  ———————————————————————
- ${Green_font_prefix} 13.${Font_color_suffix} 查看 转存参数配置
- ${Green_font_prefix} 14.${Font_color_suffix} 修改 转存参数配置
+ ${Green_font_prefix} 14.${Font_color_suffix} 查看 脚本转存参数ini
+ ${Green_font_prefix} 15.${Font_color_suffix} 修改 脚本转存参数ini
  ———————————————————————
- ${Green_font_prefix} 15.${Font_color_suffix} 退出 脚本" && echo 
-read -e -p " 请输入数字 [0-15]:" num
+ ${Green_font_prefix} 16.${Font_color_suffix} 退出 脚本" && echo 
+read -e -p " 请输入数字 [0-16]:" num
 
 case "$num" in
 0)
@@ -260,12 +273,15 @@ case "$num" in
     set_conf
     ;;
 13)
-    view_clone
+    cat ~/fclone_shell_bot/bot_commands.txt
     ;;
 14)
-    set_clone
+    view_clone
     ;;
 15)
+    set_clone
+    ;;
+16)
     exit
     ;;
 *)
