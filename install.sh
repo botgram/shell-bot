@@ -24,39 +24,8 @@ Info="[${Green_font_prefix}信息${Font_color_suffix}]"
 Error="[${Red_font_prefix}错误${Font_color_suffix}]"
 Tip="[${Green_font_prefix}注意${Font_color_suffix}]"
 
-# ★★★检查系统-已完成★★★
-check_sys() {
-    if [[ -f /etc/redhat-release ]]; then
-        release="centos"
-    elif cat /etc/issue | grep -q -E -i "debian"; then
-        release="debian"
-    elif cat /etc/issue | grep -q -E -i "ubuntu"; then
-        release="ubuntu"
-    elif cat /etc/issue | grep -q -E -i "centos|red hat|redhat"; then
-        release="centos"
-    elif cat /proc/version | grep -q -E -i "debian"; then
-        release="debian"
-    elif cat /proc/version | grep -q -E -i "ubuntu"; then
-        release="ubuntu"
-    elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
-        release="centos"
-    fi
-    ARCH=$(uname -m)
-    [ $(command -v dpkg) ] && dpkgARCH=$(dpkg --print-architecture | awk -F- '{ print $NF }')
-}
-# ★★★检查账户权限-已完成★★★
-check_root() {
-    [[ $EUID != 0 ]] && echo -e "${Error} 当前非ROOT账号(或没有ROOT权限)，无法继续操作，请更换ROOT账号或使用 ${Green_background_prefix}sudo su${Font_color_suffix} 命令获取临时ROOT权限（执行后可能会提示输入当前账号的密码）。" && exit
-}
-# ★★★检查安装状态-已完成★★★
-check_installed_status() {
-    [[ ! -e ${shellbot_conf} ]] && echo -e "${Error} fclone shell bot 没有安装，请检查 !" && exit
-    [[ ! -e ${fclone_conf} ]] && echo -e "${Error} rclone 配置文件不存在，请检查 !" && [[ $1 != "un" ]] && exit
-
 # ★★★安装shellbot环境-已完成★★★
 install_exp() {
-    check_sys
-    check_root
     cd ~
     apt update -y &&　apt upgrade -y
     apt install wget curl screen git tree vim nano tmux htop sudo python3-distutils -y
@@ -74,8 +43,6 @@ install_exp() {
 }
 # ★★★安装更新shellbot-已完成★★★
 install_shellbot() {
-    check_sys
-    check_root
     cd ~
     botstats=`find ~/fclone_shell_bot`
     if [[ "$botstats" =~ "no such file" ]] ; then
@@ -92,8 +59,6 @@ install_shellbot() {
 }
 # ★★★安装更新rclone/gclone/fclone,fclone从本库中提取-已完成★★★
 install_clone() {
-    check_sys
-    check_root
     cd ~
     curl https://rclone.org/install.sh | sudo bash -s beta
     wget -qO- https://git.io/gclone.sh
@@ -106,9 +71,6 @@ install_clone() {
 # 安装转存脚本-更新中
 install_script() {
     clear
-    check_sys
-    check_root
-    check_installed_status
     echo "【fclone转存脚本】安装"
     chmod +x ~/fclone_shell_bot/script/fqtask.sh
     chmod +x ~/fclone_shell_bot/script/fqcopy.sh
@@ -129,7 +91,6 @@ install_script() {
 # ★★★运行bot-已完成★★★
 run_bot() {
     clear
-    check_installed_status
     tmux new -s shellbot -d
     tmux send -t "shellbot" 'cd ~/fclone_shell_bot && node server' Enter
     echo -e "bot服务已在tmux后台窗口shellbot内启动，可直接在TG上使用，也可VPS使用“ tmux a -t shellbot”查看启动状况"
@@ -138,7 +99,6 @@ run_bot() {
 # ★★★运行脚本-已完成★★★
 run_script() {
     clear
-    check_installed_status
     echo -e "┋运行脚本┋"
     sleep 2s
     echo -e "有脚本运行命令，为啥要在这运行，我写，你就选吗？"
@@ -151,7 +111,6 @@ run_script() {
 # ★★★停止bot-已完成★★★
 stop_bot() {
     clear
-    check_installed_status
     tmux kill-session -t shellbot
     echo -e "bot服务已停止"
     exit
@@ -159,7 +118,6 @@ stop_bot() {
 # ★★★重启bot-已完成★★★
 restart_bot() {
     clear
-    check_installed_status
     tmux kill-session -t shellbot
     tmux new -s shellbot -d
     tmux send -t "shellbot" 'cd ~/fclone_shell_bot && node server' Enter
@@ -169,25 +127,21 @@ restart_bot() {
 # ★★★查看bot配置-已完成★★★
 view_bot() {
     clear
-    check_installed_status
     cat /root/fclone_shell_bot/config.example.json
 }
 # ★★★编辑配置bot-已完成★★★
 set_bot() {
     clear
-    check_installed_status
     nano /root/fclone_shell_bot/config.example.json
 }
 # ★★★查看rclone配置-已完成★★★
 view_conf() {
     clear
-    check_installed_status
     fclone config show
 }
 # ★★★编辑配置rclone.conf-已完成★★★
 set_conf() {
     clear
-    check_installed_status
     nano /root/.config/rclone/rclone.conf
 }
 # ★★★查看转存参数-已完成★★★
@@ -236,7 +190,6 @@ view_clone() {
 # ★★★编辑转存参数-已完成★★★
 set_clone() {
     clear
-    check_installed_status
     nano /root/fclone_shell_bot/myfc_config.ini
 }
 
