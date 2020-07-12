@@ -1,9 +1,9 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fclone shell bot install
+# File Name: fc_shellbot.sh
 # Author: cgking
-# Created Time : 2020.7.8
+# Created Time : 2020.7.8--2020.7.12
 # Description:一键安装配置fclone shell bot
 # System Required: Debian/Ubuntu
 # Version: final
@@ -11,10 +11,6 @@
 
 source ~/fclone_shell_bot/myfc_config.ini
 sh_ver="Final"
-shellbot_dir="/root/fclone_shell_bot"
-shellbot_conf="${fclone_shell_bot}/server.js"
-fclone_conf="/root/.config/rclone/rclone.conf"
-fclone_log="${fclone_shell_bot}/log"
 Green_font_prefix="\033[32m"
 Red_font_prefix="\033[31m"
 Green_background_prefix="\033[42;37m"
@@ -215,8 +211,9 @@ echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Fon
  ———————————————————————
  ${Green_font_prefix} 13.${Font_color_suffix} 查看 转存参数配置
  ${Green_font_prefix} 14.${Font_color_suffix} 修改 转存参数配置
- ———————————————————————" && echo 
-read -e -p " 请输入数字 [0-14]:" num
+ ———————————————————————
+ ${Green_font_prefix} 15.${Font_color_suffix} 退出 脚本" && echo 
+read -e -p " 请输入数字 [0-15]:" num
 
 case "$num" in
 0)
@@ -267,6 +264,9 @@ case "$num" in
     ;;
 14)
     set_clone
+    ;;
+15)
+    exit
     ;;
 *)
     echo
