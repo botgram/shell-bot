@@ -26,3 +26,4 @@ do
     clear
 done
 : > ~/fclone_shell_bot/log/fqtask.log
+exit
