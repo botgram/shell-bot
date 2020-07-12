@@ -1,27 +1,22 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fclone shell bot VPS专用
+# File Name: fbcopy.sh
 # Author: cgking
 # Created Time : 2020.7.8
-# Description:极速版-copy
+# Description:全盘备份-copy
 # System Required: Debian/Ubuntu
 # Version: final
 #=============================================================
 
+echo "等待ini配置变量更新"
+sleep 30s
+source ~/fclone_shell_bot/myfc_config.ini
 clear
-IFS=$'\n' 
-for input_id in $(cat ~/fclone_shell_bot/log/fqtask.log)
-do
-    rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
-    echo -e "┋资源名称┋:"$rootname"\n"
-    echo -e "┋资源地址┋:"$input_id"\n"
-    echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-    fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
-    echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
-    echo -e "▣▣▣▣▣▣查漏补缺▣▣▣▣▣▣"
-    fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
-    echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
-    clear
-done
-: > ~/fclone_shell_bot/log/fqtask.log
+echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
+fclone copy "$fclone_name":{$fb_link1} "$fclone_name":{$fb_link2} --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
+echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕/n"
+echo -e "▣▣▣▣▣▣执行补缺▣▣▣▣▣▣"
+fclone sync "$fclone_name":{$fb_link1} "$fclone_name":{$fb_link2} --drive-server-side-across-configs --drive-use-trash=false --stats=1s --stats-one-line -vP --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
+echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  补缺完毕/n"
+exit

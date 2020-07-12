@@ -220,8 +220,8 @@ echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Fon
  ${Green_font_prefix} 10.${Font_color_suffix} 修改 bot配置
  ${Green_font_prefix} 11.${Font_color_suffix} 查看 rclone配置
  ${Green_font_prefix} 12.${Font_color_suffix} 修改 rclone配置
+  ———————————————————————
  ${Green_font_prefix} 13.${Font_color_suffix} 查看 脚本快捷命令
- ———————————————————————
  ${Green_font_prefix} 14.${Font_color_suffix} 查看 脚本转存参数ini
  ${Green_font_prefix} 15.${Font_color_suffix} 修改 脚本转存参数ini
  ———————————————————————

@@ -1,7 +1,7 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fclone shell bot
+# File Name: fqtask.sh
 # Author: cgking
 # Created Time : 2020.7.8
 # Description:极速版-task
@@ -39,4 +39,5 @@ done
 echo -e "/n结束添加队列任务"
 tmux new -s fqtask -d
 tmux send -t "fqtask" '~/fclone_shell_bot/script/fqcopy.sh' Enter
-~/fclone_shell_bot/script/fqtask.sh
+echo -e "/n队列任务已开始执行"
+exit
