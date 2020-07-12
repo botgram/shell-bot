@@ -6,6 +6,14 @@
 
 **注意:** 暂时不支持windows.
 ## 安装步骤：<hr />
+
+1、安装命令
+```
+git clone https://git.io/JJmMw && sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fc_shellbot.sh)"
+```
+2、/完全安装或选择安装/配置bot/配置ini/
+
+
 <details>
 <summary>步骤一：运行环境(Ubuntu/Debian)</summary>
  
