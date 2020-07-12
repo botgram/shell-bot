@@ -199,7 +199,7 @@ view_clone() {
  ${Green_font_prefix}4.${Font_color_suffix} 退出
  ————————————" && echo 
     read -e -p " 请输入数字 [1-3]:" view_clone_config
-    case "$clone_config" in
+    case "$view_clone_config" in
 1)
     echo -e "\nfqcopy 急速模式 转存参数：\n
  checker  检查线程 : ${Green_font_prefix}${fq_chercker}${Font_color_suffix}
