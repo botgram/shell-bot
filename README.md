@@ -9,7 +9,7 @@
 
 1、安装命令
 ```
-git clone https://github.com/cgkings/fclone_shell_bot.git && sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fc_shellbot.sh)"
+git clone https://github.com/cgkings/fclone_shell_bot.git && sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/fclone_shell_bot/master/fcshell.sh)"
 ```
 2、/完全安装或选择安装/配置bot/配置ini/
 
