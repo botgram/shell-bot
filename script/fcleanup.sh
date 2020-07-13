@@ -18,6 +18,6 @@ else
     link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 fi
 echo -e "▣▣▣▣▣▣▣▣清空回收站▣▣▣▣▣▣▣▣\n"
-fclone delete "$fclone_name":{$link} --drive-trashed-only --drive-use-trash=false --verbose=2 --fast-list --checkers=64 --transfers=128 -q
-fclone rmdirs "$fclone_name":{$link} --drive-trashed-only --drive-use-trash=false --verbose=2 --fast-list --checkers=64 --transfers=128 -q
+fclone delete "$fclone_name":{$link} --fast-list --drive-trashed-only --drive-use-trash=false --verbose=2 --checkers=64 --transfers=128 -q
+fclone rmdirs "$fclone_name":{$link} --fast-list --drive-trashed-only --drive-use-trash=false --verbose=2 --checkers=64 --transfers=128 -q
 echo -e "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  回收站清空完毕"
