@@ -70,16 +70,7 @@ install_clone() {
 install_script() {
     clear
     echo "【fclone转存脚本】安装"
-    chmod +x ~/fclone_shell_bot/script/fqtask.sh
-    chmod +x ~/fclone_shell_bot/script/fqcopy.sh
-    chmod +x ~/fclone_shell_bot/script/fptask.sh
-    chmod +x ~/fclone_shell_bot/script/fpcopy.sh
-    chmod +x ~/fclone_shell_bot/script/fbtask.sh
-    chmod +x ~/fclone_shell_bot/script/fbcopy.sh
-    chmod +x ~/fclone_shell_bot/script/fsize.sh
-    chmod +x ~/fclone_shell_bot/script/fdedup.sh
-    chmod +x ~/fclone_shell_bot/script/fcheck.sh
-    chmod +x ~/fclone_shell_bot/script/fcleanup.sh
+    chmod -R 777 ~/fclone_shell_bot/script/
     echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh""  >> /root/.bashrc
     echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh""  >> /root/.bashrc
     echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh""  >> /root/.bashrc
