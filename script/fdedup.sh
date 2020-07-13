@@ -11,7 +11,7 @@
 
 source ~/fclone_shell_bot/myfc_config.ini
 clear
-read -p "请输入分享链接==>" link
+read -p "请输入要查重的链接==>" link
 if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit
 else
