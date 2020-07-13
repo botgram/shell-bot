@@ -50,7 +50,9 @@ install_shellbot() {
     else
     cd ~/fclone_shell_bot
     git pull
-    echo -e "shellbot已安装更新为最新版本" && exit
+    echo -e "shellbot已安装更新为最新版本" 
+    source /root/.bashrc
+    exit
     fi
 }
 # ★★★安装更新rclone/gclone/fclone,fclone从本库中提取-已完成★★★
