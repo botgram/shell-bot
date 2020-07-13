@@ -78,14 +78,14 @@ install_script() {
     chmod +x ~/fclone_shell_bot/script/fdedup.sh
     chmod +x ~/fclone_shell_bot/script/fcheck.sh
     chmod +x ~/fclone_shell_bot/script/fcleanup.sh
-    echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh"/n"  >> /root/.bashrc
-    echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh"/n"  >> /root/.bashrc
-    echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh"/n"  >> /root/.bashrc
-    echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh"/n"  >> /root/.bashrc
-    echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh"/n"  >> /root/.bashrc
-    echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh"/n"  >> /root/.bashrc
-    echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup.sh"/n"  >> /root/.bashrc
-    echo -e "alias fcshell="~/fclone_shell_bot/fcshell.sh"/n"  >> /root/.bashrc
+    echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh""  >> /root/.bashrc
+    echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh""  >> /root/.bashrc
+    echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh""  >> /root/.bashrc
+    echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh""  >> /root/.bashrc
+    echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh""  >> /root/.bashrc
+    echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh""  >> /root/.bashrc
+    echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup.sh""  >> /root/.bashrc
+    echo -e "alias fcshell="~/fclone_shell_bot/fcshell.sh""  >> /root/.bashrc
     source /root/.bashrc
     echo -e "已完成安装，并设置系统级脚本别名"
     echo -e "输入fcshell  安装配置脚本"
