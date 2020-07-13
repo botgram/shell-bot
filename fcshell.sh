@@ -199,17 +199,17 @@ set_clone() {
 # ★★★主目录-已完成★★★
 echo && echo -e " fclone shell bot 终结版 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix} by \033[1;35mcgkings\033[0m
  
- ${Green_font_prefix} 0.${Font_color_suffix} 完全安装
+ ${Green_font_prefix} 0.${Font_color_suffix}  完全安装
  ———————————————————————
- ${Green_font_prefix} 1.${Font_color_suffix} 安装更新 bot环境
- ${Green_font_prefix} 2.${Font_color_suffix} 安装更新 shellbot
- ${Green_font_prefix} 3.${Font_color_suffix} 安装更新 rclone/fclone/fclone
- ${Green_font_prefix} 4.${Font_color_suffix} 安装更新 转存脚本
+ ${Green_font_prefix} 1.${Font_color_suffix}  安装更新 bot环境
+ ${Green_font_prefix} 2.${Font_color_suffix}  安装更新 shellbot
+ ${Green_font_prefix} 3.${Font_color_suffix}  安装更新 rclone/fclone/fclone
+ ${Green_font_prefix} 4.${Font_color_suffix}  安装更新 转存脚本
  ———————————————————————
- ${Green_font_prefix} 5.${Font_color_suffix} 启动 bot
- ${Green_font_prefix} 6.${Font_color_suffix} 停止 bot
- ${Green_font_prefix} 7.${Font_color_suffix} 重启 bot
- ${Green_font_prefix} 8.${Font_color_suffix} 运行 脚本
+ ${Green_font_prefix} 5.${Font_color_suffix}  启动 bot
+ ${Green_font_prefix} 6.${Font_color_suffix}  停止 bot
+ ${Green_font_prefix} 7.${Font_color_suffix}  重启 bot
+ ${Green_font_prefix} 8.${Font_color_suffix}  运行 脚本
  ———————————————————————
  ${Green_font_prefix} 9.${Font_color_suffix}  查看 bot配置
  ${Green_font_prefix} 10.${Font_color_suffix} 修改 bot配置
