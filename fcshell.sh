@@ -84,9 +84,11 @@ install_script() {
     echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh"/n"  >> /root/.bashrc
     echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh"/n"  >> /root/.bashrc
     echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh"/n"  >> /root/.bashrc
-    echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup"/n"  >> /root/.bashrc
+    echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup.sh"/n"  >> /root/.bashrc
+    echo -e "alias fcshell="~/fclone_shell_bot/fcshell.sh"/n"  >> /root/.bashrc
     source /root/.bashrc
     echo -e "已完成安装，并设置系统级脚本别名"
+    echo -e "输入fcshell  安装配置脚本"
     echo -e "输入fq 启动  极速转存"
     echo -e "输入fp 启动  p2p转存"
     echo -e "输入fb 启动  盘备份转存"
