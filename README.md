@@ -21,47 +21,46 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
 <summary>步骤二：使用一键安装脚本</summary>
 
 <details>
-<summary>使用场景Ⅰ：完全安装</summary>
+  <summary>使用场景Ⅰ：完全安装</summary>
 
-如果你首次使用fclone shell bot，请按以下步骤**0 完全安装**：
+  如果你首次使用fclone shell bot，请按以下步骤**0 完全安装**：
 
-1. 点选**0 完全安装**
+  1. 点选**0 完全安装**
 
-2. 点选**10 修改 bot配置**
+  2. 点选**10 修改 bot配置**
 
-   填写bot的token和你的TG ID，不知道这是啥？问本文末尾的客服人员
+     填写bot的token和你的TG ID，不知道这是啥？问本文末尾的客服人员
             
-3. 点选**15 修改 脚本转存参数ini**
+  3. 点选**15 修改 脚本转存参数ini**
    
-   3.1 填写你的clone账号名
-
+     3.1 填写你的clone账号名
    
-   3.2 填写转存ID
+     3.2 填写转存ID
 
-   3.3 修改转存参数（可选）
+     3.3 修改转存参数（可选）
 
-4. 点选**5 启动 bot**
+  4. 点选**5 启动 bot**
 
-   此默认为后台启动bot，当前看不到运行的，想看?`tmux a -t shellbot`去后台看吧
+     此默认为后台启动bot，当前看不到运行的，想看?`tmux a -t shellbot`去后台看吧
 
-5. 点选**13 查看 脚本快捷命令**
+  5. 点选**13 查看 脚本快捷命令**
    
-   5.1 复制快捷命令
+     5.1 复制快捷命令
 
-   5.2 TG找[bot大爹](https://t.me/BotFather)，选择你的bot，输入`/setcommands`，粘贴快捷命令
+     5.2 TG找[bot大爹](https://t.me/BotFather)，选择你的bot，输入`/setcommands`，粘贴快捷命令
 
-   5.3 在你的bot，在聊天栏，点【/】，选择你想使用的功能即可！
+     5.3 在你的bot，在聊天栏，点【/】，选择你想使用的功能即可！
 
-</details>
-<details>
-<summary>使用场景Ⅱ：部分安装</summary>
+  </details>
+  <details>
+  <summary>使用场景Ⅱ：部分安装</summary>
 
-如果你已经安装过环境或者shellbot，可以根据需要进行点选安装
+  如果你已经安装过环境或者shellbot，可以根据需要进行点选安装
 
-**注意：无论怎么选，`4 安装更新 转存脚本`不可缺少，那是给权限，给脚本别名的，你不装，进了bot也用不了脚本！
-
-</details>
-</details>
+  **注意：无论怎么选，`4 安装更新 转存脚本`不可缺少，那是给权限，给脚本别名的，你不装，进了bot也用不了脚本！
+  
+  </details>
+  </details>
 
 ## 使用说明：<hr />
 
@@ -101,8 +100,6 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
 
 3#客服 TG加群@    [fxxk技术交流](https://t.me/sharegdrive)
 
-4#客服 TG人工客服  [小受](https://t.me/onekings)
-    
-       TG人工客服  [小H](https://t.me/waihoe89)
-
+4#客服 TG人工客服  [小受](https://t.me/onekings) <br>
+       TG人工客服  [小H](https://t.me/waihoe89) <br>
        TG人工客服  [F佬](https://t.me/fxxkrlab)
