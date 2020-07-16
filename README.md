@@ -1,104 +1,118 @@
-# gclone-shell-bot
+# fclone shell bot
 
-<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/chat1.jpg" height="470px" width="457px">
+`shellbot`可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用!
+当然转存工具很重要，`fclone`,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
 
-**注意:** 暂时不支持windows.
+<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">
+
+**注意:** 一键安装配置脚本暂时仅支持(Ubuntu/Debian),centos可手动安装，windowns不可安装！！！
 
 ## 安装步骤：<hr />
+
 <details>
-<summary>步骤一：运行环境(Ubuntu/Debian)</summary>
-1.确保自己安装了python3.6 +，依次运行以下命令，因为我也不知道shellbot到底需要哪些，所以把我装的全部告诉你，注意错误提示：<br>
-
+<summary>步骤一：克隆库/赋予脚本权限/运行一键安装脚本</summary>
+ 
 ```
-pip3 install pipenv
-
-pip3 install delegator.py
-
-pip3 install python-telegram-bot
-
-pip3 install pysocks
-
-```
-
-2.安装[node-pty依赖项](https://github.com/Microsoft/node-pty#dependencies).
-
-```
-sudo apt install nodejs
-sudo apt install -y make python build-essential
+git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~/fclone_shell_bot/ && sh -c /root/fclone_shell_bot/fcshell.sh
 ```
 
 </details>
 <details>
-<summary>步骤二：克隆库</summary>
+<summary>步骤二：使用一键安装脚本</summary>
 
-```
-git clone https://github.com/cgkings/gclone_shell_bot.git && cd /root/gclone_shell_bot
-npm install
-```
-
-</details>
 <details>
-<summary>步骤三：启动bot</summary>
+  <summary>使用场景Ⅰ：完全安装</summary>
 
-```
-node server
-```
+  如果你首次使用fclone shell bot，请按以下步骤**0 完全安装**：
 
-</details>
+  1. 点选**0 完全安装**
+
+  2. 点选**10 修改 bot配置**
+
+     填写bot的token和你的TG ID，不知道这是啥？问本文末尾的客服人员
+            
+  3. 点选**15 修改 脚本转存参数ini**
+   
+     3.1 填写你的clone账号名
+   
+     3.2 填写转存ID
+
+     3.3 修改转存参数（可选）
+
+  4. 点选**5 启动 bot**
+
+     此默认为后台启动bot，当前看不到运行的，想看?`tmux a -t shellbot`去后台看吧
+
+  5. 点选**13 查看 脚本快捷命令**
+   
+     5.1 复制快捷命令
+
+     5.2 TG找[bot大爹](https://t.me/BotFather)，选择你的bot，输入`/setcommands`，粘贴快捷命令
+
+     5.3 在你的bot，在聊天栏，点【/】，选择你想使用的功能即可！
+
+  </details>
+  <details>
+  <summary>使用场景Ⅱ：部分安装</summary>
+
+  如果你已经安装过环境或者shellbot，可以根据需要进行点选安装
+
+  **注意：无论怎么选，`4 安装更新 转存脚本`不可缺少，那是给权限，给脚本别名的，你不装，进了bot也用不了脚本！
+  
+  </details>
+  </details>
+
+## 使用说明：<hr />
+
 <details>
-<summary>步骤四：配置bot</summary>
-
-1.获取Telegram bot的token和用户id
-
-* 使用Telegram的botfather建立一个属于你的bot，获取bot token
-
-* 使用用户id获取bot，获取你自己的用户ID
-
-复制以上信息备用
-
-2.第一次运行它时，它将询问您一些问题并自动创建配置文件：config.json。您也可以手动编写，请参见config.example.json。<br>
-启动后，它将在启动Bot ready.并运行时显示一条消息。为了方便起见，您可能需要与BotFather交谈并将命令列表设置为的内容commands.txt。
+<summary>/fq 极速转存</summary>
+ 
+支持任务队列
 
 </details>
+
 <details>
-<summary>步骤五：安装魔改版gclone</summary>
+<summary>/fsort 自动整理</summary>
 
-[魔改版gclone](https://github.com/mawaya/rclone) 
+1. 生成jason文件：
+对于要整理到的文件夹，比如说按番号，你到已经有的番号文件夹（道理相同，女优名字也一样），运行以下命令：<br>
+  
+`fclone lsjson 你的用户名:{文件夹ID} --fast-list --dirs-only --no-mimetype --no-modtime --max-depth 文件夹层数` <br>
+  
+得到类似如下信息：<br>
+  
+`{"Path":"S/SSNI","Name":"SSNI","Size":-1,"ModTime":"","IsDir":true,"ID":"10n2Vz5vdzwg_mgJSWAiT190xMkztnvRx"},` <br>
+`{"Path":"S/SSPD","Name":"SSPD","Size":-1,"ModTime":"","IsDir":true,"ID":"1mqNfuJUiTmwqaY9aC90YQFVFDJWji9WE"},` <br>
+`{"Path":"S/STAR","Name":"STAR","Size":-1,"ModTime":"","IsDir":true,"ID":"1nxBRq5Jg8gzR71wrAaI2up0IP-ucFh4z"},` <br>
+  
+因为本人学艺不精，所以这个jason信息还要处理一下，把它复制到excel然后分列显示，删除多余列，合并成这个格式：
+  
+`SSNI:10n2Vz5vdzwg_mgJSWAiT190xMkztnvRx`
+`SSPD:1mqNfuJUiTmwqaY9aC90YQFVFDJWji9WE`
+`STAR:1nxBRq5Jg8gzR71wrAaI2up0IP-ucFh4z`
+  
+把这些信息覆盖粘贴到\root\fclone_shell_bot\av_num.txt中（原始文件里是我的分类名称和文件夹ID）<br>
+  
+2.运行fsort脚本
+  
+最关键的步骤是第1步，只要你第一步没错，脚本会让你输入需要整理的文件夹ID,然后脚本会进行以下操作： <br>
 
-这位大佬，是个有技术的懒人，小白的福音啊，用他的gclone可以简化sa切换日志内容，其他还有很多功能，自己去瞻仰下吧
-
-当然如果你能忍受纷繁而无意义的sa切换日志，此步骤可以省略，如果过几天我对应性修改了懒人一键脚本的ID提取，那么这步就不能省略
+⑴ 遍历需要整理的文件夹内文件名；<br>
+⑵ 与av_num.txt内关键字进行比对，如果文件名包含关键字，就会把这个文件**移动**到关键字的文件夹内；<br>
+⑶ 删除整理文件夹内的空文件夹；<br>
+⑷ ⑴——⑶步骤循环，直到文件夹内文件的文件名没有包含av_num.txt内关键字为止。<br>
 
 </details>
-<details>
-<summary>步骤六：安装gclone懒人一键转存脚本</summary>
 
-```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone_shell_bot/master/installbot.sh)"
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/master/script/fclone/fcloneinstall.sh)"
-```
 
-[脚本配置教程](https://github.com/cgkings/gclone-assistant) 
-
-当你熟悉以后应该可以根据自己的需要修改脚本了，有问题TG找 onekingen，他在这个脚本的自定义道路上已经越走越（歪）远了，冉冉升起的小白大神
-
-</details>
-<details>
-<summary>步骤七：配置bot</summary>
-
-其实如果你能忍受，每次向bot输入/gd的话，这步可以省略<br>
-如果你跟我一样懒，请往下看<br>
-如果你比我还懒，别看教程了，打开代码，试着修改一下，你能实现更多你自己想要的功能，这里给大家介绍一位不愿透漏姓名的大神fxxkrlab的 [转存bot教材](https://github.com/fxxkrlab/iCopy) ，你研究透了，就该我膜拜你了 <br>
- ok,说了这么多，其实是因为这一步很短，google或者百度bot自定义命令或者自定义命令按钮，你就可以实现在bot上点"/"弹出/gd,点它启动一键转存脚本，或者是点一下bot按钮就启动，说的不具体是因为我也不太懂，非常期待你的bot按钮拉取消息
-
-</details>
 
 ## 授权书<hr />
 首次启动时，该漫游器将仅接受来自您的用户的消息。出于安全原因：您不希望任何人向您的计算机发出命令！<br>
 如果要允许其他用户使用该漫游器，请使用/token并为其提供结果链接。如果您想在网上论坛上使用此漫游器，/token则会向您发送一条消息，转发到网上论坛<br> 
 
 ## 最后的话<hr />
+
 送君千语，终有一别，作为一个小白，能堂而皇之的在github上恬不知耻的发布，是因为github开放的开发氛围，更是因为TG上面各位开放而热心的中国技术大佬的无私帮助，在此感谢各位TG大神，排名不分先后：<br>
 * fxxkrlab （专业冒险者） 不厌其烦的希望我们能多学点语言，还根据我们的需要编写了 [转存bot教材](https://github.com/fxxkrlab/iCopy),可惜，暂时没研究出来<br>
 * aevlp （steve x） 转存脚本的鼻祖，无私的提供了使用mysql实现转存任务序列的转存bot，可惜,暂时没研究出来<br>
@@ -110,3 +124,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgkings/gclone-assistant/m
 当然，少不了shellbot的原作者 [Botgram](https://botgram.js.org)  <br>
 
 最后，如果你是位外国友人，很荣幸，孙贼，用用google翻译吧！
+
+## 客服列表<hr />
+
+#### 1#客服： [@谷哥](https://www.google.com)；
+
+#### 2#客服： [@度娘](https://www.baidu.com)；
+
+#### 3#客服   [@TG群组机器人](https://t.me/sharegdrive)
+
+#### 4#客服   **TG人工客服**  [@ 小受](https://t.me/onekings) [@ 小H](https://t.me/waihoe89) [@ F佬](https://t.me/fxxkrlab)

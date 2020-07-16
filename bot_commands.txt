@@ -1,0 +1,13 @@
+到TG的@BotFather输入/setcommands，然后在回复栏粘贴以下内容，以后点击/就可以自选命令了
+fq - 极速转存模式
+fqa - 极速序列模式
+fp - 点点转存模式
+fb - 全盘备份模式
+fs - 定向size查询
+fsort - 自动整理
+fd - 定向查重
+fc - 定向比对
+fcl - 删除空夹/清空回收站
+help - 帮助
+list - 任务列表
+cancel - 取消当前命令
