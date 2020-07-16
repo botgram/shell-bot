@@ -16,5 +16,5 @@ for i in $(cut -d ":" -f 1 /root/fclone_shell_bot/av_num.txt)
 do
 p=$(awk 'BEGIN{FS=":"}/^'$i'/{print $2}' /root/fclone_shell_bot/av_num.txt)
 fclone move "$fclone_name":{$link} "$fclone_name":{$p} --fast-list --include "**$i**.*" --ignore-case --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fs_chercker" --transfers="$fs_transfer" --drive-pacer-min-sleep="$fs_min_sleep"ms --drive-pacer-burst="$fs_BURST" --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort.txt
-fclone rmdirs "$fclone_name":{$link} --fast-list --drive-use-trash=false --verbose=2 --checkers="$fs_chercker" --transfers="$fs_transfer" --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort_rmdirs.txt
 done
+fclone rmdirs "$fclone_name":{$link} --fast-list --drive-use-trash=false --verbose=2 --checkers="$fs_chercker" --transfers="$fs_transfer" --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort_rmdirs.txt
