@@ -75,23 +75,30 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
  
   1. 生成jason文件：
   对于要整理到的文件夹，比如说按番号，你到已经有的番号文件夹（道理相同，女优名字也一样），运行以下命令：<br>
+  
   `fclone lsjson 你的用户名:{文件夹ID} --fast-list --dirs-only --no-mimetype --no-modtime --max-depth 文件夹层数` <br>
+  
   得到类似如下信息：<br>
+  
   `{"Path":"S/SSNI","Name":"SSNI","Size":-1,"ModTime":"","IsDir":true,"ID":"10n2Vz5vdzwg_mgJSWAiT190xMkztnvRx"},` <br>
   `{"Path":"S/SSPD","Name":"SSPD","Size":-1,"ModTime":"","IsDir":true,"ID":"1mqNfuJUiTmwqaY9aC90YQFVFDJWji9WE"},` <br>
   `{"Path":"S/STAR","Name":"STAR","Size":-1,"ModTime":"","IsDir":true,"ID":"1nxBRq5Jg8gzR71wrAaI2up0IP-ucFh4z"},` <br>
+  
   因为本人学艺不精，所以这个jason信息还要处理一下，把它复制到excel然后分列显示，删除多余列，合并成这个格式：
+  
   `SSNI:10n2Vz5vdzwg_mgJSWAiT190xMkztnvRx`
   `SSPD:1mqNfuJUiTmwqaY9aC90YQFVFDJWji9WE`
   `STAR:1nxBRq5Jg8gzR71wrAaI2up0IP-ucFh4z`
+  
   把这些信息覆盖粘贴到\root\fclone_shell_bot\av_num.txt中（原始文件里是我的分类名称和文件夹ID）<br>
   
-  2.运行fsort脚本 
+  2.运行fsort脚本
+  
   最关键的步骤是第1步，只要你第一步没错，脚本会让你输入需要整理的文件夹ID,然后脚本会进行以下操作： <br>
-  ⑴ 遍历需要整理的文件夹内文件名；
-  ⑵ 与av_num.txt内关键字进行比对，如果文件名包含关键字，就会把这个文件**移动**到关键字的文件夹内；
-  ⑶ 删除整理文件夹内的空文件夹；
-  ⑷ ⑴——⑶步骤循环，直到文件夹内文件的文件名没有包含av_num.txt内关键字为止。
+  ⑴ 遍历需要整理的文件夹内文件名；<br>
+  ⑵ 与av_num.txt内关键字进行比对，如果文件名包含关键字，就会把这个文件**移动**到关键字的文件夹内；<br>
+  ⑶ 删除整理文件夹内的空文件夹；<br>
+  ⑷ ⑴——⑶步骤循环，直到文件夹内文件的文件名没有包含av_num.txt内关键字为止。<br>
 
   </details>
 
