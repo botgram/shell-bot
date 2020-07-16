@@ -71,7 +71,8 @@ install_script() {
     clear
     echo "【fclone转存脚本】安装"
     chmod -R 777 ~/fclone_shell_bot/script/
-    echo -e "alias fq="~/fclone_shell_bot/script/fqtask.sh""  >> /root/.bashrc
+    echo -e "alias fq="~/fclone_shell_bot/script/fqcopy.sh""  >> /root/.bashrc
+    echo -e "alias fqa="~/fclone_shell_bot/script/fqcopy_a.sh""  >> /root/.bashrc
     echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh""  >> /root/.bashrc
     echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh""  >> /root/.bashrc
     echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh""  >> /root/.bashrc

@@ -1,10 +1,10 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fqtask.sh
+# File Name: fqcopy_a.sh
 # Author: cgking
 # Created Time : 2020.7.8
-# Description:极速版-task
+# Description:极速版-多任务版
 # System Required: Debian/Ubuntu
 # Version: final
 #=============================================================
