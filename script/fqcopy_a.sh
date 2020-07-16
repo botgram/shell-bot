@@ -51,10 +51,10 @@ rootname=$(fclone lsd "$fclone_name":{$input_id} --dump bodies -vv 2>&1 | awk 'B
 echo -e "┋资源名称┋:"$rootname"\n"
 echo -e "┋资源地址┋:"$input_id"\n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first --log-file=~/fclone_shell_bot/log/"$rootName"'_fqcopy1.txt'
+fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first --log-level=DEBUG --log-file=~/fclone_shell_bot/log/"$rootName"'_fqcopy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕"
 echo -e "▣▣▣▣▣▣查漏补缺▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first --log-file=~/fclone_shell_bot/log/"$rootName"'_fqcopy2.txt'
+fclone copy "$fclone_name":{$input_id} "$fclone_name":{$gd_id}/"$rootname" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first --log-level=DEBUG --log-file=~/fclone_shell_bot/log/"$rootName"'_fqcopy2.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  补缺完毕"
 clear
 done

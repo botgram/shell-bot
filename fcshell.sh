@@ -73,9 +73,10 @@ install_script() {
     chmod -R 777 ~/fclone_shell_bot/script/
     echo -e "alias fq="~/fclone_shell_bot/script/fqcopy.sh""  >> /root/.bashrc
     echo -e "alias fqa="~/fclone_shell_bot/script/fqcopy_a.sh""  >> /root/.bashrc
-    echo -e "alias fp="~/fclone_shell_bot/script/fptask.sh""  >> /root/.bashrc
-    echo -e "alias fb="~/fclone_shell_bot/script/fbtask.sh""  >> /root/.bashrc
+    echo -e "alias fp="~/fclone_shell_bot/script/fpcopy.sh""  >> /root/.bashrc
+    echo -e "alias fb="~/fclone_shell_bot/script/fbcopy.sh""  >> /root/.bashrc
     echo -e "alias fs="~/fclone_shell_bot/script/fsize.sh""  >> /root/.bashrc
+    echo -e "alias fsort="~/fclone_shell_bot/script/fsort.sh""  >> /root/.bashrc
     echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh""  >> /root/.bashrc
     echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh""  >> /root/.bashrc
     echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup.sh""  >> /root/.bashrc
@@ -83,13 +84,15 @@ install_script() {
     source /root/.bashrc
     echo -e "已完成安装，并设置系统级脚本别名"
     echo -e "输入fcshell  安装配置脚本"
-    echo -e "输入fq 启动  极速转存"
-    echo -e "输入fp 启动  p2p转存"
-    echo -e "输入fb 启动  盘备份转存"
-    echo -e "输入fs 启动  定向size查询"
-    echo -e "输入fd 启动  定向查重"
-    echo -e "输入fc 启动  定向比对"
-    echo -e "输入fcl 启动 定向清空回收站"
+    echo -e "输入fq       启动  极速转存"
+    echo -e "输入fqa      启动 极速转存_序列"
+    echo -e "输入fp       启动  p2p转存"
+    echo -e "输入fb       启动  盘备份转存"
+    echo -e "输入fs       启动  定向size查询"
+    echo -e "输入fsort    启动  自动整理"
+    echo -e "输入fd       启动  定向查重"
+    echo -e "输入fc       启动  定向比对"
+    echo -e "输入fcl      启动 定向清空回收站"
     exit
 }
 # ★★★运行bot-已完成★★★

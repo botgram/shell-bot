@@ -477,6 +477,7 @@ bot.command("help", function (msg, reply, next) {
     "<em>fclone转存常用命令</em>\n" +
     "\n" +
     "‣ /fq    极速转存模式.\n" +
+    "‣ /fqa   极速序列模式.\n" +
     "‣ /fp    点点转存模式.\n" +
     "‣ /fb    全盘备份模式.\n" +
     "‣ /fs    定向size查询.\n" +
@@ -511,7 +512,26 @@ bot.command("fq", function (msg, reply, next) {
   msg.editor = null;
 
 // 一键快速转存"/fq" command that should be used
-  var args = "/root/fclone_shell_bot/script/fqtask.sh";
+  var args = "/root/fclone_shell_bot/script/fqcopy.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 一键快速序列转存bot command = "/fqa"
+bot.command("fqa", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 一键快速序列转存"/fqa" command that should be used
+  var args = "/root/fclone_shell_bot/script/fqcopy_a.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
@@ -530,7 +550,7 @@ bot.command("fp", function (msg, reply, next) {
   msg.editor = null;
 
 // 点对点转存"/fp" command that should be used
-  var args = "/root/fclone_shell_bot/script/fptask.sh";
+  var args = "/root/fclone_shell_bot/script/fpcopy.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
@@ -549,7 +569,7 @@ bot.command("fb", function (msg, reply, next) {
   msg.editor = null;
 
 // 全盘备份"/fb" command that should be used
-  var args = "/root/fclone_shell_bot/script/fbtask.sh";
+  var args = "/root/fclone_shell_bot/script/fbcopy.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
@@ -569,6 +589,25 @@ bot.command("fs", function (msg, reply, next) {
 
 // 定向size查询"/fs" command that should be used
   var args = "/root/fclone_shell_bot/script/fsize.sh";
+  msg.context.command = new Command(reply, msg.context, args);
+  msg.context.command.on("exit", function() {
+    msg.context.command = null;
+  });
+});
+
+// 自动整理bot command = "/fsort"
+bot.command("fsort", function (msg, reply, next) {
+
+  if (msg.context.command) {
+    var command = msg.context.command;
+    return reply.text("一条命令正在运行中.");
+  }
+
+  if (msg.editor) msg.editor.detach();
+  msg.editor = null;
+
+// 自动整理"/fsort" command that should be used
+  var args = "/root/fclone_shell_bot/script/fsort.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
