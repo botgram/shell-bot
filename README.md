@@ -73,7 +73,7 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
   <details>
   <summary>/fsort 自动整理</summary>
  
-  1. 生成jason文件：
+ 1. 生成jason文件：
   对于要整理到的文件夹，比如说按番号，你到已经有的番号文件夹（道理相同，女优名字也一样），运行以下命令：<br>
   
   `fclone lsjson 你的用户名:{文件夹ID} --fast-list --dirs-only --no-mimetype --no-modtime --max-depth 文件夹层数` <br>
