@@ -9,7 +9,7 @@
 # Version: final
 #=============================================================
 
-source ~/fclone_shell_bot/myfc_config.ini
+source /root/fclone_shell_bot/myfc_config.ini
 clear
 echo -e " 选择你需要备份的盘
 [1]. ADV盘

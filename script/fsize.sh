@@ -9,7 +9,7 @@
 # Version: final
 #=============================================================
 
-source ~/fclone_shell_bot/myfc_config.ini
+source /root/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入查询链接==>" link
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
