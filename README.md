@@ -5,13 +5,14 @@
 
 <table>
     <tr>
-        <td ><center><img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">nav1</center></td>
+        <td ><center><img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif">nav1</center></td>
           
          ```
-        <td ><center><img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/main.jpg" height="470px">nav2</center></td>
-    
+        <td ><center><img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/main.jpg">nav2</center></td>
+        
+         ```
+        <td ><center><img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/chat2.jpg">nav3</center></td>
     </tr>
-
 </table>
 
 **注意:** 一键安装配置脚本暂时仅支持(Ubuntu/Debian),centos可手动安装，windowns不可安装！！！
