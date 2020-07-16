@@ -11,7 +11,7 @@
 
 source ~/fclone_shell_bot/myfc_config.ini
 clear
-echo -e " 选择你要备份的盘
+echo -e " 选择你需要备份的盘
 [1]. ADV盘
 [2]. MDV盘
 [3]. BOOK盘
@@ -50,28 +50,17 @@ case "$num" in
     echo -e "请输入正确的数字"
     ;;
 esac
-read -p "请输入指定备份盘ID==>" link
+read -p "请输入备份到哪个盘ID==>" link
 if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit
 else
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 fi
-sed -i "s/${fb_link1}/${myid}/g" /root/fclone_shell_bot/myfc_config.ini
-sed -i "s/${fb_link2}/${link}/g" /root/fclone_shell_bot/myfc_config.ini
-echo -e "/n该模式暂不支持队列任务，仅支持后台任务"
-tmux new -s fbtask -d
-tmux send -t "fbtask" '~/gclone_shell_bot/script/fbcopy.sh' Enter
-echo -e "/n后台任务已开始执行"
-exit
-
-echo "等待ini配置变量更新"
-sleep 30s
-source ~/fclone_shell_bot/myfc_config.ini
 clear
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$fb_link1} "$fclone_name":{$fb_link2} --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
+fclone copy "$fclone_name":{$myid} "$fclone_name":{$link} --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕/n"
 echo -e "▣▣▣▣▣▣执行补缺▣▣▣▣▣▣"
-fclone sync "$fclone_name":{$fb_link1} "$fclone_name":{$fb_link2} --drive-server-side-across-configs --drive-use-trash=false --stats=1s --stats-one-line -vP --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
+fclone sync "$fclone_name":{$myid} "$fclone_name":{$link} --drive-server-side-across-configs --drive-use-trash=false --stats=1s --stats-one-line -P --checkers="$fb_chercker" --transfers="$fb_transfer" --drive-pacer-min-sleep="$fb_min_sleep"ms --drive-pacer-burst="$fb_BURST" --min-size "$fb_min_size"M --check-first
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  补缺完毕/n"
 exit

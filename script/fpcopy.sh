@@ -1,10 +1,10 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fptask.sh
+# File Name: fpcopy.sh
 # Author: cgking
 # Created Time : 2020.7.8
-# Description:点对点转存-task
+# Description:点对点转存
 # System Required: Debian/Ubuntu
 # Version: final
 #=============================================================
