@@ -50,6 +50,7 @@ install_shellbot() {
     else
     cd ~/fclone_shell_bot
     git pull
+    npm install
     echo -e "shellbot已安装更新为最新版本" 
     source /root/.bashrc
     exit
@@ -85,14 +86,14 @@ install_script() {
     echo -e "已完成安装，并设置系统级脚本别名"
     echo -e "输入fcshell  安装配置脚本"
     echo -e "输入fq       启动  极速转存"
-    echo -e "输入fqa      启动 极速转存_序列"
+    echo -e "输入fqa      启动  极速转存_序列"
     echo -e "输入fp       启动  p2p转存"
     echo -e "输入fb       启动  盘备份转存"
     echo -e "输入fs       启动  定向size查询"
     echo -e "输入fsort    启动  自动整理"
     echo -e "输入fd       启动  定向查重"
     echo -e "输入fc       启动  定向比对"
-    echo -e "输入fcl      启动 定向清空回收站"
+    echo -e "输入fcl      启动  定向清空回收站"
     exit
 }
 # ★★★运行bot-已完成★★★

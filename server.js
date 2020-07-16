@@ -476,27 +476,27 @@ bot.command("help", function (msg, reply, next) {
   reply.html(
     "<em>fclone转存常用命令</em>\n" +
     "\n" +
-    "‣ /fq    极速转存模式.\n" +
-    "‣ /fqa   极速序列模式.\n" +
-    "‣ /fp    点点转存模式.\n" +
-    "‣ /fb    全盘备份模式.\n" +
-    "‣ /fs    定向size查询.\n" +
-    "‣ /fd    定向查重功能.\n" +
-    "‣ /fc    定向比对功能.\n" +
-    "‣ /fcl   清空回收站.\n" +
-    "‣ /cancel终止当前进程(Ctrl+C)；\n" + 
+    "‣ /fq      极速转存模式.\n" +
+    "‣ /fqa     极速序列模式.\n" +
+    "‣ /fp      点点转存模式.\n" +
+    "‣ /fb      全盘备份模式.\n" +
+    "‣ /fs      定向size查询.\n" +
+    "‣ /fsort   自动整理功能.\n" +
+    "‣ /fd      定向查重功能.\n" +
+    "‣ /fc      定向比对功能.\n" +
+    "‣ /fcl     清空回收站.\n" +
+    "‣ /cancel  终止当前进程(Ctrl+C)；\n" + 
     "\n" +
     "<em>shellbot通用命令</em>\n" +
     "\n" +
-    "‣ /status 查看此聊天的当前状态和设置;\n" + 
-    "‣ /cd     改变当前目录;\n" +
-    "‣ /run &lt;linux命令&gt; 运行VPS的linux命令;\n" + 
-    "‣ /kill   发送程序结束SIGTERM信号，当然也可以指定程序结束.; \n" +
-    "‣ /end    相当于VPS的Linux的(Ctrl+D).\n" +
+    "‣ /status  查看此聊天的当前状态和设置;\n" + 
+    "‣ /cd      改变当前目录;\n" +
+    "‣ /run     linux命令&gt; 运行VPS的linux命令;\n" + 
+    "‣ /kill    发送程序结束SIGTERM信号，当然也可以指定程序结束.; \n" +
+    "‣ /end     相当于VPS的Linux的(Ctrl+D).\n" +
     "\n" +
     "<em>注意事项</em>\n" +
-    "‣注：命令交互输入，如回复Y选择进一步操作，需要在TG以回复信息方式进行;\n" +
-    "     或者/enter &lt;交互内容&gt"
+    "‣注：命令交互输入，如回复Y选择进一步操作，需要在TG以回复信息方式进行，或者/enter &lt;交互内容！\n"
   );
 });
 
