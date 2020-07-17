@@ -15,9 +15,7 @@
 <summary>步骤一：克隆库/赋予脚本权限/运行一键安装脚本</summary>
  
 ```
-git clone https://github.com/cgkings/fclone_shell_bot.git && cd ~/fclone_shell_bot && npm install && chmod -R 777 ~/fclone_shell_bot && mv /root/fclone_shell_bot/fcshell.sh /root
-
-cd /root && ./fcshell.sh
+cd /root && git clone https://github.com/cgkings/fclone_shell_bot.git && chmod -R 777 /root/fclone_shell_bot && mv /root/fclone_shell_bot/fcshell.sh /root && /root/fcshell.sh
 ```
 
 </details>
