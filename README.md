@@ -1,6 +1,6 @@
 # fclone shell bot V2.0
 
-[教程FAQ](https://git.io/JJZ3E)    [原作者教程](https://git.io/JJZ30)    [本脚本的上一版教程](https://git.io/JJZ34)
+[教程FAQ](https://git.io/JJZ3E)       [原作教程](https://git.io/JJZ30)        [脚本1.0手动教程](https://git.io/JJZ34)
 
 `shellbot`可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用!
 当然转存工具很重要，`fclone`,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
