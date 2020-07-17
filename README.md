@@ -84,6 +84,12 @@ cd /root && ./fcshell.sh
   如果你已经安装过环境或者shellbot，可以根据需要进行点选安装
 
   **注意：无论怎么选，`4 安装更新 转存脚本`不可缺少，那是给权限，给脚本别名的，你不装，进了bot也用不了脚本！
+
+  **注意：如果`fclone version`没有显示版本号，说明你fclone没有安装成功，转存脚本无法成功转存，请输入以下命令，手动安装fclone：
+
+```
+wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
+```
   
   </details>
   </details>

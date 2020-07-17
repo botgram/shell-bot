@@ -61,10 +61,11 @@ install_clone() {
     cd ~
     curl https://rclone.org/install.sh | sudo bash -s beta
     wget -qO- https://git.io/gclone.sh
-    wget -N https://git.io/JJmMa
+    wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
     unzip fclone.zip
     mv fclone /usr/bin
     chmod +x /usr/bin/fclone
+    fclone version
     echo -e "rclone/gclone/fclone已安装更新为最新版本" && exit
 }
 # 安装转存脚本-更新中
