@@ -34,7 +34,7 @@ cd /root && ./fcshell.sh
      填写bot的token和你的TG ID，不知道这是啥？问本文末尾的客服人员
      
      根据测试发现，改了bot配置，启动bot的时候，也会问你bot token和TG id
-            
+              
   3. 点选**15 修改 脚本转存参数ini**
    
      3.1 填写你的clone账号名
@@ -49,7 +49,7 @@ cd /root && ./fcshell.sh
      
      3.3 修改转存参数（可选）
          
-         去看FAQ
+         去看[本教程FAQ](https://github.com/cgkings/fclone_shell_bot/blob/master/help/MY_FAQ.md)
 
   4. 点选**5 启动 bot**
 
@@ -83,6 +83,8 @@ cd /root && ./fcshell.sh
   
   </details>
   </details>
+  
+**以上，基本把安装的事说明白了，还不明白的话，建议去看[原作者教程](https://github.com/botgram/shell-bot)或者[本脚本的上一版教程](https://github.com/cgkings/fclone_shell_bot/blob/master/help/Manual_README.md)
 
 ## 使用说明：<hr />
 
@@ -148,6 +150,8 @@ cd /root && ./fcshell.sh
 最后，如果你是位外国友人，很荣幸，孙贼，用用google翻译吧！
 
 ## 客服列表<hr />
+
+#### [教程FAQ](https://github.com/cgkings/fclone_shell_bot/blob/master/help/MY_FAQ.md)
 
 #### 1#客服： [@谷哥](https://www.google.com)；
 
