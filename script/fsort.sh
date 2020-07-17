@@ -9,13 +9,12 @@
 # Version: final
 #=============================================================
 
-source ~/fclone_shell_bot/myfc_config.ini
-
+source /root/fclone_shell_bot/myfc_config.ini
 read -p "请输入要整理的链接==>" link
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 for i in $(cut -d ":" -f 1 /root/fclone_shell_bot/av_num.txt)
 do
 p=$(awk 'BEGIN{FS=":"}/^'$i'/{print $2}' /root/fclone_shell_bot/av_num.txt)
-gclone move "$fclone_name":{$link} "$fclone_name":{$p} -vvP --fast-list --include "**$i**.*" --ignore-case --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fs_chercker" --transfers="$fs_transfer" --drive-pacer-min-sleep="$fs_min_sleep"ms --drive-pacer-burst="$fs_BURST" --min-size "$fs_min_size"M --check-first --log-level=DEBUG --log-file=~/fclone_shell_bot/log/
-fclone rmdirs "$fclone_name":{$link} --fast-list --drive-use-trash=false --verbose=2 --checkers="$fs_chercker" --transfers="$fs_transfer" -q
+fclone move "$fclone_name":{$link} "$fclone_name":{$p} --fast-list --include "**$i**.*" --ignore-case --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fs_chercker" --transfers="$fs_transfer" --drive-pacer-min-sleep="$fs_min_sleep"ms --drive-pacer-burst="$fs_BURST" --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort.txt
 done
+fclone rmdirs "$fclone_name":{$link} --fast-list --drive-use-trash=false --verbose=2 --checkers="$fs_chercker" --transfers="$fs_transfer" --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort_rmdirs.txt

@@ -1,9 +1,11 @@
-# fclone shell bot
+# fclone shell bot V2.0
+
+[教程FAQ](https://git.io/JJZ3E)       [原作教程](https://git.io/JJZ30)        [脚本1.0手动教程](https://git.io/JJZ34)
 
 `shellbot`可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用!
 当然转存工具很重要，`fclone`,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
 
-<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="470px">
+<img src="https://github.com/cgkings/gclone_shell_bot/blob/master/images/bot.gif" height="420px" width="270"/>          <img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/main.jpg" height="420px" width="270"/>          <img src="https://github.com/cgkings/fclone_shell_bot/raw/master/images/chat2.jpg" height="420px" width="270"/>
 
 **注意:** 一键安装配置脚本暂时仅支持(Ubuntu/Debian),centos可手动安装，windowns不可安装！！！
 
@@ -13,7 +15,7 @@
 <summary>步骤一：克隆库/赋予脚本权限/运行一键安装脚本</summary>
  
 ```
-git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~/fclone_shell_bot/ && sh -c /root/fclone_shell_bot/fcshell.sh
+cd /root && git clone https://github.com/cgkings/fclone_shell_bot.git && chmod -R 777 /root/fclone_shell_bot && mv /root/fclone_shell_bot/fcshell.sh /root && /root/fcshell.sh
 ```
 
 </details>
@@ -27,21 +29,43 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
 
   1. 点选**0 完全安装**
 
-  2. 点选**10 修改 bot配置**
+  2. 点选**10 修改 bot配置**(可选）
 
      填写bot的token和你的TG ID，不知道这是啥？问本文末尾的客服人员
-            
+     
+     根据测试发现，改了bot配置，启动bot的时候，也会问你bot token和TG id
+              
   3. 点选**15 修改 脚本转存参数ini**
    
      3.1 填写你的clone账号名
-   
+         
+         ** 就是rclone config show显示的[]里面的名字 **
+         
+         ** 当然，一键脚本里，点选11查看rclone配置，也能看到**
+         
      3.2 填写转存ID
-
+         
+         **gd_id\jav_id\mdv_id\book_id,这些名字如果改了，要对应去改脚本,建议仅修改=后面，""里面的ID**
+     
      3.3 修改转存参数（可选）
+         
+         去看[本教程FAQ](https://github.com/cgkings/fclone_shell_bot/blob/master/help/MY_FAQ.md)
 
   4. 点选**5 启动 bot**
 
      此默认为后台启动bot，当前看不到运行的，想看?`tmux a -t shellbot`去后台看吧
+     
+     因为原作问题，第一次点选启动，请`tmux a -t shellbot`到后台完成以下操作：
+     
+     4.1 填写一下BOT token
+     
+     4.2 在TG上bot里随便发条消息
+     
+     4.3 回vps，应该识别到你的TG ID了，你回复y就行了
+     
+     4.4 首次运行配置成功后，再次运行`node server`就启动，或者从那个对话出来用配置脚本5启动也行
+     
+     以后启动，就不需要去后台了，除非bot有异常，其实有异常也不用去，直接脚本点选重启bot就行了
 
   5. 点选**13 查看 脚本快捷命令**
    
@@ -58,9 +82,17 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
   如果你已经安装过环境或者shellbot，可以根据需要进行点选安装
 
   **注意：无论怎么选，`4 安装更新 转存脚本`不可缺少，那是给权限，给脚本别名的，你不装，进了bot也用不了脚本！
+
+  **注意：如果`fclone version`没有显示版本号，说明你fclone没有安装成功，转存脚本无法成功转存，请输入以下命令，手动安装fclone：
+
+```
+wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip && unzip fclone.zip && mv fclone /usr/bin && chmod +x /usr/bin/fclone
+```
   
   </details>
   </details>
+  
+**以上，基本把安装的事说明白了，还不明白的话，建议去看[原作者教程](https://github.com/botgram/shell-bot)或者[本脚本的上一版教程](https://github.com/cgkings/fclone_shell_bot/blob/master/help/Manual_README.md)
 
 ## 使用说明：<hr />
 
@@ -126,6 +158,8 @@ git clone https://github.com/cgkings/fclone_shell_bot.git && sudo chmod -R 777 ~
 最后，如果你是位外国友人，很荣幸，孙贼，用用google翻译吧！
 
 ## 客服列表<hr />
+
+#### [教程FAQ](https://github.com/cgkings/fclone_shell_bot/blob/master/help/MY_FAQ.md)
 
 #### 1#客服： [@谷哥](https://www.google.com)；
 

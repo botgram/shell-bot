@@ -50,6 +50,7 @@ install_shellbot() {
     else
     cd ~/fclone_shell_bot
     git pull
+    npm install
     echo -e "shellbot已安装更新为最新版本" 
     source /root/.bashrc
     exit
@@ -60,10 +61,11 @@ install_clone() {
     cd ~
     curl https://rclone.org/install.sh | sudo bash -s beta
     wget -qO- https://git.io/gclone.sh
-    wget -N https://git.io/JJmMa
+    wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
     unzip fclone.zip
     mv fclone /usr/bin
     chmod +x /usr/bin/fclone
+    fclone version
     echo -e "rclone/gclone/fclone已安装更新为最新版本" && exit
 }
 # 安装转存脚本-更新中
@@ -80,19 +82,19 @@ install_script() {
     echo -e "alias fd="~/fclone_shell_bot/script/fdedup.sh""  >> /root/.bashrc
     echo -e "alias fc="~/fclone_shell_bot/script/fcheck.sh""  >> /root/.bashrc
     echo -e "alias fcl="~/fclone_shell_bot/script/fcleanup.sh""  >> /root/.bashrc
-    echo -e "alias fcshell="~/fclone_shell_bot/fcshell.sh""  >> /root/.bashrc
+    echo -e "alias fcshell="~/fcshell.sh""  >> /root/.bashrc
     source /root/.bashrc
     echo -e "已完成安装，并设置系统级脚本别名"
     echo -e "输入fcshell  安装配置脚本"
     echo -e "输入fq       启动  极速转存"
-    echo -e "输入fqa      启动 极速转存_序列"
+    echo -e "输入fqa      启动  极速转存_序列"
     echo -e "输入fp       启动  p2p转存"
     echo -e "输入fb       启动  盘备份转存"
     echo -e "输入fs       启动  定向size查询"
     echo -e "输入fsort    启动  自动整理"
     echo -e "输入fd       启动  定向查重"
     echo -e "输入fc       启动  定向比对"
-    echo -e "输入fcl      启动 定向清空回收站"
+    echo -e "输入fcl      启动  定向清空回收站"
     exit
 }
 # ★★★运行bot-已完成★★★

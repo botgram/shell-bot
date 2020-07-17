@@ -9,7 +9,7 @@
 # Version: final
 #=============================================================
 
-source ~/fclone_shell_bot/myfc_config.ini
+source /root/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入比对ID_1==>" link1
 if [ -z "$link1" ] ; then

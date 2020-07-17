@@ -1,4 +1,4 @@
-# 终结版更新中，暂不可使用
+# fclone shell bot v1.0
 
 `shellbot`可以在TG上调动运行VPS命令，本脚本仅是shellbot的一种google drive转存应用，当然转存工具很重要，`fclone`,400 fils/s，没错，速度论文件的，尽管还有其他优点，但是一个速度，已经能对得起它的名字fxxk clone，天下武功，为快不破，你用fclone，其他clone只能看到你的背影。
 

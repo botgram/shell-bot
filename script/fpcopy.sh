@@ -1,15 +1,15 @@
 #!/bin/bash
 #=============================================================
 # https://github.com/cgkings/fclone_shell_bot
-# File Name: fptask.sh
+# File Name: fpcopy.sh
 # Author: cgking
 # Created Time : 2020.7.8
-# Description:点对点转存-task
+# Description:点对点转存
 # System Required: Debian/Ubuntu
 # Version: final
 #=============================================================
 
-source ~/fclone_shell_bot/myfc_config.ini
+source /root/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入转存源ID==>" link1
 link1=${link1#*id=};link1=${link1#*folders/};link1=${link1#*d/};link1=${link1%?usp*}
@@ -32,9 +32,9 @@ echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n"
     echo -e "┋资源地址┋:$link1 \n"
     echo -e "┋转入名称┋:$rootName2 \n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=~/fclone_shell_bot/log/"$rootName1"'_fpcopy1.txt'
+fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/"$rootName1"'_fpcopy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕/n"
 echo -e "▣▣▣▣▣▣执行补缺▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=~/fclone_shell_bot/log/"$rootName1"'_fpcopy2.txt'
+fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/"$rootName1"'_fpcopy2.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  补缺完毕/n"
 exit
