@@ -97,7 +97,7 @@ wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
   
 **以上，基本把安装的事说明白了，还不明白的话，建议去看[原作者教程](https://github.com/botgram/shell-bot)或者[本脚本的上一版教程](https://github.com/cgkings/fclone_shell_bot/blob/master/help/Manual_README.md)
 
-## 使用说明：<hr />
+## 使用说明：
 
 <details>
 <summary>/fq 极速转存</summary>
@@ -160,7 +160,7 @@ wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
 
 最后，如果你是位外国友人，很荣幸，孙贼，用用google翻译吧！
 
-## 客服列表<hr />
+## 客服列表
 
 #### [教程FAQ](https://github.com/cgkings/fclone_shell_bot/blob/master/help/MY_FAQ.md)
 
