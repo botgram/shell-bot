@@ -9,13 +9,16 @@
 
 **注意:** 一键安装配置脚本暂时仅支持(Ubuntu/Debian),centos可手动安装，windowns不可安装！！！
 
-## 安装步骤：<hr />
+## 安装步骤：
 
 <details>
-<summary>步骤一：克隆库/赋予脚本权限/运行一键安装脚本</summary>
- 
+<summary>步骤一：克隆库/赋予脚本权限/运行一键安装脚本(需要root权限)</summary>
+
 ```
-cd /root && git clone https://github.com/cgkings/fclone_shell_bot.git && chmod -R 777 /root/fclone_shell_bot && mv /root/fclone_shell_bot/fcshell.sh /root && /root/fcshell.sh
+sudo su
+cd /root && git clone https://github.com/cgkings/fclone_shell_bot.gi
+chmod -R 777 ./fclone_shell_bot && cp -f ./fclone_shell_bot/fcshell.sh .
+./fcshell.sh
 ```
 
 </details>
@@ -139,11 +142,11 @@ wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
 
 
 
-## 授权书<hr />
+## 授权书
 首次启动时，该漫游器将仅接受来自您的用户的消息。出于安全原因：您不希望任何人向您的计算机发出命令！<br>
 如果要允许其他用户使用该漫游器，请使用/token并为其提供结果链接。如果您想在网上论坛上使用此漫游器，/token则会向您发送一条消息，转发到网上论坛<br> 
 
-## 最后的话<hr />
+## 最后的话
 
 送君千语，终有一别，作为一个小白，能堂而皇之的在github上恬不知耻的发布，是因为github开放的开发氛围，更是因为TG上面各位开放而热心的中国技术大佬的无私帮助，在此感谢各位TG大神，排名不分先后：<br>
 * fxxkrlab （专业冒险者） 不厌其烦的希望我们能多学点语言，还根据我们的需要编写了 [转存bot教材](https://github.com/fxxkrlab/iCopy),可惜，暂时没研究出来<br>
