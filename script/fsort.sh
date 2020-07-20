@@ -10,11 +10,22 @@
 #=============================================================
 
 source /root/fclone_shell_bot/myfc_config.ini
-read -p "请输入要整理的链接==>" link
-link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
-for i in $(cut -d ":" -f 1 /root/fclone_shell_bot/av_num.txt)
+clear
+read -p "请输入目标链接==>" link1
+link1=${link1#*id=};link1=${link1#*folders/};link1=${link1#*d/};link1=${link1%?usp*}
+input_info=`fclone lsjson "$fclone_name":{$link1} --fast-list --files-only --no-mimetype --no-modtime --max-depth 6`
+input_ids=$(echo "$input_info" | cut  -d '"' -f 20 | sed -n '1!P;N;$q;D')
+echo "$input_ids"
+for input_id in $input_ids
 do
-p=$(awk 'BEGIN{FS=":"}/^'$i'/{print $2}' /root/fclone_shell_bot/av_num.txt)
-fclone move "$fclone_name":{$link} "$fclone_name":{$p} --fast-list --include "**$i**.*" --ignore-case --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fs_chercker" --transfers="$fs_transfer" --drive-pacer-min-sleep="$fs_min_sleep"ms --drive-pacer-burst="$fs_BURST" --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort.txt
+   input_name=$(echo "$input_info" | grep '"'$input_id'"' | cut  -d '"' -f 8)
+   echo "$input_name"
+   output_names=$(cut -d ":" -f 1 /root/fclone_shell_bot/av_num.txt)
+   if ( $input_names =~ *$output_names* ); then
+   output_id=$(awk 'BEGIN{FS=":"}/^'$output_names'/{print $2}' /root/fclone_shell_bot/av_num.txt)
+   fclone copy "$fclone_name":{$input_id} "$fclone_name":{$output_id} --fast-list --drive-server-side-across-configs --stats=1s --stats-one-line -vvP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
+   else
+   echo "无可整理的文件"
+   fi
 done
-fclone rmdirs "$fclone_name":{$link} --fast-list --drive-use-trash=false --verbose=2 --checkers="$fs_chercker" --transfers="$fs_transfer" --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/fsort_rmdirs.txt
+exit
