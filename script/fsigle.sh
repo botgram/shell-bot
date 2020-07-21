@@ -7,6 +7,6 @@ read -p "请输入目的地链接==>" link2
 link2=${link2#*id=};link2=${link2#*folders/};link2=${link2#*d/};link2=${link2%?usp*}
 for input_id in $(fclone lsf "$fclone_name":{$link1} --format "i" --files-only -R)
 do
-fclone copy "$fclone_name":{$input_id} "$fclone_name":{$link2} --fast-list --drive-server-side-across-configs --stats=1s --stats-one-line -vvP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
+fclone copy "$fclone_name":{$input_id} "$fclone_name":{$link2} --fast-list --drive-server-side-across-configs --stats=1s --stats-one-line -vP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
 done
 exit
