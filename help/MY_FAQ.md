@@ -27,7 +27,25 @@
 原文地址：https://rclone.org/drive/#making-your-own-client-id
 </details>
 <details>
-<summary>4、预留</summary>
+<summary>4、fclone参数——速度篇</summary>
+Rclone优化
+有关优化的想法最终应记录在主要文档中。
 
-原文地址：https://rclone.org/drive/#making-your-own-client-id
+何时使用/不使用--no-traverse：
+假设您的目的地有6个文件{a，b，c，d，e，f}。
+
+如果将{a}复制到目的地，则没有遍历，rclone将在所有文件{a，b，c，d，e，f}的定义中加载，然后发现是否需要上传{a}。如果您使用--no-traverse，则rclone只会在遥控器上检查{a}。
+
+那么，为什么不一直使用--no-traverse？
+
+如果要将{a，b，c，d，e，f}复制到目标位置，则rclone将单独检查每个文件。这将至少需要6笔交易，而您可能已经在1个清单中完成了所有对象的清单。
+
+因此需要权衡！在1.36版中实现的新同步方法使--no-traverse的使用性比以前降低了，但是它仍然派上用场，尤其是在将文件移动或复制到更深的层次结构中时。
+
+如何在微型实例上运行
+内存不足一千兆字节的微型实例上的RClone可能会崩溃。您可以执行以下操作：
+
+键入export GOGC=20运行rclone之前。
+去掉 --fast-list
+降低 --transfers=
 </details>
