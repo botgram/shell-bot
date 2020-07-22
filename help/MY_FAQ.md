@@ -77,3 +77,8 @@ Rclone优化
 去掉 --fast-list
 降低 --transfers=
 </details>
+<details>
+<summary>7、比fclone更快？jclone发布前的准备工作</summary>
+
+原文地址：https://rclone.org/drive/#making-your-own-client-id
+</details>
