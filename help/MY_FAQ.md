@@ -23,13 +23,17 @@
 </details>
 <details>
 <summary>3、clone系列转存工具，设置自用client id的必要性？</summary>
+>>这个问题其实挺麻烦                
+>>使用自己的client id，低并发；
+>>使用默认的rclone公用client id,高并发，但是N多人使用，也有可能会堵车；
+>>官方解释是这样的——原文地址：https://rclone.org/drive/#making-your-own-client-id
 
-原文地址：https://rclone.org/drive/#making-your-own-client-id
 </details>
 <details>
 <summary>4、神奇的fclone命令？</summary>
 
-原文地址：https://rclone.org/drive/#making-your-own-client-id
+>>原文地址：https://rclone.org/drive/#making-your-own-client-id
+
 </details>
 <details>
 <summary>5、fclone参数——速度篇</summary>
