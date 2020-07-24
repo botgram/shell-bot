@@ -10,23 +10,21 @@
 #=============================================================
 
 source /root/fclone_shell_bot/myfc_config.ini
+
 clear
 read -p "【极速任务队列模式】请输入分享链接任务，任务序号【01】==>" link
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 if [ -z "$link" ] ; then
 echo "不允许输入为空" && exit ;
+elif [ -z "$rootname" ] ; then
+echo -e "读取文件夹名称出错，请反馈问题给作者"
+break
 else
 echo -e "$link" >> /root/fclone_shell_bot/log/fqtask.log
 fi
 suma=1
 while [ $link!=[0] ];do
-    if [ -z "$rootname" ] ; then
-    echo -e "读取文件夹名称出错，请反馈问题给作者/n"
-    echo -e "如fqtask.log还有任务ID，则直接进行copy/n"
-    sed -i '$d' /root/fclone_shell_bot/log/fqtask.log
-    break ;
-    fi
     suma=$((suma+1))
     echo -e "队列任务模式,任务序号【$suma】"
     read -p "请继续输入分享链接任务，如需终止添加队列则回复"0"==>" link
@@ -34,16 +32,20 @@ while [ $link!=[0] ];do
     rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
     if [ -z "$link" ] ; then
     echo -e "不允许输入为空"
-    echo -e "如fqtask.log还有任务ID，则直接进行copy/n"
+    echo -e "如fqtask.log还有任务ID，则直接进行copy"
     break ; 
+    elif [ $link=[0] ];then
+    echo -e "总共添加了【$suma】项任务,队列任务即将执行"
+    break
+    elif [ -z "$rootname" ] ; then
+    echo -e "读取文件夹名称出错，请反馈问题给作者"
+    echo -e "如fqtask.log还有任务ID，则直接进行copy"
+    continue ;
+    fi
     else
     echo -e "$link" >> /root/fclone_shell_bot/log/fqtask.log
     fi
 done
-if [ -z "$rootname" ] ; then
-sed -i '$d' /root/fclone_shell_bot/log/fqtask.log
-fi
-echo -e "/n结束添加,队列任务即将开始执行/n"
 clear
 if [ -s /root/fclone_shell_bot/log/fqtask.log ] ; then
 IFS=$'\n'
