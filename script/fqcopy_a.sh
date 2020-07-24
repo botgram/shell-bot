@@ -15,7 +15,7 @@ read -p "【极速任务队列模式】请输入分享链接任务，任务序�
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 if [ -z "$link" ] ; then
-echo "不允许输入为空" && exit ; 
+echo "不允许输入为空" && exit ;
 else
 echo -e "$link" >> /root/fclone_shell_bot/log/fqtask.log
 fi
