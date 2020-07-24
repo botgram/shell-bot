@@ -13,13 +13,13 @@ source /root/fclone_shell_bot/myfc_config.ini
 clear
 read -p "请输入查询链接==>" link
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
-rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
+rootname=$(fclone lsd "$fclone_nameb":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 if [ -z "$link" ] ; then
 echo "不允许输入为空" && exit ;
 elif [ -z "$rootname" ] ; then
 echo -e "读取文件夹名称出错，请反馈问题给作者/n" && exit ;
 else
-size_info=`fclone size "$fclone_name":{$link} --checkers=200`
+size_info=`fclone size "$fclone_nameb":{$link} --checkers=200`
 file_num=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total objects/{print $3}')
 file_size=$(echo "$size_info" | awk 'BEGIN{FS=" "}/^Total size/{print $3,$4}')
 echo -e "▣▣▣▣▣▣任务信息▣▣▣▣▣▣\n"

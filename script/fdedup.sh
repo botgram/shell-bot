@@ -18,5 +18,5 @@ else
 link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
 fi
 echo -e "▣▣▣▣▣▣正在执行查重▣▣▣▣▣▣"
-fclone dedupe newest "$fclone_name":{$link} --fast-list --size-only --drive-use-trash=false --no-traverse --checkers=64 --transfers=128 -vp --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/'fdedup.txt'
+fclone dedupe newest "$fclone_nameb":{$link} --fast-list --size-only --drive-use-trash=false --no-traverse --checkers=64 --transfers=128 -vp --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/'fdedup.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  查重完毕"
