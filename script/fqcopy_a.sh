@@ -20,7 +20,7 @@ else
 echo -e "$link" >> /root/fclone_shell_bot/log/fqtask.log
 fi
 suma=1
-while [[ $link -ne 0 ]];do
+while [ $link!=[0] ];do
     if [ -z "$rootname" ] ; then
     echo -e "读取文件夹名称出错，请反馈问题给作者/n"
     echo -e "如fqtask.log还有任务ID，则直接进行copy/n"
@@ -51,7 +51,7 @@ sumb=0
 sumh=$(grep -n '' /root/fclone_shell_bot/log/fqtask.log | awk -F : 'END{print $1}')
 for input_id in $(cat ~/fclone_shell_bot/log/fqtask.log)
 do
-sumb=$((sumb+1))
+sumb=$(sumb+1)
 rootname=$(fclone lsd "$fclone_name":{$input_id} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
 echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n" 
 echo -e "┋资源名称┋:"$rootname"\n"
