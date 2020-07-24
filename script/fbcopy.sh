@@ -35,11 +35,12 @@ case "$num" in
     myid="$book_id"
     ;;
 4)
-    read -p "请输入需要备份的盘ID==>" myid
-    if [ -z "$myid" ] ; then
+    read -p "请输入需要备份的盘ID==>" zdid
+    zdid=${zdid#*id=};zdid=${zdid#*folders/};zdid=${zdid#*d/};zdid=${zdid%?usp*}
+    if [ -z "$zdid" ] ; then
     echo "不允许输入为空" && exit
     else
-    myid=${myid#*id=};myid=${myid#*folders/};myid=${myid#*d/};myid=${myid%?usp*}
+    myid="$zdid"
     fi
     ;;
 5)
@@ -50,7 +51,7 @@ case "$num" in
     echo -e "请输入正确的数字"
     ;;
 esac
-read -p "请输入备份到哪个盘ID==>" link
+read -p "请输入备份到盘ID==>" link
 if [ -z "$link" ] ; then
     echo "不允许输入为空" && exit
 else
