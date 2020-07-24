@@ -28,7 +28,7 @@ while [ $link!=[0] ];do
     break ;
     fi
     suma=$((suma+1))
-    echo -e "队列任务模式,任务序号【$sum1】"
+    echo -e "队列任务模式,任务序号【$suma】"
     read -p "请继续输入分享链接任务，如需终止添加队列则回复"0"==>" link
     link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
     rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
