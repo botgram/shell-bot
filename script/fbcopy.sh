@@ -35,6 +35,7 @@ case "$num" in
     myid="$book_id"
     ;;
 4)
+    echo -e " \n "
     read -p "请输入需要备份的盘ID==>" zdid
     zdid=${zdid#*id=};zdid=${zdid#*folders/};zdid=${zdid#*d/};zdid=${zdid%?usp*}
     if [ -z "$zdid" ] ; then
@@ -49,6 +50,7 @@ case "$num" in
 *)
     echo -e " \n "
     echo -e "请输入正确的数字"
+    exit
     ;;
 esac
 read -p "请输入备份到盘ID==>" link
