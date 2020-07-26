@@ -8,13 +8,13 @@ link2=${link2#*id=};link2=${link2#*folders/};link2=${link2#*d/};link2=${link2%?u
 fclone lsf "$fclone_name":{$link1} --format "pi" --files-only -R > /root/fclone_shell_bot/log/fsingle_task.txt
 IFS=$'\n'
 suma=0
-sumh=$(grep -n '' /root/fclone_shell_bot/log/fsingle.txt | awk -F : 'END{print $1}')
-for input_id in $(cat /root/fclone_shell_bot/log/fsingle.txt | cut -d ';' -f 2)
+sumh=$(grep -n '' /root/fclone_shell_bot/log/fsingle_task.txt | awk -F : 'END{print $1}')
+for input_id in $(cat /root/fclone_shell_bot/log/fsingle_task.txt | cut -d ';' -f 2)
 do
 suma=$((suma+1))
-input_name=$(cat /root/fclone_shell_bot/log/fsingle.txt | grep '"'$input_id'"' | cut -d ';' -f 1)
+input_name=$(cat /root/fclone_shell_bot/log/fsingle_task.txt | grep "'$input_id'" | cut -d ';' -f 1)
 input_per=$(printf "%d%%" $((suma*100/sumh)))
-echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n" 
+echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n"
 echo -e "┋资源名称┋:"$input_name"\n"
 echo -e "┋资源地址┋:"$input_id"\n"
 echo -e "┋任务信息┋:第"$suma"项/共"$sumh"项\n"
