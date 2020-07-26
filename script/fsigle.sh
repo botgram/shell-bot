@@ -12,7 +12,7 @@ sumh=$(grep -n '' /root/fclone_shell_bot/log/fsingle_task.txt | awk -F : 'END{pr
 for input_id in $(cat /root/fclone_shell_bot/log/fsingle_task.txt | cut -d ';' -f 2)
 do
 suma=$((suma+1))
-input_name=$(cat /root/fclone_shell_bot/log/fsingle_task.txt | grep "'$input_id'" | cut -d ';' -f 1)
+input_name=$(cat /root/fclone_shell_bot/log/fsingle_task.txt | grep $input_id | cut -d ';' -f 1)
 input_per=$(printf "%d%%" $((suma*100/sumh)))
 echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n"
 echo -e "┋资源名称┋:"$input_name"\n"
