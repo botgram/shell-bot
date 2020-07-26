@@ -10,6 +10,7 @@
 #=============================================================
 
 source /root/fclone_shell_bot/myfc_config.ini
+
 clear
 echo -e " 选择你需要备份的盘
 [1]. ADV盘
@@ -17,7 +18,7 @@ echo -e " 选择你需要备份的盘
 [3]. BOOK盘
 [4]. 自定义
 [5]. 退出"
-read -n1 -p "请输入数字 [1-5]:" num
+read -p "请输入数字 [1-5]:" num
 case "$num" in
 1)
     echo -e " \n "
