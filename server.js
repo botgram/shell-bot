@@ -481,7 +481,7 @@ bot.command("help", function (msg, reply, next) {
     "‣ /fp      点点转存模式.\n" +
     "‣ /fb      全盘备份模式.\n" +
     "‣ /fs      定向size查询.\n" +
-    "‣ /fsort   自动整理功能.\n" +
+    "‣ /fsingle 复制单体功能.\n" +
     "‣ /fd      定向查重功能.\n" +
     "‣ /fc      定向比对功能.\n" +
     "‣ /fcl     清空回收站.\n" +
@@ -595,8 +595,8 @@ bot.command("fs", function (msg, reply, next) {
   });
 });
 
-// 自动整理bot command = "/fsort"
-bot.command("fsort", function (msg, reply, next) {
+// 自动整理bot command = "/fsingle"
+bot.command("fsingle", function (msg, reply, next) {
 
   if (msg.context.command) {
     var command = msg.context.command;
@@ -606,8 +606,8 @@ bot.command("fsort", function (msg, reply, next) {
   if (msg.editor) msg.editor.detach();
   msg.editor = null;
 
-// 自动整理"/fsort" command that should be used
-  var args = "/root/fclone_shell_bot/script/fsort.sh";
+// 自动整理"/fsingle" command that should be used
+  var args = "/root/fclone_shell_bot/script/fsingle.sh";
   msg.context.command = new Command(reply, msg.context, args);
   msg.context.command.on("exit", function() {
     msg.context.command = null;
