@@ -32,9 +32,9 @@ echo -e "▣▣▣▣▣▣▣任务信息▣▣▣▣▣▣▣\n"
     echo -e "┋资源地址┋:$link1 \n"
     echo -e "┋资源目标┋:$rootname2 \n"
 echo -e "▣▣▣▣▣▣执行转存▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/"$rootname1"'_fpcopy1.txt'
+fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=ERROR --log-file=/root/fclone_shell_bot/log/"$rootname1"'_fpcopy1.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  拷贝完毕/n"
 echo -e "▣▣▣▣▣▣执行补缺▣▣▣▣▣▣"
-fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=DEBUG --log-file=/root/fclone_shell_bot/log/"$rootname1"'_fpcopy2.txt'
+fclone copy "$fclone_name":{$link1} "$fclone_name":{$link2}/"$rootname1" --drive-server-side-across-configs --stats=1s --stats-one-line -P --checkers="$fp_chercker" --transfers="$fp_transfer" --drive-pacer-min-sleep="$fp_min_sleep"ms --drive-pacer-burst="$fp_BURST" --min-size "$fp_min_size"M --check-first --log-level=ERROR --log-file=/root/fclone_shell_bot/log/"$rootname1"'_fpcopy2.txt'
 echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  补缺完毕/n"
 exit
