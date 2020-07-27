@@ -23,7 +23,7 @@ do
    output_names=$(cut -d ":" -f 1 /root/fclone_shell_bot/av_num.txt)
    if ( $input_names =~ *$output_names* ); then
    output_id=$(awk 'BEGIN{FS=":"}/^'$output_names'/{print $2}' /root/fclone_shell_bot/av_num.txt)
-   fclone copy "$fclone_name":{$input_id} "$fclone_name":{$output_id} --fast-list --drive-server-side-across-configs --stats=1s --stats-one-line -vvP --checkers="$fq_chercker" --transfers="$fq_transfer" --drive-pacer-min-sleep="$fq_min_sleep"ms --drive-pacer-burst="$fq_BURST" --min-size "$fq_min_size"M --check-first
+   fclone copy "$fclone_name":{$input_id} "$fclone_name":{$output_id} --drive-server-side-across-configs --fast-list --no-traverse --size-only --stats=1s --stats-one-line -P --drive-pacer-min-sleep=1ms --ignore-checksum --ignore-existing --buffer-size=50M --use-mmap --checkers=8 --transfers=8 --check-first --log-level=ERROR --log-file=/root/fclone_shell_bot/log/fsingle.log
    else
    echo "无可整理的文件"
    fi

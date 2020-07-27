@@ -24,5 +24,5 @@ else
 link2=${link2#*id=};link2=${link2#*folders/};link2=${link2#*d/};link2=${link2%?usp*}
 fi
 echo -e "▣▣▣▣▣▣正在执行比对▣▣▣▣▣▣"
-fclone check "$fclone_nameb":{$link1} "$fclone_nameb":{$link2} --fast-list --size-only --one-way --no-traverse --min-size "$fq_min_size"M
-echo "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"
+fclone check "$fclone_nameb":{$link1} "$fclone_nameb":{$link2} --fast-list --size-only --one-way --no-traverse --min-size "$fs_min_size"M --checkers="$fs_chercker" --check-first
+echo -e "|▉▉▉▉▉▉▉▉▉▉▉▉|100%  比对完毕"

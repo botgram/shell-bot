@@ -19,6 +19,6 @@ echo -e "┋资源名称┋:"$input_name"\n"
 echo -e "┋资源地址┋:"$input_id"\n"
 echo -e "┋任务信息┋:第"$suma"项/共"$sumh"项\n"
 echo -e "┋任务进度┋:"$input_per""
-fclone copy "$fclone_name":{$input_id} "$fclone_name":{$link2} --drive-server-side-across-configs --fast-list --no-traverse --size-only --stats=1s --stats-one-line -q --drive-pacer-min-sleep=1ms --ignore-checksum --ignore-existing --buffer-size=100M --use-mmap --log-level=ERROR --log-file=/root/fclone_shell_bot/log/fsingle.log'
+fclone copy "$fclone_name":{$input_id} "$fclone_name":{$link2} --drive-server-side-across-configs --fast-list --no-traverse --size-only --stats=1s --stats-one-line -P --drive-pacer-min-sleep=1ms --ignore-checksum --ignore-existing --buffer-size=50M --use-mmap --checkers=8 --transfers=8 --check-first --log-level=ERROR --log-file=/root/fclone_shell_bot/log/fsingle.log
 done
 exit
