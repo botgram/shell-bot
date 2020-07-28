@@ -5,7 +5,7 @@
 
 均基于rclone，gclone增加了sa切换，fclone优化了多sa使用方式
 
-速度上来说，rclone,gclone基本一致，fclone要快很多，具体快几倍还是几十倍还是几百倍，则受【sa的数量、阵列】【电脑&VPS性能】【flag设置】影响
+速度上来说，rclone,gclone基本一致，fclone要快很多，具体快几倍还是几十倍还是几百倍，则受【sa的数量、结构】【电脑&VPS性能】【flag设置】影响
 </details>
 <details>
 <summary>2、fclone到底有多快？我的sa少，VPS差是不是就体验不到这种速度优势？</summary>
@@ -14,19 +14,29 @@
 
 至于说sa数量和vps性能，我不是google内部工作人员，没办法给你严谨的公式，只能枚举一些内测群朋友的情况：
 
-| 序号 | sa数量 |vps cpu|vps内存|转存参数—checker|转存参数-transfer|转存目标情况      |     速度    |
-| :--: |:-----:| :----:|:-----:|:-------------:|:--------------:|:---------------:|:-----------:|
-| 01   | 200   | E5 1C | 512M  |      64       |       128      | 479T 10M以上文件 | 60  files/s |
-| 02   | 400   | E3 1C | 512M  |      128      |       256      | 479T 10M以上文件 | 89  files/s |
-| 03   | 2400  | R9 1C | 1G    |      256      |       250      | 479T 10M以上文件 | 180 files/s |
+| 序号 | sa数量 |    sa结构      |vps cpu|vps内存|转存参数—checker|转存参数-transfer|转存目标情况      |     速度    |
+| :--: |:-----:|:--------------:| :----:|:-----:|:-------------:|:--------------:|:---------------:|:-----------:|
+| 01   | 400   | 100 sa/project | E3 1C | 512M  |      32       |       32       | 479T 10M以上文件 | 50  files/s |
+| 02   | 2400  | 100 sa/project | R9 1C | 1G    |      128      |       128      | 479T 10M以上文件 | 98  files/s |
+| 03   | 5000  | 20 sa/project  | R9 1C | 1G    |      256      |       256      | 479T 10M以上文件 | 160 files/s |
+| 04   | 5000  | 10 sa/project  | R9 1C | 1G    |      320      |       326      | 479T 10M以上文件 | 200 files/s |
+
+**建议：100sa/proj，sa和checker transfers的比例最大是10:1，稳定推荐复制数量大的文件是20:1，即如有2000sa，checker transfer不大于100！**
+**不听劝的后果是：拖慢速度|漏存文件|冗余文件**
          
 </details>
 <details>
 <summary>3、clone系列转存工具，设置自用client id的必要性？</summary>
->>这个问题其实挺麻烦                
->>使用自己的client id，低并发；
->>使用默认的rclone公用client id,高并发，但是N多人使用，也有可能会堵车；
->>官方解释是这样的——原文地址：https://rclone.org/drive/#making-your-own-client-id
+>这个问题其实挺麻烦                
+>使用自己的client id，低并发；
+>使用默认的rclone公用client id,高并发，但是N多人使用，也有可能会堵车；
+>官方解释是这样的——原文地址：https://rclone.org/drive/#making-your-own-client-id
+```
+--drive-client-id
+建议您设置自己的Google Application Client ID。有关如何创建自己的示例，请参见https://rclone.org/drive/#making-your-own-client-id。
+**如果将此空白留空，它将使用性能低下的内部密钥**
+```
+根据rclone官方说法，还是建议用自己的，都用它那个公共的，它也顶不住！
 
 </details>
 <details>
