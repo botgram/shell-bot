@@ -10,7 +10,7 @@
 <details>
 <summary>2、fclone到底有多快？我的sa少，VPS差是不是就体验不到这种速度优势？</summary>
 
-其实第一个问题已经说到了，rclone和gclone平均速度为1-2 files/s,而fclone最低4-5 files/s，保底快一倍！
+根据[rclone官方说明](https://rclone.org/drive/)，rclone和gclone平均速度为2 files/s,而fclone最低4-5 files/s，保底快一倍！
 
 至于说sa数量和vps性能，我不是google内部工作人员，没办法给你严谨的公式，只能枚举一些内测群朋友的情况：
 
@@ -46,7 +46,27 @@
 <details>
 <summary>4、神奇的fclone命令？</summary>
 
->>原文地址：https://rclone.org/drive/#making-your-own-client-id
+* `rclone version`    - 显示版本号
+* `rclone listremotes`- 列出配置文件中的所有的remote用户名
+* `rclone tree`       - [文件树形式列出遥控器的内容](https://rclone.org/commands/rclone_tree/)
+* `rclone ls`         - [用大小和路径列出路径中的对象](https://rclone.org/commands/rclone_ls/)
+* `rclone lsd`        - [列出路径中的所有目录](https://rclone.org/commands/rclone_lsd/)
+* `rclone lsf`        - [列出remote：path中用于解析的目录和对象](https://rclone.org/commands/rclone_lsf/)
+* `rclone lsjson`     - [以JSON格式列出路径中的目录和对象](https://rclone.org/commands/rclone_lsjson/)
+
+* `rclone move`       - [将文件从源移动到目标](https://rclone.org/commands/rclone_move/)
+* `rclone copy`       - [将文件从源复制到dest，跳过已复制的文件](https://rclone.org/commands/rclone_copy/)
+* `rclone sync`       - [使源和目标相同，仅修改目标](https://rclone.org/commands/rclone_sync/)
+
+* `rclone size`       - [打印remote：path中对象的总大小和数量](https://rclone.org/commands/rclone_size/)
+* `rclone check`      - [检查源和目标中的文件是否匹配](https://rclone.org/commands/rclone_check/)
+* `rclone dedupe`     - [交互式查找重复文件并删除/重命名它们](https://rclone.org/commands/rclone_dedupe/)
+
+
+* `rclone delete`     - [删除路径的内容](https://rclone.org/commands/rclone_delete/)
+* `rclone rmdirs`     - [删除路径下的空目录](https://rclone.org/commands/rclone_rmdirs/)
+
+* `rclone mount`      - [在挂载点上将远程作为文件系统挂载](https://rclone.org/commands/rclone_mount/)
 
 </details>
 <details>
@@ -54,6 +74,15 @@
 ```
 --drive-server-side-across-configs --stats=1s --stats-one-line -P --ignore-checksum  --checkers=1800 --transfers=1800 --drive-pacer-min-sleep=1ms --drive-pacer-burst=3000 --check-first --log-level=DEBUG --log-file=/root/fclone_debug.log
 ```
+
+* --drive-server-side-across-configs 允许服务器端操作（例如，复制）跨不同的驱动器配置工作。请注意，默认情况下未启用此功能。
+
+* --drive-pacer-min-sleep=1ms   API调用之间的最短睡眠时间
+
+* --drive-pacer-burst=xxx       允许不休眠的API调用数,注意不能全开，否则循环erro,建议开启数量=sa*25%
+
+
+
 Rclone优化
 有关优化的想法最终应记录在主要文档中。
 
