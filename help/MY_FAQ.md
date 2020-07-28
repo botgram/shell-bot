@@ -85,9 +85,9 @@
 
 * `--check-first`                      fclone快的根本，默认no check first，没有这个标签，fclone=gclone=rclone
 
-* `--disable ListR`
+* `--disable ListR`                    关闭默认的fast list
 
-* `--ignore-checksum`
+* `--ignore-checksum`                  
 
 何时使用/不使用--no-traverse：
 假设您的目的地有6个文件{a，b，c，d，e，f}。
