@@ -75,16 +75,19 @@
 --drive-server-side-across-configs --stats=1s --stats-one-line -P --ignore-checksum  --checkers=1800 --transfers=1800 --drive-pacer-min-sleep=1ms --drive-pacer-burst=3000 --check-first --log-level=DEBUG --log-file=/root/fclone_debug.log
 ```
 
-* --drive-server-side-across-configs 允许服务器端操作（例如，复制）跨不同的驱动器配置工作。请注意，默认情况下未启用此功能。
+* `--drive-server-side-across-configs` 允许服务器端操作（例如，复制）跨不同的驱动器配置工作。请注意，默认情况下未启用此功能。
 
-* --drive-pacer-min-sleep=1ms   API调用之间的最短睡眠时间
+* `--drive-pacer-min-sleep=1ms`        API调用之间的最短睡眠时间
 
-* --drive-pacer-burst=xxx       允许不休眠的API调用数,注意不能全开，否则循环erro,建议开启数量=sa*25%
+* `--drive-pacer-burst=xxx`            允许不休眠的API调用数,注意不能全开，否则循环erro,建议开启数量=sa*25%
 
+* `--checkers=1800 --transfers=1800`   fclone的变速箱，check和transfer的线程，推荐线程数=sa数/20（前提vps性能撑得住）
 
+* `--check-first`                      fclone快的根本，默认no check first，没有这个标签，fclone=gclone=rclone
 
-Rclone优化
-有关优化的想法最终应记录在主要文档中。
+* `--disable ListR`
+
+* `--ignore-checksum`
 
 何时使用/不使用--no-traverse：
 假设您的目的地有6个文件{a，b，c，d，e，f}。
@@ -128,7 +131,75 @@ Rclone优化
 降低 --transfers=
 </details>
 <details>
-<summary>7、比fclone更快？jclone发布前的准备工作</summary>
+<summary>7、处理【debian/ubuntu】python3版本问题</summary>
+一行一行复制不管你之前什么版本
 
-原文地址：https://rclone.org/drive/#making-your-own-client-id
+1.升级以及安装
+```
+apt update -y 
+apt upgrade -y 
+apt install python3 python3-pip --upgrade 
+pip3 install --upgrade pip 
+```
+2.查看版本 
+```
+python3 --version 
+pip3 --version 
+```
+如果发现python3 不是刚才提示你安装成功的版本
+可能是你系统中存在旧的python3
+执行以下命令 确认存在的python3版本
+
+例如3.7.7 你就当他是3.7 第二个小数点后无视
+
+`whereis python3`  
+
+3.启用python版本
+```
+rm -rf /usr/bin/python3 
+ln -s `which python3.x` /usr/bin/python3 
+```
+上面3.x的x
+就是在第二步最后让你确定的版本号只保留1位小数
+
+重新查看python3 版本号
+
+`python3 --version`
+
+</details>
+<summary>8、处理</summary>
+一行一行复制不管你之前什么版本
+
+1.升级以及安装
+```
+apt update -y 
+apt upgrade -y 
+apt install python3 python3-pip --upgrade 
+pip3 install --upgrade pip 
+```
+2.查看版本 
+```
+python3 --version 
+pip3 --version 
+```
+如果发现python3 不是刚才提示你安装成功的版本
+可能是你系统中存在旧的python3
+执行以下命令 确认存在的python3版本
+
+例如3.7.7 你就当他是3.7 第二个小数点后无视
+
+`whereis python3`  
+
+3.启用python版本
+```
+rm -rf /usr/bin/python3 
+ln -s `which python3.x` /usr/bin/python3 
+```
+上面3.x的x
+就是在第二步最后让你确定的版本号只保留1位小数
+
+重新查看python3 版本号
+
+`python3 --version`
+
 </details>
