@@ -20,9 +20,13 @@
 | 02   | 2400  | 100 sa/project | R9 1C | 1G    |      128      |       128      | 479T 10M以上文件 | 98  files/s |
 | 03   | 5000  | 20 sa/project  | R9 1C | 1G    |      256      |       256      | 479T 10M以上文件 | 160 files/s |
 | 04   | 5000  | 10 sa/project  | R9 1C | 1G    |      320      |       326      | 479T 10M以上文件 | 200 files/s |
+| 05   | 15000 | 100 sa/project |    2C | 4G    |      1000     |       2500     | 479T 10M以上文件 | 350 files/s |
+| 05   | 20000 | 100 sa/project |    2C | 4G    |      3000     |       3000     | 479T 10M以上文件 | 600 files/s |
 
-**建议：100sa/proj，sa和checker transfers的比例最大是10:1，稳定推荐复制数量大的文件是20:1，即如有2000sa，checker transfer不大于100！**
+**注意：100sa/proj，sa和checker transfers的比例最大是10:1，稳定推荐复制数量大的文件是20:1，即如有2000sa，checker transfer不大于100！**
+**pacerburst 5000**
 **不听劝的后果是：拖慢速度|漏存文件|冗余文件**
+**建议：sa结构 10 sa/project，sa数量：10000~15000**
          
 </details>
 <details>
@@ -47,6 +51,9 @@
 </details>
 <details>
 <summary>5、fclone参数——速度篇</summary>
+```
+--drive-server-side-across-configs --stats=1s --stats-one-line -P --ignore-checksum  --checkers=1800 --transfers=1800 --drive-pacer-min-sleep=1ms --drive-pacer-burst=3000 --check-first --log-level=DEBUG --log-file=/root/fclone_debug.log
+```
 Rclone优化
 有关优化的想法最终应记录在主要文档中。
 
