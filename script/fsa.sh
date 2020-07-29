@@ -11,10 +11,11 @@ echo -e "已检测完毕,异常项目"$sum_check"个，即将针对异常开启�
 sumsa=0
 for saf_id in $(cat $safolder/invalid/*.json | grep "project_id" | awk '{print $2}' | tr -d ',"')
 do
-cd $pyfolder && python3 gen_sa_accounts.py --enable-services $saf_id
+cd /root/AutoRclone && python3 gen_sa_accounts.py --enable-services $saf_id
 sumsa=$((sumsa+1))
 echo -e "已开启 第"$sumsa"个项目；共"$sum_check"个项目"
 done
+mv $safolder/invalid/*.json $safolder
 echo -e "done！！！"
 
 ######safolder###                                                              ####remote#####            ###########33folderid###########          &> /dev/null
