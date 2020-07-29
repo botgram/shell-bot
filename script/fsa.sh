@@ -3,12 +3,14 @@ stty erase '^H'
 echo 正常的sa无输出，错误的才有，注意你的CPU负载！开始！
 read -p "输入你的sa保存目录！ : " safolder
 mkdir -p $safolder/invalid
+mkdir -p $safolder/ok
 read -p "输入你的remote！ : " remote
 read -p "输入你的团队盘id！ : " folderid
 sum_check=$(cd $safolder/invalid && ls -l | grep "^-" | wc -l)
 while [ $sum_check=[0] ];do
 find $safolder -type f -name "*.json" | xargs -I {} -n 1 -P 10 bash -c 'fclone lsd '$remote':{'$folderid'} --drive-service-account-file={} --drive-service-account-file-path=""  &> /dev/null || mv -f {} '$safolder'/invalid '
 sum_check=$(cd $safolder/invalid && ls -l | grep "^-" | wc -l)
+mv '$safolder'/*.json '$safolder'/ok
     if [ $sum_check=[0] ];then
     echo 恭喜你！你的sa检测ok！
     exit
