@@ -9,7 +9,7 @@ find $safolder -type f -name "*.json" | xargs -I {} -n 1 -P 10 bash -c 'fclone l
 sum_check=$(cd $safolder/invalid && ls -l | grep "^-" | wc -l)
 echo -e "已检测完毕,异常项目"$sum_check"个，即将针对异常开启服务"
 sumsa=0
-for saf_id in $(cat $safolder/invalid/*.json | grep "project_id" | awk '{print $2}' | tr -d ',"')
+for saf_id in $(sort -u $safolder/invalid/*.json | grep "project_id" | awk '{print $2}' | tr -d ',"')
 do
 cd /root/AutoRclone && python3 gen_sa_accounts.py --enable-services $saf_id
 sumsa=$((sumsa+1))
