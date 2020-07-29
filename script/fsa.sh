@@ -13,7 +13,7 @@ find $safolder -type f -name "*.json" | xargs -I {} -n 1 -P 10 bash -c 'fclone l
     exit
     else
     sum_check=$(cd $safolder/invalid && ls -l | grep "^-" | wc -l)
-    echo -e "已检测完毕,异常项目"$sum_check"个"
+    echo -e "已检测完毕,异常项目"$sum_check"个，即将为你开启服务"
     sumsa=0
         for saf_id in $(sort -u $safolder/invalid/*.json | grep "project_id" | awk '{print $2}' | tr -d ',"')
         do
