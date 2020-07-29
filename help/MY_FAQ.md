@@ -166,41 +166,55 @@ ln -s `which python3.x` /usr/bin/python3
 
 `python3 --version`
 
+</details>
 <details>
-<summary>8、处理open file问题</summary>
+<summary>8、处理 too many open files问题</summary>
+         
+####step 1)
 
-一行一行复制不管你之前什么版本
+`nano /etc/sysctl.conf`
 
-1.升级以及安装
+添加以下行
+
+`fs.file-max = 6553500`
+
+保存退出执行以下命令
+
+`sysctl -p`
+
+####step 2)
+
+`nano /etc/security/limits.conf`
+
+添加以下行
+
 ```
-apt update -y 
-apt upgrade -y 
-apt install python3 python3-pip --upgrade 
-pip3 install --upgrade pip 
-```
-2.查看版本 
-```
-python3 --version 
-pip3 --version 
-```
-如果发现python3 不是刚才提示你安装成功的版本
-可能是你系统中存在旧的python3
-执行以下命令 确认存在的python3版本
+* soft memlock unlimited
+* hard memlock unlimited
+* soft nofile 65535
+* hard nofile 65535
+* soft nproc 65535
+* hard nproc 65535
 
-例如3.7.7 你就当他是3.7 第二个小数点后无视
-
-`whereis python3`  
-
-3.启用python版本
+root soft memlock unlimited
+root hard memlock unlimited
+root soft nofile 65535
+root hard nofile 65535
+root soft nproc 65535
+root hard nproc 65535
 ```
-rm -rf /usr/bin/python3 
-ln -s `which python3.x` /usr/bin/python3 
-```
-上面3.x的x
-就是在第二步最后让你确定的版本号只保留1位小数
+保存退出
 
-重新查看python3 版本号
+step 3)
 
-`python3 --version`
+`nano /etc/pam.d/common-session`
+
+添加以下行
+
+`session required pam_limits.so`
+
+保存退出，最后重启系统登录查看
+
+`ulimit -a`
 
 </details>
