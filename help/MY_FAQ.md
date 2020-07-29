@@ -166,8 +166,9 @@ ln -s `which python3.x` /usr/bin/python3
 
 `python3 --version`
 
-</details>
-<summary>8、处理</summary>
+<details>
+<summary>8、处理open file问题</summary>
+
 一行一行复制不管你之前什么版本
 
 1.升级以及安装
