@@ -85,7 +85,7 @@
 
 * `--check-first`                      fclone快的根本，默认no check first，没有这个标签，fclone=gclone=rclone
 
-* `--disable ListR`                    关闭默认的fast list
+* `--disable ListR`                    关闭默认的fast list,规避listr的bug提示，整个世界清净了
 
 * `--ignore-checksum`                  
 
