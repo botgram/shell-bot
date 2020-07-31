@@ -21,7 +21,7 @@ elif [ -z "$rootname" ] ; then
 echo -e "读取文件夹名称出错，请反馈问题给作者,如果是全盘请用fb,此模式读不了盘名!\n"
 break
 else
-echo -e "$link" >/root/fclone_shell_bot/log/fqtask.txt
+echo -e "$link" >>/root/fclone_shell_bot/log/fqtask.txt
 fi
 suma=1
 while [ $link!=[0] ];do
@@ -30,16 +30,16 @@ while [ $link!=[0] ];do
     read -p "请继续输入分享链接任务，如需终止添加队列则回复"0"==>" link
     link=${link#*id=};link=${link#*folders/};link=${link#*d/};link=${link%?usp*}
     rootname=$(fclone lsd "$fclone_name":{$link} --dump bodies -vv 2>&1 | awk 'BEGIN{FS="\""}/^{"id/{print $8}')
-    if [ -z "$link" ] ; then
+    if [ x"$link" == x"0" ];then
+    echo -e "总共添加了【$suma】项任务,队列任务即将执行"
+    break
+    elif [ -z "$link" ];then
     echo -e "不允许输入为空"
     echo -e "再给你一次机会"
     continue
-    elif [ $link=[0] ];then
-    echo -e "总共添加了【$suma】项任务,队列任务即将执行"
-    break
     elif [ -z "$rootname" ] ; then
-    echo -e "读取文件夹名称出错，请反馈问题给作者"
-    echo -e "注意：读取不了盘名，如果是整盘请使用fb全盘备份模式"
+    echo -e "读取文件夹名称出错,如果是全盘请用fb,此模式读不了盘名!\n"
+    echo -e "再给你一次机会"
     continue
     else
     echo -e "$link" >> /root/fclone_shell_bot/log/fqtask.txt
