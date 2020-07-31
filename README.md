@@ -166,5 +166,3 @@ wget -N https://github.com/cgkings/fclone_shell_bot/raw/master/fclone/fclone.zip
 #### 2#客服： [@度娘](https://www.baidu.com)；
 
 #### 3#客服   [@TG群组机器人](https://t.me/sharegdrive)
-
-#### 4#客服   **TG人工客服**  [@ 小受](https://t.me/onekings) [@ 小H](https://t.me/waihoe89) [@ F佬](https://t.me/fxxkrlab)
