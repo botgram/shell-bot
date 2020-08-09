@@ -4,6 +4,8 @@ fqa - 极速序列模式
 fp - 点点转存模式
 fb - 全盘备份模式
 fs - 定向size查询
+fsa - 检测sa有效性
+fsingle - 展开文件夹复制单文件
 fsort - 自动整理
 fd - 定向查重
 fc - 定向比对
