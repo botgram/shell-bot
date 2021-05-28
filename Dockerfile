@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
 
+RUN mkdir ./app
+RUN chmod 777 ./app
+WORKDIR /app
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Kolkata
 RUN apt upgrade -y
@@ -15,8 +19,6 @@ RUN apt install -y make python build-essential nodejs npm \
         qbittorrent-nox \
         rar unrar \
         p7zip
-
-#Runs npm install
-CMD npm install
-#Starts the bot
-CMD node server
+COPY . .
+RUN chmod +x start.sh
+CMD ["bash","start.sh"] 
