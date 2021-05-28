@@ -17,6 +17,6 @@ RUN apt install -y make python build-essential nodejs npm \
         p7zip
 
 #Runs npm install
-RUN npm install
+CMD npm install
 #Starts the bot
 CMD node server
