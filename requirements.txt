@@ -1,0 +1,11 @@
+Pyrogram
+TgCrypto
+asyncio
+requests
+beautifulsoup4
+emoji
+ujson
+aiofiles
+aiohttp
+ffmpeg-python
+psutil
