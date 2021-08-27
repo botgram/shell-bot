@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM python:3.9-slim-buster
 
 RUN mkdir ./app
 RUN chmod 777 ./app
@@ -19,6 +19,10 @@ RUN apt install -y make python build-essential nodejs npm \
         qbittorrent-nox \
         rar unrar \
         p7zip
+        
+COPY requirements.txt .
+# install dependencies
+RUN pip install -r requirements.txt
 COPY . .
 RUN chmod +x start.sh
 CMD ["bash","start.sh"] 
