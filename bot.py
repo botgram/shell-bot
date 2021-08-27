@@ -71,3 +71,7 @@ async def aexec(code, client, message):
         ''.join(f'\n {l_}' for l_ in code.split('\n'))
     )
     return await locals()['__aexec'](client, message)
+
+
+if __name__ == "__main__":
+    app.run()
