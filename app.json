@@ -1,6 +1,5 @@
 {
     "name": "tg-shellbot-heroku",
-    "stack": "container",
     "env": {
       "BOT_TOKEN": {
         "description": "This is bot auth token, necessary to connect bot to Telegram device."
