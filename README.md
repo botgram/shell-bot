@@ -1,7 +1,4 @@
 #### The Easy Way
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 # shell-bot
 
 This is a fully functional shellrunner [Telegram bot][]. You tell it a
