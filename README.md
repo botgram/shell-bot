@@ -1,3 +1,4 @@
+#### The Easy Way
 # shell-bot
 
 This is a fully functional shellrunner [Telegram bot][]. You tell it a
