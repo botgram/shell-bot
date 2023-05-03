@@ -36,6 +36,18 @@ bot.on("updateError", function (err) {
 
 bot.on("synced", function () {
   console.log("Bot ready.");
+  const axios = require('axios');
+  const message = 'the Bot started';
+  const chatId = config.owner;
+  const apiUrl = `https://api.telegram.org/bot${config.authToken}`;
+  axios.post(`${apiUrl}/sendMessage`, {
+    chat_id: chatId,
+    text: message
+}).then(response => {
+    console.log('Message sent:', response.data.result.text);
+}).catch(error => {
+    console.error('Error sending message:', error.response.data.description);
+});
 });
 
 
