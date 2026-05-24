@@ -15,13 +15,13 @@
     "botgram": "^2.2",
     "escape-html": "1",
     "mime": "1",
-    "node-pty": "^0.9.0",
-    "node-termios": "0.0.13",
+    "node-pty": "^1.1.0",
+    "node-termios": "^0.2.0",
     "terminal.js": "1.0.9"
   },
   "optionalDependencies": {
     "https-proxy-agent": "^5.0.0",
-    "socks-proxy-agent": "^4.0.1"
+    "socks-proxy-agent": "^10.0.0"
   },
   "bugs": {
     "url": "https://github.com/botgram/shell-bot/issues"
